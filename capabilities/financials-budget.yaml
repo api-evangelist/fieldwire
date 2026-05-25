@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Financials API — Budget
+  description: Project budget line items and actual costs for Business Plus customers.
+  tags: [Fieldwire, Financials, Budget, Construction]
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+    FIELDWIRE_REGION_HOST: FIELDWIRE_REGION_HOST
+capability:
+  consumes:
+  - type: http
+    namespace: financials-budget
+    baseUri: '{{env.FIELDWIRE_REGION_HOST}}'
+    description: Fieldwire Project Budget business capability.
+    resources:
+    - name: project-budget-line-items
+      path: /api/v3/projects/{project_id}/budget_line_items
+      operations:
+      - name: getbudgetlineitemsinproject
+        method: GET
+        description: Get Budget Line Items In Project
+        inputParameters: [{ name: project_id, in: path, type: integer, required: true }]
+        outputParameters: [{ name: result, type: array, value: $. }]
+      - name: createbudgetlineiteminproject
+        method: POST
+        description: Create Budget Line Item In Project
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    - name: project-actual-costs
+      path: /api/v3/projects/{project_id}/actual_costs
+      operations:
+      - name: getactualcostsinproject
+        method: GET
+        description: Get Actual Costs In Project
+        inputParameters: [{ name: project_id, in: path, type: integer, required: true }]
+        outputParameters: [{ name: result, type: array, value: $. }]
+      - name: createactualcostinproject
+        method: POST
+        description: Create Actual Cost In Project
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: financials-budget-rest
+    port: 8080
+    description: REST adapter for Fieldwire Project Budget.
+    resources:
+    - path: /v1/projects/{project_id}/budget_line_items
+      name: project-budget-line-items
+      operations:
+      - method: GET
+        name: getbudgetlineitemsinproject
+        call: financials-budget.getbudgetlineitemsinproject
+        with: { project_id: rest.path.project_id }
+        outputParameters: [{ type: array, mapping: $. }]
+      - method: POST
+        name: createbudgetlineiteminproject
+        call: financials-budget.createbudgetlineiteminproject
+        with: { project_id: rest.path.project_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/projects/{project_id}/actual_costs
+      name: project-actual-costs
+      operations:
+      - method: GET
+        name: getactualcostsinproject
+        call: financials-budget.getactualcostsinproject
+        with: { project_id: rest.path.project_id }
+        outputParameters: [{ type: array, mapping: $. }]
+      - method: POST
+        name: createactualcostinproject
+        call: financials-budget.createactualcostinproject
+        with: { project_id: rest.path.project_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: financials-budget-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Project Budget.
+    tools:
+    - name: fieldwire-list-budget-line-items
+      description: List budget line items for a Fieldwire project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: financials-budget.getbudgetlineitemsinproject
+      with: { project_id: tools.project_id }
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-create-budget-line-item
+      description: Add a budget line item to a Fieldwire project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: financials-budget.createbudgetlineiteminproject
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-list-actual-costs
+      description: List actual costs logged against budget lines.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: financials-budget.getactualcostsinproject
+      with: { project_id: tools.project_id }
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-create-actual-cost
+      description: Log an actual cost against a budget line item.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: financials-budget.createactualcostinproject
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

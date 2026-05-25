@@ -1,0 +1,75 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Plans API — Sheets
+  description: Fieldwire sheets — versioned PDF drawings tied to a floorplan.
+  tags: [Fieldwire, Plans, Sheets, Construction]
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+    FIELDWIRE_REGION_HOST: FIELDWIRE_REGION_HOST
+capability:
+  consumes:
+  - type: http
+    namespace: plans-sheets
+    baseUri: '{{env.FIELDWIRE_REGION_HOST}}'
+    description: Fieldwire Sheets business capability.
+    resources:
+    - name: project-sheets
+      path: /api/v3/projects/{project_id}/sheets
+      operations:
+      - name: getsheetsinproject
+        method: GET
+        description: Get Sheets In Project
+        inputParameters: [{ name: project_id, in: path, type: integer, required: true }]
+        outputParameters: [{ name: result, type: array, value: $. }]
+      - name: createsheetinproject
+        method: POST
+        description: Create Sheet In Project
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: plans-sheets-rest
+    port: 8080
+    description: REST adapter for Fieldwire Sheets.
+    resources:
+    - path: /v1/projects/{project_id}/sheets
+      name: project-sheets
+      operations:
+      - method: GET
+        name: getsheetsinproject
+        call: plans-sheets.getsheetsinproject
+        with: { project_id: rest.path.project_id }
+        outputParameters: [{ type: array, mapping: $. }]
+      - method: POST
+        name: createsheetinproject
+        call: plans-sheets.createsheetinproject
+        with: { project_id: rest.path.project_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: plans-sheets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Sheets.
+    tools:
+    - name: fieldwire-list-sheets
+      description: List sheets (PDF drawings) in a Fieldwire project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: plans-sheets.getsheetsinproject
+      with: { project_id: tools.project_id }
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-create-sheet
+      description: Register a new sheet version on a Fieldwire floorplan after S3 upload.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: plans-sheets.createsheetinproject
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

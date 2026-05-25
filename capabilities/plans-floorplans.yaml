@@ -1,0 +1,118 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Plans API — Floorplans
+  description: Fieldwire floorplans — hierarchical floorplan collections, the current active sheet, and parent/child relationships.
+  tags: [Fieldwire, Plans, Floorplans, Construction]
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+    FIELDWIRE_REGION_HOST: FIELDWIRE_REGION_HOST
+capability:
+  consumes:
+  - type: http
+    namespace: plans-floorplans
+    baseUri: '{{env.FIELDWIRE_REGION_HOST}}'
+    description: Fieldwire Floorplans business capability.
+    resources:
+    - name: project-floorplans
+      path: /api/v3/projects/{project_id}/floorplans
+      operations:
+      - name: getfloorplansinproject
+        method: GET
+        description: Get Floorplans In Project
+        inputParameters: [{ name: project_id, in: path, type: integer, required: true }]
+        outputParameters: [{ name: result, type: array, value: $. }]
+      - name: createfloorplaninproject
+        method: POST
+        description: Create Floorplan In Project
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    - name: project-floorplan
+      path: /api/v3/projects/{project_id}/floorplans/{floorplan_id}
+      operations:
+      - name: getfloorplanbyid
+        method: GET
+        description: Get Floorplan By ID
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: floorplan_id, in: path, type: integer, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+      - name: updatefloorplanbyid
+        method: PATCH
+        description: Update Floorplan By ID
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: floorplan_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: plans-floorplans-rest
+    port: 8080
+    description: REST adapter for Fieldwire Floorplans.
+    resources:
+    - path: /v1/projects/{project_id}/floorplans
+      name: project-floorplans
+      operations:
+      - method: GET
+        name: getfloorplansinproject
+        call: plans-floorplans.getfloorplansinproject
+        with: { project_id: rest.path.project_id }
+        outputParameters: [{ type: array, mapping: $. }]
+      - method: POST
+        name: createfloorplaninproject
+        call: plans-floorplans.createfloorplaninproject
+        with: { project_id: rest.path.project_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/projects/{project_id}/floorplans/{floorplan_id}
+      name: project-floorplan
+      operations:
+      - method: GET
+        name: getfloorplanbyid
+        call: plans-floorplans.getfloorplanbyid
+        with: { project_id: rest.path.project_id, floorplan_id: rest.path.floorplan_id }
+        outputParameters: [{ type: object, mapping: $. }]
+      - method: PATCH
+        name: updatefloorplanbyid
+        call: plans-floorplans.updatefloorplanbyid
+        with: { project_id: rest.path.project_id, floorplan_id: rest.path.floorplan_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: plans-floorplans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Floorplans.
+    tools:
+    - name: fieldwire-list-floorplans
+      description: List Fieldwire floorplans in a project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: plans-floorplans.getfloorplansinproject
+      with: { project_id: tools.project_id }
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-create-floorplan
+      description: Create a new Fieldwire floorplan in a project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: plans-floorplans.createfloorplaninproject
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-get-floorplan
+      description: Get a Fieldwire floorplan by ID.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: plans-floorplans.getfloorplanbyid
+      with: { project_id: tools.project_id, floorplan_id: tools.floorplan_id }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-update-floorplan
+      description: Update a Fieldwire floorplan.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: plans-floorplans.updatefloorplanbyid
+      with: { project_id: tools.project_id, floorplan_id: tools.floorplan_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

@@ -1,0 +1,57 @@
+{
+  "summary": "Create a punch-list task on a floorplan",
+  "description": "Example POST /api/v3/projects/{project_id}/tasks payload that creates a punch list task assigned to a foreman with a due date and one custom attribute.",
+  "request": {
+    "method": "POST",
+    "url": "https://client-api.us.fieldwire.com/api/v3/projects/123456/tasks",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Fieldwire-Version": "2026-04-07",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Repair drywall scuff in Room 204",
+      "description": "Drywall scuff next to door frame; needs spackle and touch-up paint.",
+      "status_id": 4001,
+      "priority": 2,
+      "category": "Punch List",
+      "floorplan_id": 78901,
+      "owner_user_id": 55211,
+      "due_at": "2026-06-02T17:00:00Z",
+      "custom_attributes": {
+        "trade": "Painter",
+        "room_number": "204"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "ratelimit-limit-minute": "120",
+      "ratelimit-remaining-minute": "118",
+      "ratelimit-limit-hour": "3000",
+      "ratelimit-remaining-hour": "2987"
+    },
+    "body": {
+      "id": 99887766,
+      "project_id": 123456,
+      "name": "Repair drywall scuff in Room 204",
+      "description": "Drywall scuff next to door frame; needs spackle and touch-up paint.",
+      "status_id": 4001,
+      "priority": 2,
+      "category": "Punch List",
+      "floorplan_id": 78901,
+      "owner_user_id": 55211,
+      "creator_user_id": 55100,
+      "due_at": "2026-06-02T17:00:00Z",
+      "completed_at": null,
+      "created_at": "2026-05-25T14:32:11Z",
+      "updated_at": "2026-05-25T14:32:11Z",
+      "custom_attributes": {
+        "trade": "Painter",
+        "room_number": "204"
+      }
+    }
+  }
+}

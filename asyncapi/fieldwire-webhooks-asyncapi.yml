@@ -1,0 +1,240 @@
+asyncapi: 3.0.0
+info:
+  title: Fieldwire Webhooks
+  version: v3.1
+  description: |
+    Outbound webhook events delivered by Fieldwire to subscriber `post_url`
+    endpoints. Subscribers register through the Webhooks REST API; Fieldwire
+    POSTs JSON payloads describing entity changes (created, updated, deleted,
+    restored, plus entity-specific verbs like `merged`, `rescanned`, `rotated`,
+    `transferred`).
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+defaultContentType: application/json
+servers:
+  subscriber:
+    host: example.com
+    protocol: https
+    description: |
+      The subscriber's HTTPS callback. Fieldwire POSTs JSON event payloads to
+      the `post_url` registered on the subscription.
+channels:
+  attachment:
+    address: /webhooks/fieldwire/attachment
+    description: Attachment lifecycle events.
+    messages:
+      AttachmentEvent:
+        $ref: '#/components/messages/AttachmentEvent'
+  entityTag:
+    address: /webhooks/fieldwire/entity-tag
+    messages:
+      EntityTagEvent:
+        $ref: '#/components/messages/EntityTagEvent'
+  entityTagging:
+    address: /webhooks/fieldwire/entity-tagging
+    messages:
+      EntityTaggingEvent:
+        $ref: '#/components/messages/EntityTaggingEvent'
+  floorplan:
+    address: /webhooks/fieldwire/floorplan
+    messages:
+      FloorplanEvent:
+        $ref: '#/components/messages/FloorplanEvent'
+  form:
+    address: /webhooks/fieldwire/form
+    messages:
+      FormEvent:
+        $ref: '#/components/messages/FormEvent'
+  hyperlink:
+    address: /webhooks/fieldwire/hyperlink
+    messages:
+      HyperlinkEvent:
+        $ref: '#/components/messages/HyperlinkEvent'
+  multiHyperlink:
+    address: /webhooks/fieldwire/multi-hyperlink
+    messages:
+      MultiHyperlinkEvent:
+        $ref: '#/components/messages/MultiHyperlinkEvent'
+  project:
+    address: /webhooks/fieldwire/project
+    messages:
+      ProjectEvent:
+        $ref: '#/components/messages/ProjectEvent'
+  projectResourceLink:
+    address: /webhooks/fieldwire/project-resource-link
+    messages:
+      ProjectResourceLinkEvent:
+        $ref: '#/components/messages/ProjectResourceLinkEvent'
+  sheet:
+    address: /webhooks/fieldwire/sheet
+    messages:
+      SheetEvent:
+        $ref: '#/components/messages/SheetEvent'
+  sheetUpload:
+    address: /webhooks/fieldwire/sheet-upload
+    messages:
+      SheetUploadEvent:
+        $ref: '#/components/messages/SheetUploadEvent'
+  task:
+    address: /webhooks/fieldwire/task
+    messages:
+      TaskEvent:
+        $ref: '#/components/messages/TaskEvent'
+  taskCheckItem:
+    address: /webhooks/fieldwire/task-check-item
+    messages:
+      TaskCheckItemEvent:
+        $ref: '#/components/messages/TaskCheckItemEvent'
+  taskRelation:
+    address: /webhooks/fieldwire/task-relation
+    messages:
+      TaskRelationEvent:
+        $ref: '#/components/messages/TaskRelationEvent'
+operations:
+  receiveAttachment:
+    action: receive
+    channel:
+      $ref: '#/channels/attachment'
+  receiveEntityTag:
+    action: receive
+    channel:
+      $ref: '#/channels/entityTag'
+  receiveEntityTagging:
+    action: receive
+    channel:
+      $ref: '#/channels/entityTagging'
+  receiveFloorplan:
+    action: receive
+    channel:
+      $ref: '#/channels/floorplan'
+  receiveForm:
+    action: receive
+    channel:
+      $ref: '#/channels/form'
+  receiveHyperlink:
+    action: receive
+    channel:
+      $ref: '#/channels/hyperlink'
+  receiveMultiHyperlink:
+    action: receive
+    channel:
+      $ref: '#/channels/multiHyperlink'
+  receiveProject:
+    action: receive
+    channel:
+      $ref: '#/channels/project'
+  receiveProjectResourceLink:
+    action: receive
+    channel:
+      $ref: '#/channels/projectResourceLink'
+  receiveSheet:
+    action: receive
+    channel:
+      $ref: '#/channels/sheet'
+  receiveSheetUpload:
+    action: receive
+    channel:
+      $ref: '#/channels/sheetUpload'
+  receiveTask:
+    action: receive
+    channel:
+      $ref: '#/channels/task'
+  receiveTaskCheckItem:
+    action: receive
+    channel:
+      $ref: '#/channels/taskCheckItem'
+  receiveTaskRelation:
+    action: receive
+    channel:
+      $ref: '#/channels/taskRelation'
+components:
+  messages:
+    AttachmentEvent:
+      name: AttachmentEvent
+      title: Attachment lifecycle event
+      payload:
+        $ref: '#/components/schemas/Event'
+    EntityTagEvent:
+      name: EntityTagEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    EntityTaggingEvent:
+      name: EntityTaggingEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    FloorplanEvent:
+      name: FloorplanEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    FormEvent:
+      name: FormEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    HyperlinkEvent:
+      name: HyperlinkEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    MultiHyperlinkEvent:
+      name: MultiHyperlinkEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    ProjectEvent:
+      name: ProjectEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    ProjectResourceLinkEvent:
+      name: ProjectResourceLinkEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    SheetEvent:
+      name: SheetEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    SheetUploadEvent:
+      name: SheetUploadEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    TaskEvent:
+      name: TaskEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    TaskCheckItemEvent:
+      name: TaskCheckItemEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+    TaskRelationEvent:
+      name: TaskRelationEvent
+      payload:
+        $ref: '#/components/schemas/Event'
+  schemas:
+    Event:
+      type: object
+      required: [entity_type, event_type, account_id, occurred_at, data]
+      properties:
+        entity_type:
+          type: string
+          description: Entity that changed, e.g. `task`, `attachment`, `floorplan`, `form`, `project`, `sheet`, `hyperlink`, `multi_hyperlink`, `entity_tag`, `entity_tagging`, `project_resource_link`, `sheet_upload`, `task_check_item`, `task_relation`.
+        event_type:
+          type: string
+          description: Verb describing what happened. `created`, `updated`, `deleted`, `restored`, `merged`, `rescanned`, `rotated`, `transferred`.
+          enum: [created, updated, deleted, restored, merged, rescanned, rotated, transferred]
+        account_id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        subscription_id:
+          type: integer
+          format: int64
+        occurred_at:
+          type: string
+          format: date-time
+        data:
+          type: object
+          description: Snapshot of the entity at the time of the event.
+          additionalProperties: true

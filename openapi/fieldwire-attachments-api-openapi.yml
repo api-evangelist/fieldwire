@@ -1,0 +1,282 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Attachments and Media API
+  description: |
+    Two-step direct-to-S3 upload flow for project attachments — photos, video,
+    PDFs, drawings, spec pages — and the markup overlays drawn on top of them.
+    Clients first request a signed AWS S3 POST token (1-day TTL), then POST
+    the binary file directly to AWS, and finally register the attachment in
+    Fieldwire. Markups follow the GeoJSON Feature schema with `arrow`,
+    `drawing`, `measurement`, and `text` styles.
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+  - url: https://client-api.us.fieldwire.com/api/v3
+    description: US Region
+  - url: https://client-api.eu.fieldwire.com/api/v3
+    description: EU Region
+security:
+  - BearerAuth: []
+tags:
+  - name: S3 Tokens
+    description: Short-lived signed AWS POST tokens for direct-to-S3 uploads.
+  - name: Attachments
+    description: Project attachment lifecycle.
+  - name: Markups
+    description: GeoJSON-shaped markup overlays drawn on attachments and sheets.
+paths:
+  /projects/{project_id}/aws_post_tokens:
+    post:
+      operationId: addAwsPostTokens
+      summary: Get AWS POST Token For Upload
+      description: |
+        Request a one-day signed AWS POST token that the client uses to upload
+        the binary directly to Amazon S3. The token contains the post URL,
+        policy, and form fields required for the S3 `POST object` operation;
+        clients then add a `file` form field and POST to AWS directly.
+      tags: [S3 Tokens]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [filename, content_type]
+              properties:
+                filename:
+                  type: string
+                content_type:
+                  type: string
+                  example: image/jpeg
+                size:
+                  type: integer
+                  format: int64
+      responses:
+        '200':
+          description: Signed POST token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsPostToken'
+  /projects/{project_id}/attachments:
+    get:
+      operationId: getAttachmentsInProject
+      summary: Get Attachments In Project
+      tags: [Attachments]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Attachment list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attachment'
+    post:
+      operationId: createAttachmentInProject
+      summary: Create Attachment In Project
+      description: |
+        Register an attachment after the binary has been uploaded to S3 via
+        the POST-token flow. The `aws_post_token_id` ties the registration
+        back to the previously issued token.
+      tags: [Attachments]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachmentCreate'
+      responses:
+        '201':
+          description: Registered attachment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+  /projects/{project_id}/attachment_markups:
+    get:
+      operationId: getAttachmentMarkupsInProject
+      summary: Get Attachment Markups In Project
+      tags: [Markups]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Markup list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttachmentMarkup'
+    post:
+      operationId: createAttachmentMarkupInProject
+      summary: Create Attachment Markup In Project
+      description: |
+        Create a markup overlay on an attachment. The `data` field follows the
+        GeoJSON Feature schema with `properties.style` in {`arrow`, `drawing`,
+        `measurement`, `text`} and `geometry.type` in {`LineString`, `Polygon`}.
+      tags: [Markups]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachmentMarkupCreate'
+      responses:
+        '201':
+          description: Created markup.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentMarkup'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    AwsPostToken:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        post_address:
+          type: string
+          format: uri
+          description: AWS S3 endpoint to POST to.
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+          description: Form fields (key, policy, signature, etc.) required by S3.
+        expires_at:
+          type: string
+          format: date-time
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        filename:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+          format: int64
+        url:
+          type: string
+          format: uri
+        thumb_url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    AttachmentCreate:
+      type: object
+      required: [aws_post_token_id]
+      properties:
+        aws_post_token_id:
+          type: integer
+          format: int64
+        filename:
+          type: string
+        content_type:
+          type: string
+    AttachmentMarkup:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attachment_id:
+          type: integer
+          format: int64
+        data:
+          $ref: '#/components/schemas/MarkupGeoJsonFeature'
+        author_user_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+    AttachmentMarkupCreate:
+      type: object
+      required: [attachment_id, data]
+      properties:
+        attachment_id:
+          type: integer
+          format: int64
+        data:
+          $ref: '#/components/schemas/MarkupGeoJsonFeature'
+    MarkupGeoJsonFeature:
+      type: object
+      required: [type, properties, geometry]
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        properties:
+          type: object
+          properties:
+            style:
+              type: string
+              enum: [arrow, drawing, measurement, text]
+            color:
+              type: string
+              description: Hex colour, e.g. "#FF0000".
+            opacity:
+              type: number
+              format: double
+            width:
+              type: number
+              format: double
+            description:
+              type: string
+            fontSize:
+              type: integer
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [LineString, Polygon]
+            coordinates:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+                  format: double

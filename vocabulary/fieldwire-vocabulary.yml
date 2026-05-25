@@ -1,0 +1,119 @@
+name: Fieldwire Vocabulary
+providerId: fieldwire
+description: |
+  Domain vocabulary for the Fieldwire by Hilti construction field management API surface. Captures the
+  primary entities, lifecycle states, and operational concepts the API exposes — from the high-level
+  Account / Project hierarchy down to bubbles and GeoJSON markups.
+created: '2026-05-25'
+modified: '2026-05-25'
+tags:
+  - Construction
+  - ConTech
+  - Field Management
+  - Hilti
+domains:
+  - name: Identity
+    description: Authentication and account membership.
+    terms:
+      - term: Account
+        definition: The top-level Fieldwire tenant. Holds users, account-level form templates, custom stamps, and projects.
+      - term: User
+        definition: A named human member of one or more accounts; subject to role-based permissions.
+      - term: Role
+        definition: Coarse permission grant on an account or project (owner, admin, member, follower).
+      - term: Refresh Token (API Key)
+        definition: Long-lived credential generated in the Fieldwire account settings; exchanged via POST /api_keys/jwt for an access token.
+      - term: Access Token (JWT)
+        definition: Short-lived bearer token sent in the Authorization header on all data-plane calls.
+  - name: Project
+    description: A single construction project — the primary unit of work.
+    terms:
+      - term: Project
+        definition: A construction project bound to a region (US or EU). All sheets, tasks, attachments, and forms live inside a project.
+      - term: Project Transfer
+        definition: Moving ownership of a project from one account to another. Triggers project.transferred webhook events.
+      - term: Project Stats
+        definition: Aggregate counts (tasks, sheets, attachments, forms, RFIs, submittals) for dashboarding.
+  - name: Plans
+    description: The drawing-set side of Fieldwire.
+    terms:
+      - term: Floorplan
+        definition: A named drawing in a project, optionally nested under a parent floorplan in a hierarchical collection.
+      - term: Sheet
+        definition: A versioned PDF page tied to a floorplan. Sheet uploads emit `sheet_upload.created` and `sheet.created` / `sheet.updated` events.
+      - term: Floorplan Collection
+        definition: A grouping mechanism that gives floorplans a hierarchical tree structure (e.g. Building → Floor → Room).
+      - term: Hyperlink
+        definition: A clickable jump from a point on one sheet to another sheet or external URL.
+      - term: Multi-Hyperlink
+        definition: A hyperlink that opens multiple targets at once; supports cross-discipline plan navigation.
+      - term: Building Information Model (BIM)
+        definition: A 3D model attached to the project. Each BIM has one or more versions and an object tree usable for calibration and 3D task placement.
+  - name: Tasks
+    description: Field work tracking.
+    terms:
+      - term: Task
+        definition: A unit of field work — punch list item, inspection, RFI-as-task, or generic to-do. Up to 500 check items per task.
+      - term: Check Item
+        definition: A sub-checklist line within a task with a name, position, and completion state.
+      - term: Task Relation
+        definition: Parent/child or dependency link between two tasks.
+      - term: Bubble
+        definition: A comment, photo, video, link, PDF, or attachment associated with a task; the primary unit of field communication.
+      - term: Custom Task Attribute
+        definition: Customer-defined task field bound to an account-level data type (text, number, boolean, choice, etc.). Excluded from task webhook update events.
+  - name: Forms
+    description: Structured data collection.
+    terms:
+      - term: Account Form Template (AFT)
+        definition: An account-level form definition — sections, inputs, statuses, permissions — that can be transferred or duplicated to projects.
+      - term: Form Section
+        definition: A grouping of inputs inside a form template; can be marked repeatable.
+      - term: Form Input
+        definition: A single field (text, number, choice, photo, signature, attachment, etc.) inside a section. Bound to an account data type.
+      - term: Form Record
+        definition: A submitted form response captured on a project, containing section records and input values.
+  - name: Attachments
+    description: Media and file handling.
+    terms:
+      - term: Attachment
+        definition: A file (photo, video, PDF, spec sheet, document) stored in Amazon S3 and registered with Fieldwire.
+      - term: AWS POST Token
+        definition: A signed, single-use S3 POST credential issued by Fieldwire that lets the client upload directly to S3 without proxying through Fieldwire servers.
+      - term: Markup
+        definition: A GeoJSON Feature overlay drawn on an attachment or sheet. Style is `arrow`, `drawing`, `measurement`, or `text`; geometry is `LineString` or `Polygon`.
+      - term: Flatten
+        definition: The operation that rasterises a markupable image plus its markups into a single thumbnail, capped at the most recent 100 markups for performance.
+  - name: Project Financials
+    description: Business Plus budgeting and change management.
+    terms:
+      - term: Budget Line Item
+        definition: A planned cost amount tied to a tier cost code on a project.
+      - term: Actual Cost
+        definition: A logged actual expenditure against a budget line item.
+      - term: Tier Cost Code
+        definition: A categorical cost code used to group budget lines (e.g. divisions in CSI MasterFormat).
+      - term: Change Order
+        definition: A formal scope/budget change request with its own status lifecycle (draft, submitted, approved, rejected, void).
+  - name: RFIs and Submittals
+    description: Contractual information flow.
+    terms:
+      - term: RFI
+        definition: Request for Information — a formal question to the design team. Lifecycle states: draft, open, answered, closed, void.
+      - term: Submittal
+        definition: A document, sample, or shop drawing submitted for review against the project's spec sections. Lifecycle states include submitted, in_review, approved, approved_as_noted, revise_and_resubmit, rejected, void.
+      - term: Spec Section
+        definition: A specification section (typically by CSI MasterFormat number/division) used to organise submittals.
+      - term: Ball-in-Court
+        definition: The user currently responsible for the next action on an RFI or submittal.
+  - name: Webhooks
+    description: Outbound real-time event delivery.
+    terms:
+      - term: Subscription
+        definition: A webhook configuration tying a `post_url` to a set of entity_filters and project_filters.
+      - term: Entity Filter
+        definition: A whitelist of entity names that the subscription should receive events for (up to 20 entries per subscription).
+      - term: Project Filter
+        definition: A whitelist of project IDs that the subscription should receive events for (up to 100 entries per subscription).
+      - term: Event Type
+        definition: The verb describing what happened. Common verbs include `created`, `updated`, `deleted`, `restored`; floorplans add `merged`, `rescanned`, `rotated`; projects add `transferred`.

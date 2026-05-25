@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Attachments API — Attachments
+  description: Two-step direct-to-S3 upload flow plus project attachment registration.
+  tags: [Fieldwire, Attachments, Media, Construction]
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+    FIELDWIRE_REGION_HOST: FIELDWIRE_REGION_HOST
+capability:
+  consumes:
+  - type: http
+    namespace: attachments-attachments
+    baseUri: '{{env.FIELDWIRE_REGION_HOST}}'
+    description: Fieldwire Attachments business capability.
+    resources:
+    - name: aws-post-tokens
+      path: /api/v3/projects/{project_id}/aws_post_tokens
+      operations:
+      - name: addawsposttokens
+        method: POST
+        description: Get AWS POST Token For Upload
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    - name: project-attachments
+      path: /api/v3/projects/{project_id}/attachments
+      operations:
+      - name: getattachmentsinproject
+        method: GET
+        description: Get Attachments In Project
+        inputParameters: [{ name: project_id, in: path, type: integer, required: true }]
+        outputParameters: [{ name: result, type: array, value: $. }]
+      - name: createattachmentinproject
+        method: POST
+        description: Create Attachment In Project
+        inputParameters:
+        - { name: project_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: attachments-attachments-rest
+    port: 8080
+    description: REST adapter for Fieldwire Attachments.
+    resources:
+    - path: /v1/projects/{project_id}/aws_post_tokens
+      name: aws-post-tokens
+      operations:
+      - method: POST
+        name: addawsposttokens
+        call: attachments-attachments.addawsposttokens
+        with: { project_id: rest.path.project_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/projects/{project_id}/attachments
+      name: project-attachments
+      operations:
+      - method: GET
+        name: getattachmentsinproject
+        call: attachments-attachments.getattachmentsinproject
+        with: { project_id: rest.path.project_id }
+        outputParameters: [{ type: array, mapping: $. }]
+      - method: POST
+        name: createattachmentinproject
+        call: attachments-attachments.createattachmentinproject
+        with: { project_id: rest.path.project_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: attachments-attachments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Attachments.
+    tools:
+    - name: fieldwire-request-upload-token
+      description: Request a one-day signed AWS S3 POST token for direct file upload to Fieldwire.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: attachments-attachments.addawsposttokens
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-list-attachments
+      description: List attachments (photos, videos, PDFs) in a Fieldwire project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: attachments-attachments.getattachmentsinproject
+      with: { project_id: tools.project_id }
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-register-attachment
+      description: Register an attachment in Fieldwire after uploading the binary to S3.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: attachments-attachments.createattachmentinproject
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

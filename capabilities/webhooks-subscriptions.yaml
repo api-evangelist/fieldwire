@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Webhooks API — Subscriptions
+  description: Manage Fieldwire webhook subscriptions — entity- and project-filtered event delivery to your callback URL.
+  tags: [Fieldwire, Webhooks, Subscriptions, Construction]
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+    FIELDWIRE_REGION_HOST: FIELDWIRE_REGION_HOST
+capability:
+  consumes:
+  - type: http
+    namespace: webhooks-subscriptions
+    baseUri: '{{env.FIELDWIRE_REGION_HOST}}'
+    description: Fieldwire Webhook Subscriptions business capability.
+    resources:
+    - name: subscriptions
+      path: /api/v3/subscriptions
+      operations:
+      - name: getsubscriptions
+        method: GET
+        description: Get Subscriptions
+        outputParameters: [{ name: result, type: array, value: $. }]
+      - name: createsubscription
+        method: POST
+        description: Create Subscription
+        inputParameters: [{ name: body, in: body, type: object, required: true }]
+        outputParameters: [{ name: result, type: object, value: $. }]
+    - name: subscription
+      path: /api/v3/subscriptions/{subscription_id}
+      operations:
+      - name: getsubscriptionbyid
+        method: GET
+        description: Get Subscription By ID
+        inputParameters: [{ name: subscription_id, in: path, type: integer, required: true }]
+        outputParameters: [{ name: result, type: object, value: $. }]
+      - name: updatesubscriptionbyid
+        method: PATCH
+        description: Update Subscription By ID
+        inputParameters:
+        - { name: subscription_id, in: path, type: integer, required: true }
+        - { name: body, in: body, type: object, required: true }
+        outputParameters: [{ name: result, type: object, value: $. }]
+      - name: deletesubscriptionbyid
+        method: DELETE
+        description: Delete Subscription By ID
+        inputParameters: [{ name: subscription_id, in: path, type: integer, required: true }]
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: webhooks-subscriptions-rest
+    port: 8080
+    description: REST adapter for Fieldwire Webhook Subscriptions.
+    resources:
+    - path: /v1/subscriptions
+      name: subscriptions
+      operations:
+      - method: GET
+        name: getsubscriptions
+        call: webhooks-subscriptions.getsubscriptions
+        outputParameters: [{ type: array, mapping: $. }]
+      - method: POST
+        name: createsubscription
+        call: webhooks-subscriptions.createsubscription
+        with: { body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/subscriptions/{subscription_id}
+      name: subscription
+      operations:
+      - method: GET
+        name: getsubscriptionbyid
+        call: webhooks-subscriptions.getsubscriptionbyid
+        with: { subscription_id: rest.path.subscription_id }
+        outputParameters: [{ type: object, mapping: $. }]
+      - method: PATCH
+        name: updatesubscriptionbyid
+        call: webhooks-subscriptions.updatesubscriptionbyid
+        with: { subscription_id: rest.path.subscription_id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+      - method: DELETE
+        name: deletesubscriptionbyid
+        call: webhooks-subscriptions.deletesubscriptionbyid
+        with: { subscription_id: rest.path.subscription_id }
+  - type: mcp
+    namespace: webhooks-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Webhook Subscriptions.
+    tools:
+    - name: fieldwire-list-webhooks
+      description: List Fieldwire webhook subscriptions.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: webhooks-subscriptions.getsubscriptions
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-create-webhook
+      description: Create a new Fieldwire webhook subscription.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: webhooks-subscriptions.createsubscription
+      with: { body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-get-webhook
+      description: Get a Fieldwire webhook subscription by ID.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: webhooks-subscriptions.getsubscriptionbyid
+      with: { subscription_id: tools.subscription_id }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-update-webhook
+      description: Update a Fieldwire webhook subscription.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: webhooks-subscriptions.updatesubscriptionbyid
+      with: { subscription_id: tools.subscription_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-delete-webhook
+      description: Delete a Fieldwire webhook subscription.
+      hints: { readOnly: false, destructive: true, idempotent: false }
+      call: webhooks-subscriptions.deletesubscriptionbyid
+      with: { subscription_id: tools.subscription_id }

@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Fieldwire
+providerId: fieldwire
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Construction
+  - Rate Limiting
+  - Quotas
+description: |
+  Reconciled rate limits for the Fieldwire by Hilti REST API across all account-, project-,
+  and webhook-scoped endpoints. Fieldwire enforces a two-tier scheme: a catch-all 3,000-requests-per-5-minutes
+  cap plus per-endpoint per-minute and per-hour caps that are listed in each operation's reference page.
+sources:
+  - https://developers.fieldwire.com/docs/rate-limiting
+  - https://developers.fieldwire.com/docs/getting-started
+headers:
+  limit:
+    minute: ratelimit-limit-minute
+    hour: ratelimit-limit-hour
+  remaining:
+    minute: ratelimit-remaining-minute
+    hour: ratelimit-remaining-hour
+  reset: ratelimit-reset
+  retryAfter: retry-after
+  legacyReset: X-RateLimit-Reset
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+algorithm: fixed-window
+tiers:
+  - tier: Catch-All (Tier 1)
+    scope: all-endpoints
+    limit: 3000
+    window: 5 minutes
+    description: Universal cap across every endpoint regardless of operation. Exceeding returns 429 with rate-limit headers and no JSON body.
+  - tier: Per-Endpoint (Tier 2)
+    scope: endpoint
+    limit: variable
+    window: minute and hour
+    description: |
+      Each operation has its own per-minute and per-hour ceiling published on its reference page. Clients
+      should read the `ratelimit-limit-minute`, `ratelimit-remaining-minute`, `ratelimit-limit-hour`, and
+      `ratelimit-remaining-hour` response headers rather than hard-coding limits.
+errorPayload:
+  type: application/json
+  example:
+    error: rate_limit_exceeded
+    message: Too many requests
+    request_retry_after: '2026-05-25T16:00:00Z'
+recommendations:
+  - Read rate-limit response headers on every call to compute backoff dynamically.
+  - Honour `retry-after` (in seconds) on 429 responses; never hard-code values.
+  - Cache the refresh-token → JWT exchange aggressively (tokens last minutes to hours) to avoid burning catch-all budget on `POST /api_keys/jwt`.
+  - When uploading sheets or attachments, request the AWS POST token once and reuse it across files — the upload itself does not consume Fieldwire rate limit.

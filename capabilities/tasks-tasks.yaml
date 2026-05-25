@@ -1,0 +1,200 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Tasks API — Tasks
+  description: 'Fieldwire Tasks API — Tasks. Project-scoped task list, create, read, update, delete operations on
+    the regional project host.'
+  tags:
+  - Fieldwire
+  - Tasks
+  - Construction
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+    FIELDWIRE_REGION_HOST: FIELDWIRE_REGION_HOST
+capability:
+  consumes:
+  - type: http
+    namespace: tasks-tasks
+    baseUri: '{{env.FIELDWIRE_REGION_HOST}}'
+    description: Fieldwire Tasks business capability.
+    resources:
+    - name: project-tasks
+      path: /api/v3/projects/{project_id}/tasks
+      operations:
+      - name: gettasksinproject
+        method: GET
+        description: Get Tasks In Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: path
+          type: integer
+          required: true
+      - name: createtaskinproject
+        method: POST
+        description: Create Task In Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: project-task
+      path: /api/v3/projects/{project_id}/tasks/{task_id}
+      operations:
+      - name: gettaskbyid
+        method: GET
+        description: Get Task By ID
+        inputParameters:
+        - name: project_id
+          in: path
+          type: integer
+          required: true
+        - name: task_id
+          in: path
+          type: integer
+          required: true
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatetaskbyid
+        method: PATCH
+        description: Update Task By ID
+        inputParameters:
+        - name: project_id
+          in: path
+          type: integer
+          required: true
+        - name: task_id
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletetaskbyid
+        method: DELETE
+        description: Delete Task By ID
+        inputParameters:
+        - name: project_id
+          in: path
+          type: integer
+          required: true
+        - name: task_id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: tasks-tasks-rest
+    port: 8080
+    description: REST adapter for Fieldwire Tasks.
+    resources:
+    - path: /v1/projects/{project_id}/tasks
+      name: project-tasks
+      operations:
+      - method: GET
+        name: gettasksinproject
+        call: tasks-tasks.gettasksinproject
+        with:
+          project_id: rest.path.project_id
+        outputParameters:
+        - type: array
+          mapping: $.
+      - method: POST
+        name: createtaskinproject
+        call: tasks-tasks.createtaskinproject
+        with:
+          project_id: rest.path.project_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{project_id}/tasks/{task_id}
+      name: project-task
+      operations:
+      - method: GET
+        name: gettaskbyid
+        call: tasks-tasks.gettaskbyid
+        with:
+          project_id: rest.path.project_id
+          task_id: rest.path.task_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatetaskbyid
+        call: tasks-tasks.updatetaskbyid
+        with:
+          project_id: rest.path.project_id
+          task_id: rest.path.task_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetaskbyid
+        call: tasks-tasks.deletetaskbyid
+        with:
+          project_id: rest.path.project_id
+          task_id: rest.path.task_id
+  - type: mcp
+    namespace: tasks-tasks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Tasks.
+    tools:
+    - name: fieldwire-list-tasks
+      description: List all tasks in a Fieldwire project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: tasks-tasks.gettasksinproject
+      with: { project_id: tools.project_id }
+      outputParameters: [{ type: array, mapping: $. }]
+    - name: fieldwire-create-task
+      description: Create a new task in a Fieldwire project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: tasks-tasks.createtaskinproject
+      with: { project_id: tools.project_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-get-task
+      description: Get a single task in a Fieldwire project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: tasks-tasks.gettaskbyid
+      with: { project_id: tools.project_id, task_id: tools.task_id }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-update-task
+      description: Update a task in a Fieldwire project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: tasks-tasks.updatetaskbyid
+      with: { project_id: tools.project_id, task_id: tools.task_id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: fieldwire-delete-task
+      description: Delete a task from a Fieldwire project.
+      hints: { readOnly: false, destructive: true, idempotent: false }
+      call: tasks-tasks.deletetaskbyid
+      with: { project_id: tools.project_id, task_id: tools.task_id }

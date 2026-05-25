@@ -1,0 +1,213 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Webhooks API
+  description: |
+    Configure webhook subscriptions to receive real-time event notifications
+    for attachments, entity tags / taggings, floorplans, forms, hyperlinks,
+    multi-hyperlinks, projects, project resource links, sheets, sheet uploads,
+    tasks, task check items, and task relations. Per-subscription
+    `entity_filters` (max 20 entries) and `project_filters` (max 100 entries)
+    narrow event delivery.
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+  - url: https://client-api.us.fieldwire.com/api/v3
+    description: US Region
+  - url: https://client-api.eu.fieldwire.com/api/v3
+    description: EU Region
+security:
+  - BearerAuth: []
+tags:
+  - name: Subscriptions
+    description: Webhook subscription lifecycle.
+paths:
+  /subscriptions:
+    get:
+      operationId: getSubscriptions
+      summary: Get Subscriptions
+      tags: [Subscriptions]
+      responses:
+        '200':
+          description: Subscription list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+    post:
+      operationId: createSubscription
+      summary: Create Subscription
+      description: |
+        Create a webhook subscription. Required fields: `subscription_name`
+        (max 50 chars), `description` (max 200 chars), `post_url`, and
+        `subscription_status`. Optional filters: `entity_filters` (max 20),
+        `project_filters` (max 100).
+      tags: [Subscriptions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionCreate'
+      responses:
+        '201':
+          description: Created subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /subscriptions/{subscription_id}:
+    get:
+      operationId: getSubscriptionById
+      summary: Get Subscription By ID
+      tags: [Subscriptions]
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+      responses:
+        '200':
+          description: Subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    patch:
+      operationId: updateSubscriptionById
+      summary: Update Subscription By ID
+      tags: [Subscriptions]
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionUpdate'
+      responses:
+        '200':
+          description: Updated subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    delete:
+      operationId: deleteSubscriptionById
+      summary: Delete Subscription By ID
+      tags: [Subscriptions]
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+      responses:
+        '204':
+          description: Subscription deleted.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    SubscriptionId:
+      name: subscription_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        subscription_id:
+          type: integer
+          format: int64
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum: [enabled, disabled]
+        account_id:
+          type: integer
+          format: int64
+        internal:
+          type: boolean
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+            description: |
+              Entity name to filter on, e.g. `task`, `attachment`, `floorplan`,
+              `form`, `project`, `sheet`, `hyperlink`, `multi_hyperlink`,
+              `entity_tag`, `entity_tagging`, `project_resource_link`,
+              `task_check_item`, `task_relation`, `sheet_upload`.
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
+    SubscriptionCreate:
+      type: object
+      required: [subscription_name, description, post_url, subscription_status]
+      properties:
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum: [enabled, disabled]
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
+    SubscriptionUpdate:
+      type: object
+      properties:
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum: [enabled, disabled]
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64

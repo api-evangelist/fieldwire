@@ -1,0 +1,402 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Tasks API
+  description: |
+    Create and manage construction tasks — punch list items, inspections,
+    work assignments — including bubbles (comments, photos, video, links),
+    check items, task relations, task types, and custom task attributes.
+    Tasks support up to 500 check items per entry. All paths are project-scoped
+    and resolve against the regional Fieldwire project host.
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+  - url: https://client-api.us.fieldwire.com/api/v3
+    description: US Region
+  - url: https://client-api.eu.fieldwire.com/api/v3
+    description: EU Region
+security:
+  - BearerAuth: []
+tags:
+  - name: Tasks
+    description: Project task lifecycle and assignment.
+  - name: Task Check Items
+    description: Sub-checklist items within a task.
+  - name: Task Relations
+    description: Parent/child and dependency relations between tasks.
+  - name: Bubbles
+    description: Task-attached comments, photos, video, links, and file attachments.
+paths:
+  /projects/{project_id}/tasks:
+    get:
+      operationId: getTasksInProject
+      summary: Get Tasks In Project
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Task list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      operationId: createTaskInProject
+      summary: Create Task In Project
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+      responses:
+        '201':
+          description: Created task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /projects/{project_id}/tasks/{task_id}:
+    get:
+      operationId: getTaskById
+      summary: Get Task By ID
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    patch:
+      operationId: updateTaskById
+      summary: Update Task By ID
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdate'
+      responses:
+        '200':
+          description: Updated task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    delete:
+      operationId: deleteTaskById
+      summary: Delete Task By ID
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '204':
+          description: Task deleted.
+  /projects/{project_id}/tasks/{task_id}/check_items:
+    get:
+      operationId: getCheckItemsInTask
+      summary: Get Check Items In Task
+      tags: [Task Check Items]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Check item list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CheckItem'
+    post:
+      operationId: createCheckItemInTask
+      summary: Create Check Item In Task
+      tags: [Task Check Items]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckItem'
+      responses:
+        '201':
+          description: Created check item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckItem'
+  /projects/{project_id}/tasks/{task_id}/bubbles:
+    get:
+      operationId: getBubblesInTask
+      summary: Get Bubbles In Task
+      description: Retrieve all bubbles (comments, photos, video, links, attachments) associated with a task.
+      tags: [Bubbles]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Bubble list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bubble'
+    post:
+      operationId: createBubbleInTask
+      summary: Create Bubble In Task
+      description: |
+        Create a new bubble in a task. Bubble kinds include `comment`, `photo`,
+        `video`, `link`, `pdf`, and `attachment` (S3-uploaded file).
+      tags: [Bubbles]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/TaskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BubbleCreate'
+      responses:
+        '201':
+          description: Created bubble.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bubble'
+  /projects/{project_id}/task_relations:
+    get:
+      operationId: getTaskRelationsInProject
+      summary: Get Task Relations In Project
+      tags: [Task Relations]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Relation list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskRelation'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        status_id:
+          type: integer
+          format: int64
+        priority:
+          type: integer
+        category:
+          type: string
+        floorplan_id:
+          type: integer
+          format: int64
+        location_id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        owner_user_id:
+          type: integer
+          format: int64
+        creator_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        custom_attributes:
+          type: object
+          additionalProperties: true
+    TaskCreate:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status_id:
+          type: integer
+          format: int64
+        priority:
+          type: integer
+        category:
+          type: string
+        floorplan_id:
+          type: integer
+          format: int64
+        owner_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+        custom_attributes:
+          type: object
+          additionalProperties: true
+    TaskUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status_id:
+          type: integer
+          format: int64
+        priority:
+          type: integer
+        owner_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        custom_attributes:
+          type: object
+          additionalProperties: true
+    CheckItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        task_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        is_completed:
+          type: boolean
+        position:
+          type: number
+          format: double
+        completed_at:
+          type: string
+          format: date-time
+    Bubble:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        task_id:
+          type: integer
+          format: int64
+        kind:
+          type: string
+          enum: [comment, photo, video, link, pdf, attachment]
+        text:
+          type: string
+        attachment_id:
+          type: integer
+          format: int64
+        author_user_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+    BubbleCreate:
+      type: object
+      required: [kind]
+      properties:
+        kind:
+          type: string
+          enum: [comment, photo, video, link, pdf, attachment]
+        text:
+          type: string
+        attachment_id:
+          type: integer
+          format: int64
+    TaskRelation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        source_task_id:
+          type: integer
+          format: int64
+        target_task_id:
+          type: integer
+          format: int64
+        kind:
+          type: string
+          enum: [parent, dependency, related]
+        created_at:
+          type: string
+          format: date-time

@@ -1,0 +1,70 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Fieldwire
+providerId: fieldwire
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Construction
+  - SaaS Seat Licensing
+description: |
+  FOCUS-aligned FinOps definition for Fieldwire by Hilti. Fieldwire is sold as a per-seat,
+  per-month SaaS subscription billed annually, with four published plans (Basic, Pro, Business,
+  Business Plus) and a custom enterprise tier ("Custom Contracts") that unlocks API access, SSO,
+  and dedicated success.
+sources:
+  - https://www.fieldwire.com/pricing/
+  - https://developers.fieldwire.com/docs/rate-limiting
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Fieldwire by Hilti
+serviceCategory: Construction Software (Field Management)
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Adjustment
+  primaryUnit: user-seat
+  secondaryUnits:
+    - project
+    - sheet
+chargeBreakdown:
+  - dimension: Plan
+    description: Subscription plan name (Basic, Pro, Business, Business Plus, Custom Contracts).
+  - dimension: User seats
+    description: Count of named users on the account; the per-seat rate multiplies by this count.
+  - dimension: Region
+    description: US or EU regional API host; data residency tracked at the project level.
+focusFields:
+  ServiceCategory: Software
+  ServiceName: Fieldwire
+  ChargeCategory: Usage
+  PricingUnit: user-seat
+  PricingQuantity: count_of_seats
+  ListUnitPrice:
+    Pro: '39.00'
+    Business: '64.00'
+    Business Plus: '89.00'
+  BillingCurrency: USD
+  CommitmentDiscountType: Annual Pre-Commit (annual billing required for published prices)
+costOptimizationLevers:
+  - Right-size the plan tier — only pay for Business Plus per seat if the team actually uses RFIs, submittals, change orders, and budgets.
+  - Reclaim deactivated user seats promptly; Fieldwire bills per named user.
+  - Bundle API integration projects under the Custom Contracts tier rather than upgrading every seat.
+  - Use the free Basic tier for trials and pilots (up to 5 users, 3 projects, 100 sheets).
+notes:
+  - API access is included only in the Custom Contracts tier; budget conversations for integration work should include the upgrade cost.
+  - Hilti Group is the parent company; enterprise procurement can be aligned with broader Hilti agreements.

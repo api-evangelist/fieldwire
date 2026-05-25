@@ -1,0 +1,147 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Fieldwire
+providerId: fieldwire
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Construction
+  - ConTech
+  - Field Management
+  - Hilti
+description: |
+  Reconciled plans and per-user pricing for Fieldwire by Hilti. Pricing is per-user-per-month
+  billed annually. API access is gated to the enterprise Custom Contracts tier.
+sources:
+  - https://www.fieldwire.com/pricing/
+  - https://developers.fieldwire.com/docs/getting-started
+  - https://developers.fieldwire.com/docs/rate-limiting
+plans:
+  - id: fieldwire-basic
+    name: Basic
+    type: tiered
+    description: Free tier for small teams trying Fieldwire. Limited to 5 users, 3 active projects, 100 sheets.
+    entries:
+      - label: Users
+        name: users
+        type: included
+        metric: user
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Active projects
+        name: projects
+        type: included
+        metric: project
+        limit: 3
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Sheets per project
+        name: sheets
+        type: included
+        metric: sheet
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    features:
+      - Plan viewing and markup
+      - Task management
+      - Specifications
+      - Files and photos
+      - Checklists
+  - id: fieldwire-pro
+    name: Pro
+    type: tiered
+    description: For active jobsite teams that need unlimited plans and reporting.
+    entries:
+      - label: Per user
+        name: user
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '39.00'
+        userMultiplied: true
+        billing: annual
+    features:
+      - Unlimited projects and sheets
+      - Reports and exports
+      - Sheet compare
+      - Project templates
+      - Custom task statuses
+  - id: fieldwire-business
+    name: Business
+    type: tiered
+    description: For teams standardising forms, BIM, and integrations across projects.
+    entries:
+      - label: Per user
+        name: user
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '64.00'
+        userMultiplied: true
+        billing: annual
+    features:
+      - Custom forms
+      - App integrations
+      - BIM viewer
+      - Field Intelligence AI
+  - id: fieldwire-business-plus
+    name: Business Plus
+    type: tiered
+    description: For project teams running RFIs, submittals, change orders, and budgets in Fieldwire.
+    entries:
+      - label: Per user
+        name: user
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '89.00'
+        userMultiplied: true
+        billing: annual
+    features:
+      - RFIs
+      - Submittals
+      - Change orders
+      - Budget management
+  - id: fieldwire-custom
+    name: Custom Contracts
+    type: enterprise
+    description: Enterprise tier — contact sales. Required for API access, SSO, and dedicated success.
+    entries:
+      - label: Per user
+        name: user
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'call'
+        userMultiplied: true
+    features:
+      - Unlimited users
+      - API access
+      - Single sign-on (SSO)
+      - Dedicated success teams
+      - Tailored training

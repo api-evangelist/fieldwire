@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Fieldwire Account API — Users
+  description: 'Fieldwire Account API — Users. 3 operations covering listing, retrieving, and updating
+    account-level users. Self-contained Naftiko capability covering one Fieldwire business surface.'
+  tags:
+  - Fieldwire
+  - Account
+  - Users
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FIELDWIRE_ACCESS_TOKEN: FIELDWIRE_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: account-users
+    baseUri: https://client-api.super.fieldwire.com
+    description: Fieldwire Account API — Users business capability.
+    resources:
+    - name: account-users
+      path: /account/users
+      operations:
+      - name: getaccountusers
+        method: GET
+        description: Get Account Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+    - name: account-user
+      path: /account/users/{user_id}
+      operations:
+      - name: getaccountuserbyid
+        method: GET
+        description: Get Account User By ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+      - name: updateaccountuserbyid
+        method: PATCH
+        description: Update Account User By ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.FIELDWIRE_ACCESS_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: account-users-rest
+    port: 8080
+    description: REST adapter for Fieldwire Account — Users.
+    resources:
+    - path: /v1/account/users
+      name: account-users
+      description: REST surface for account-users.
+      operations:
+      - method: GET
+        name: getaccountusers
+        description: Get Account Users
+        call: account-users.getaccountusers
+        outputParameters:
+        - type: array
+          mapping: $.
+    - path: /v1/account/users/{user_id}
+      name: account-user
+      description: REST surface for account-user.
+      operations:
+      - method: GET
+        name: getaccountuserbyid
+        call: account-users.getaccountuserbyid
+        with:
+          user_id: rest.path.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateaccountuserbyid
+        call: account-users.updateaccountuserbyid
+        with:
+          user_id: rest.path.user_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: account-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Fieldwire Account — Users.
+    tools:
+    - name: fieldwire-get-account-users
+      description: List all users on the Fieldwire account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account-users.getaccountusers
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: fieldwire-get-account-user
+      description: Get a single Fieldwire account user by ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account-users.getaccountuserbyid
+      with:
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fieldwire-update-account-user
+      description: Update a Fieldwire account user's profile, role, or status.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account-users.updateaccountuserbyid
+      with:
+        user_id: tools.user_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

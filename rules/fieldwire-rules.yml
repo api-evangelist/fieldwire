@@ -1,0 +1,90 @@
+extends: spectral:oas
+documentationUrl: https://developers.fieldwire.com/
+rules:
+  fieldwire-info-title:
+    description: Info title must start with "Fieldwire".
+    severity: error
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Fieldwire'
+  fieldwire-info-license:
+    description: Specs must reference the Fieldwire Terms of Service license.
+    severity: error
+    given: $.info.license
+    then:
+      - field: name
+        function: pattern
+        functionOptions:
+          match: 'Fieldwire Terms of Service'
+      - field: url
+        function: pattern
+        functionOptions:
+          match: '^https://www\.fieldwire\.com/terms/'
+  fieldwire-server-host:
+    description: Server URLs must use one of the Fieldwire API hosts (super, US, or EU).
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://client-api\.(super|us|eu)\.fieldwire\.com(/api/v3)?$'
+  fieldwire-bearer-auth:
+    description: All endpoints except token exchange must use BearerAuth.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+      field: BearerAuth
+  fieldwire-bearer-jwt:
+    description: BearerAuth scheme must declare JWT bearer format.
+    severity: error
+    given: $.components.securitySchemes.BearerAuth
+    then:
+      - field: scheme
+        function: pattern
+        functionOptions:
+          match: '^bearer$'
+      - field: bearerFormat
+        function: pattern
+        functionOptions:
+          match: '^JWT$'
+  fieldwire-operation-id-camel:
+    description: All operationIds must use camelCase.
+    severity: warn
+    given: $.paths.*.*.operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+  fieldwire-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9 ]+(?: [A-Z][A-Za-z0-9]*)*$'
+  fieldwire-snake-case-paths:
+    description: Path segments and parameters must use snake_case (matches the Fieldwire convention).
+    severity: warn
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: '^/[a-z0-9_/{}]*$'
+        property: '@key'
+  fieldwire-id-int64:
+    description: ID parameters must be integer/int64.
+    severity: warn
+    given: $.paths.*.*.parameters[?(@.name =~ /_id$/)]
+    then:
+      - field: schema.type
+        function: pattern
+        functionOptions:
+          match: '^integer$'
+      - field: schema.format
+        function: pattern
+        functionOptions:
+          match: '^int64$'

@@ -1,0 +1,131 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "fieldwire": "https://developers.fieldwire.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Project": {
+      "@id": "fieldwire:Project",
+      "@context": {
+        "id":            { "@id": "fieldwire:Project/id",            "@type": "xsd:integer" },
+        "name":          { "@id": "schema:name",                     "@type": "xsd:string" },
+        "code":          { "@id": "fieldwire:Project/code",          "@type": "xsd:string" },
+        "description":   { "@id": "schema:description",              "@type": "xsd:string" },
+        "address":       { "@id": "schema:streetAddress",            "@type": "xsd:string" },
+        "city":          { "@id": "schema:addressLocality",          "@type": "xsd:string" },
+        "state":         { "@id": "schema:addressRegion",            "@type": "xsd:string" },
+        "country":       { "@id": "schema:addressCountry",           "@type": "xsd:string" },
+        "time_zone":     { "@id": "fieldwire:Project/timeZone",      "@type": "xsd:string" },
+        "currency":      { "@id": "fieldwire:Project/currency",      "@type": "xsd:string" },
+        "status":        { "@id": "fieldwire:Project/status",        "@type": "xsd:string" },
+        "created_at":    { "@id": "dcterms:created",                 "@type": "xsd:dateTime" },
+        "updated_at":    { "@id": "dcterms:modified",                "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Task": {
+      "@id": "fieldwire:Task",
+      "@context": {
+        "id":                 { "@id": "fieldwire:Task/id",                 "@type": "xsd:integer" },
+        "project_id":         { "@id": "fieldwire:Task/projectId",          "@type": "xsd:integer" },
+        "name":               { "@id": "schema:name",                       "@type": "xsd:string" },
+        "description":        { "@id": "schema:description",                "@type": "xsd:string" },
+        "status_id":          { "@id": "fieldwire:Task/statusId",           "@type": "xsd:integer" },
+        "priority":           { "@id": "fieldwire:Task/priority",           "@type": "xsd:integer" },
+        "floorplan_id":       { "@id": "fieldwire:Task/floorplanId",        "@type": "xsd:integer" },
+        "owner_user_id":      { "@id": "fieldwire:Task/ownerUserId",        "@type": "xsd:integer" },
+        "due_at":             { "@id": "schema:expectedArrivalUntil",       "@type": "xsd:dateTime" },
+        "completed_at":       { "@id": "fieldwire:Task/completedAt",        "@type": "xsd:dateTime" },
+        "created_at":         { "@id": "dcterms:created",                   "@type": "xsd:dateTime" },
+        "updated_at":         { "@id": "dcterms:modified",                  "@type": "xsd:dateTime" },
+        "custom_attributes":  { "@id": "fieldwire:Task/customAttributes",   "@container": "@index" }
+      }
+    },
+
+    "Floorplan": {
+      "@id": "fieldwire:Floorplan",
+      "@context": {
+        "id":            { "@id": "fieldwire:Floorplan/id",          "@type": "xsd:integer" },
+        "project_id":    { "@id": "fieldwire:Floorplan/projectId",   "@type": "xsd:integer" },
+        "name":          { "@id": "schema:name",                     "@type": "xsd:string" },
+        "sheet_id":      { "@id": "fieldwire:Floorplan/sheetId",     "@type": "xsd:integer" },
+        "parent_id":     { "@id": "fieldwire:Floorplan/parentId",    "@type": "xsd:integer" }
+      }
+    },
+
+    "Sheet": {
+      "@id": "fieldwire:Sheet",
+      "@context": {
+        "id":              { "@id": "fieldwire:Sheet/id",              "@type": "xsd:integer" },
+        "floorplan_id":    { "@id": "fieldwire:Sheet/floorplanId",     "@type": "xsd:integer" },
+        "sheet_number":    { "@id": "fieldwire:Sheet/sheetNumber",     "@type": "xsd:string" },
+        "title":           { "@id": "schema:name",                     "@type": "xsd:string" },
+        "version":         { "@id": "schema:version",                  "@type": "xsd:integer" },
+        "original_pdf_url":{ "@id": "schema:contentUrl",               "@type": "xsd:anyURI" }
+      }
+    },
+
+    "Attachment": {
+      "@id": "fieldwire:Attachment",
+      "@context": {
+        "id":           { "@id": "fieldwire:Attachment/id",         "@type": "xsd:integer" },
+        "project_id":   { "@id": "fieldwire:Attachment/projectId",  "@type": "xsd:integer" },
+        "filename":     { "@id": "schema:name",                     "@type": "xsd:string" },
+        "content_type": { "@id": "schema:encodingFormat",           "@type": "xsd:string" },
+        "size":         { "@id": "schema:contentSize",              "@type": "xsd:integer" },
+        "url":          { "@id": "schema:contentUrl",               "@type": "xsd:anyURI" }
+      }
+    },
+
+    "FormRecord": {
+      "@id": "fieldwire:FormRecord",
+      "@context": {
+        "id":                { "@id": "fieldwire:FormRecord/id",              "@type": "xsd:integer" },
+        "project_id":        { "@id": "fieldwire:FormRecord/projectId",       "@type": "xsd:integer" },
+        "form_template_id":  { "@id": "fieldwire:FormRecord/formTemplateId",  "@type": "xsd:integer" },
+        "name":              { "@id": "schema:name",                          "@type": "xsd:string" },
+        "status":            { "@id": "fieldwire:FormRecord/status",          "@type": "xsd:string" }
+      }
+    },
+
+    "Rfi": {
+      "@id": "fieldwire:Rfi",
+      "@context": {
+        "id":         { "@id": "fieldwire:Rfi/id",      "@type": "xsd:integer" },
+        "number":     { "@id": "schema:identifier",     "@type": "xsd:string" },
+        "title":      { "@id": "schema:name",           "@type": "xsd:string" },
+        "question":   { "@id": "schema:text",           "@type": "xsd:string" },
+        "answer":     { "@id": "fieldwire:Rfi/answer",  "@type": "xsd:string" },
+        "status":     { "@id": "fieldwire:Rfi/status",  "@type": "xsd:string" },
+        "priority":   { "@id": "fieldwire:Rfi/priority","@type": "xsd:string" },
+        "due_at":     { "@id": "fieldwire:Rfi/dueAt",   "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Submittal": {
+      "@id": "fieldwire:Submittal",
+      "@context": {
+        "id":         { "@id": "fieldwire:Submittal/id",      "@type": "xsd:integer" },
+        "number":     { "@id": "schema:identifier",            "@type": "xsd:string" },
+        "title":      { "@id": "schema:name",                  "@type": "xsd:string" },
+        "type":       { "@id": "schema:additionalType",        "@type": "xsd:string" },
+        "status":     { "@id": "fieldwire:Submittal/status",   "@type": "xsd:string" }
+      }
+    },
+
+    "WebhookEvent": {
+      "@id": "fieldwire:WebhookEvent",
+      "@context": {
+        "entity_type":     { "@id": "fieldwire:WebhookEvent/entityType",     "@type": "xsd:string" },
+        "event_type":      { "@id": "fieldwire:WebhookEvent/eventType",      "@type": "xsd:string" },
+        "account_id":      { "@id": "fieldwire:WebhookEvent/accountId",      "@type": "xsd:integer" },
+        "project_id":      { "@id": "fieldwire:WebhookEvent/projectId",      "@type": "xsd:integer" },
+        "subscription_id": { "@id": "fieldwire:WebhookEvent/subscriptionId", "@type": "xsd:integer" },
+        "occurred_at":     { "@id": "dcterms:created",                       "@type": "xsd:dateTime" }
+      }
+    }
+  }
+}

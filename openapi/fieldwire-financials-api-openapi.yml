@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Project Financials API
+  description: |
+    Project financial endpoints for budget management, actual cost tracking,
+    tier cost codes, and change orders. Available to Business Plus customers
+    on the Fieldwire by Hilti platform.
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+  - url: https://client-api.us.fieldwire.com/api/v3
+    description: US Region
+  - url: https://client-api.eu.fieldwire.com/api/v3
+    description: EU Region
+security:
+  - BearerAuth: []
+tags:
+  - name: Budget Line Items
+    description: Project budget line items tied to tier cost codes.
+  - name: Actual Costs
+    description: Actual cost entries logged against budget lines.
+  - name: Change Orders
+    description: Project change orders that adjust scope and budget.
+paths:
+  /projects/{project_id}/budget_line_items:
+    get:
+      operationId: getBudgetLineItemsInProject
+      summary: Get Budget Line Items In Project
+      tags: [Budget Line Items]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Budget line item list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BudgetLineItem'
+    post:
+      operationId: createBudgetLineItemInProject
+      summary: Create Budget Line Item In Project
+      tags: [Budget Line Items]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BudgetLineItemCreate'
+      responses:
+        '201':
+          description: Created budget line item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BudgetLineItem'
+  /projects/{project_id}/actual_costs:
+    get:
+      operationId: getActualCostsInProject
+      summary: Get Actual Costs In Project
+      tags: [Actual Costs]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Actual cost list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActualCost'
+    post:
+      operationId: createActualCostInProject
+      summary: Create Actual Cost In Project
+      tags: [Actual Costs]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActualCostCreate'
+      responses:
+        '201':
+          description: Created actual cost.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActualCost'
+  /projects/{project_id}/change_orders:
+    get:
+      operationId: getChangeOrdersInProject
+      summary: Get Change Orders In Project
+      tags: [Change Orders]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Change order list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChangeOrder'
+    post:
+      operationId: createChangeOrderInProject
+      summary: Create Change Order In Project
+      tags: [Change Orders]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeOrderCreate'
+      responses:
+        '201':
+          description: Created change order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeOrder'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    BudgetLineItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tier_cost_code:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    BudgetLineItemCreate:
+      type: object
+      required: [name, amount]
+      properties:
+        name:
+          type: string
+        tier_cost_code:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+    ActualCost:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        budget_line_item_id:
+          type: integer
+          format: int64
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        incurred_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    ActualCostCreate:
+      type: object
+      required: [budget_line_item_id, amount]
+      properties:
+        budget_line_item_id:
+          type: integer
+          format: int64
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        incurred_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+    ChangeOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        number:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+          enum: [draft, submitted, approved, rejected, void]
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        submitted_at:
+          type: string
+          format: date-time
+        approved_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ChangeOrderCreate:
+      type: object
+      required: [title, amount]
+      properties:
+        title:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        number:
+          type: string
