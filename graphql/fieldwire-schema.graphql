@@ -1,0 +1,1164 @@
+"""
+Fieldwire GraphQL Schema
+Conceptual schema derived from the Fieldwire REST API (https://developers.fieldwire.com/).
+Covers projects, tasks, plans/sheets, forms, attachments, RFIs, submittals, financials, and webhooks.
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar URL
+scalar UUID
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+  COMPLETED
+  TRANSFERRING
+}
+
+enum TaskStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum TaskPriority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum AttachmentType {
+  PHOTO
+  VIDEO
+  PDF
+  FILE
+  MARKUP
+}
+
+enum BubbleStatus {
+  OPEN
+  RESOLVED
+}
+
+enum UserRole {
+  ADMIN
+  STANDARD
+  VIEWER
+  CONTRACTOR
+}
+
+enum WebhookEvent {
+  ATTACHMENT_CREATED
+  ATTACHMENT_UPDATED
+  ATTACHMENT_DELETED
+  FLOORPLAN_CREATED
+  FLOORPLAN_UPDATED
+  FLOORPLAN_DELETED
+  FORM_CREATED
+  FORM_UPDATED
+  FORM_DELETED
+  HYPERLINK_CREATED
+  HYPERLINK_UPDATED
+  HYPERLINK_DELETED
+  PROJECT_CREATED
+  PROJECT_UPDATED
+  PROJECT_ARCHIVED
+  SHEET_CREATED
+  SHEET_UPDATED
+  SHEET_UPLOADED
+  TASK_CREATED
+  TASK_UPDATED
+  TASK_DELETED
+  TASK_CHECK_ITEM_CREATED
+  TASK_CHECK_ITEM_UPDATED
+  TASK_RELATION_CREATED
+  TASK_RELATION_DELETED
+}
+
+enum Region {
+  US
+  EU
+}
+
+enum RFIStatus {
+  DRAFT
+  OPEN
+  ANSWERED
+  CLOSED
+}
+
+enum SubmittalStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  APPROVED_AS_NOTED
+  REJECTED
+  REVISE_AND_RESUBMIT
+}
+
+enum ChangeOrderStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+  VOIDED
+}
+
+enum FormFieldType {
+  TEXT
+  NUMBER
+  DATE
+  DROPDOWN
+  CHECKBOX
+  SIGNATURE
+  PHOTO
+  TABLE
+}
+
+# ─── Project Types ───────────────────────────────────────────────────────────
+
+"""Top-level construction project."""
+type Project {
+  id: UUID!
+  name: String!
+  status: ProjectStatus!
+  region: Region!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: ProjectDetails
+  floorplans: [Floorplan!]
+  tasks: [Task!]
+  forms: [Form!]
+  teams: [Team!]
+  users: [User!]
+  webhooks: [Webhook!]
+  folders: [FolderNode!]
+  reports: [Report!]
+  rfis: [RFI!]
+  submittals: [Submittal!]
+  budgetLineItems: [BudgetLineItem!]
+  changeOrders: [ChangeOrder!]
+}
+
+"""Extended project metadata."""
+type ProjectDetails {
+  id: UUID!
+  projectId: UUID!
+  description: String
+  address: String
+  city: String
+  state: String
+  country: String
+  postalCode: String
+  startDate: DateTime
+  endDate: DateTime
+  customAttributes: JSON
+  transferState: String
+  totalTasks: Int
+  openTasks: Int
+  resolvedTasks: Int
+  totalSheets: Int
+  totalForms: Int
+  totalAttachments: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Floorplan and Sheet Types ───────────────────────────────────────────────
+
+"""Drawing set (plan set) within a project."""
+type Floorplan {
+  id: UUID!
+  projectId: UUID!
+  name: String!
+  sequence: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: FloorplanDetails
+  levels: [FloorplanLevel!]
+  sheets: [Sheet!]
+}
+
+"""Extended floorplan metadata including BIM links."""
+type FloorplanDetails {
+  id: UUID!
+  floorplanId: UUID!
+  discipline: String
+  phase: String
+  collectionId: UUID
+  bimModelId: UUID
+  isArchived: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Hierarchical level in a floorplan collection."""
+type FloorplanLevel {
+  id: UUID!
+  floorplanId: UUID!
+  name: String!
+  elevation: Float
+  sequence: Int
+  sheets: [Sheet!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Individual drawing sheet (PDF page or raster image)."""
+type Sheet {
+  id: UUID!
+  floorplanId: UUID!
+  projectId: UUID!
+  name: String!
+  sequence: Int
+  thumbnailUrl: URL
+  fullUrl: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: SheetDetails
+  revisions: [SheetRevision!]
+  tasks: [Task!]
+  bubbles: [Bubble!]
+  hyperlinks: [Hyperlink!]
+  locations: [Location!]
+}
+
+"""Sheet metadata including auto-extracted number and title."""
+type SheetDetails {
+  id: UUID!
+  sheetId: UUID!
+  sheetNumber: String
+  sheetTitle: String
+  discipline: String
+  pageCount: Int
+  fileSize: Int
+  mimeType: String
+  uploadedBy: UUID
+  calibrationScale: Float
+  calibrationUnit: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Versioned revision of a sheet."""
+type SheetRevision {
+  id: UUID!
+  sheetId: UUID!
+  revisionNumber: Int!
+  uploadedBy: UUID!
+  fileUrl: URL
+  createdAt: DateTime!
+}
+
+# ─── Task Types ──────────────────────────────────────────────────────────────
+
+"""Construction task — punch list item, RFI-as-task, or work assignment."""
+type Task {
+  id: UUID!
+  projectId: UUID!
+  name: String!
+  status: TaskStatus!
+  priority: TaskPriority
+  dueDate: DateTime
+  assigneeId: UUID
+  creatorId: UUID
+  locationId: UUID
+  sheetId: UUID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: TaskDetails
+  checklistItems: [ChecklistItem!]
+  bubbles: [Bubble!]
+  attachments: [Attachment!]
+  category: TaskCategory
+}
+
+"""Extended task fields including custom attributes."""
+type TaskDetails {
+  id: UUID!
+  taskId: UUID!
+  description: String
+  cost: Float
+  costCode: String
+  taskTypeId: UUID
+  customAttributes: JSON
+  completedAt: DateTime
+  completedBy: UUID
+  verifiedAt: DateTime
+  verifiedBy: UUID
+  startedAt: DateTime
+  positionX: Float
+  positionY: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Project-defined category grouping tasks."""
+type TaskCategory {
+  id: UUID!
+  projectId: UUID!
+  name: String!
+  color: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Location Types ──────────────────────────────────────────────────────────
+
+"""Named location pinned on a floorplan."""
+type Location {
+  id: UUID!
+  projectId: UUID!
+  sheetId: UUID
+  name: String!
+  positionX: Float
+  positionY: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: LocationDetails
+  tasks: [Task!]
+}
+
+"""Extended location with area and associated tasks."""
+type LocationDetails {
+  id: UUID!
+  locationId: UUID!
+  description: String
+  area: LocationArea
+  taskCount: Int
+  openTaskCount: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Bounded region on a sheet used for spatial filtering."""
+type LocationArea {
+  minX: Float!
+  minY: Float!
+  maxX: Float!
+  maxY: Float!
+  unit: String
+}
+
+# ─── Attachment Types ─────────────────────────────────────────────────────────
+
+"""Photo, video, PDF, or file attached to a task or form."""
+type Attachment {
+  id: UUID!
+  projectId: UUID!
+  entityId: UUID
+  entityType: String
+  type: AttachmentType!
+  filename: String!
+  fileUrl: URL
+  thumbnailUrl: URL
+  fileSize: Int
+  mimeType: String
+  uploadedBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: AttachmentDetails
+}
+
+"""Extended attachment fields including markup GeoJSON."""
+type AttachmentDetails {
+  id: UUID!
+  attachmentId: UUID!
+  markupGeoJson: JSON
+  markupFlattenedUrl: URL
+  description: String
+  takenAt: DateTime
+  latitude: Float
+  longitude: Float
+  awsToken: String
+  awsBucket: String
+  awsKey: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Form Types ───────────────────────────────────────────────────────────────
+
+"""Form record captured in the field."""
+type Form {
+  id: UUID!
+  projectId: UUID!
+  templateId: UUID!
+  name: String!
+  status: String
+  createdBy: UUID!
+  assignedTo: UUID
+  dueDate: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: FormDetails
+  template: FormTemplate
+}
+
+"""Extended form fields including signatures and section inputs."""
+type FormDetails {
+  id: UUID!
+  formId: UUID!
+  description: String
+  sectionInputs: JSON
+  signatures: [JSON!]
+  attachments: [Attachment!]
+  completedAt: DateTime
+  completedBy: UUID
+  exportUrl: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Account-level form template."""
+type FormTemplate {
+  id: UUID!
+  name: String!
+  description: String
+  version: Int!
+  isPublished: Boolean!
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: FormTemplateDetails
+  fields: [FormField!]
+}
+
+"""Template metadata including field definitions."""
+type FormTemplateDetails {
+  id: UUID!
+  templateId: UUID!
+  sections: JSON
+  logoUrl: URL
+  footerText: String
+  allowPhotos: Boolean!
+  requireSignature: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Individual field definition within a form template."""
+type FormField {
+  id: UUID!
+  templateId: UUID!
+  label: String!
+  type: FormFieldType!
+  required: Boolean!
+  sequence: Int!
+  sectionId: UUID
+  details: FormFieldDetails
+}
+
+"""Field type, options, and validation rules."""
+type FormFieldDetails {
+  id: UUID!
+  fieldId: UUID!
+  placeholder: String
+  defaultValue: String
+  options: [String!]
+  minValue: Float
+  maxValue: Float
+  minLength: Int
+  maxLength: Int
+  helpText: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Checklist Types ──────────────────────────────────────────────────────────
+
+"""Template checklist associated with a task type."""
+type Checklist {
+  id: UUID!
+  projectId: UUID!
+  taskTypeId: UUID
+  name: String!
+  itemCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: ChecklistDetails
+  items: [ChecklistItem!]
+}
+
+"""Checklist metadata and item list."""
+type ChecklistDetails {
+  id: UUID!
+  checklistId: UUID!
+  description: String
+  isTemplate: Boolean!
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Individual check item in a checklist."""
+type ChecklistItem {
+  id: UUID!
+  taskId: UUID!
+  checklistId: UUID
+  name: String!
+  isCompleted: Boolean!
+  sequence: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: ChecklistItemDetails
+}
+
+"""Check item with completion state and assignee."""
+type ChecklistItemDetails {
+  id: UUID!
+  checkItemId: UUID!
+  description: String
+  completedAt: DateTime
+  completedBy: UUID
+  dueDate: DateTime
+  assigneeId: UUID
+  attachments: [Attachment!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Note and Bubble Types ────────────────────────────────────────────────────
+
+"""Text comment associated with a task or location."""
+type Note {
+  id: UUID!
+  entityId: UUID!
+  entityType: String!
+  content: String!
+  authorId: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: NoteDetails
+}
+
+"""Note with author, timestamp, and attachments."""
+type NoteDetails {
+  id: UUID!
+  noteId: UUID!
+  editedAt: DateTime
+  attachments: [Attachment!]
+  mentions: [UUID!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Link between two sheets or an external URL."""
+type Hyperlink {
+  id: UUID!
+  sourceSheetId: UUID!
+  targetSheetId: UUID
+  targetUrl: URL
+  anchorX: Float
+  anchorY: Float
+  targetX: Float
+  targetY: Float
+  label: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: HyperlinkDetails
+}
+
+"""Hyperlink with anchor point and target coordinates."""
+type HyperlinkDetails {
+  id: UUID!
+  hyperlinkId: UUID!
+  isMultiLink: Boolean!
+  linkedSheetIds: [UUID!]
+  color: String
+  iconType: String
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Comment, photo, video, or attachment pinned on a sheet."""
+type Bubble {
+  id: UUID!
+  sheetId: UUID!
+  taskId: UUID
+  authorId: UUID!
+  status: BubbleStatus!
+  positionX: Float
+  positionY: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: BubbleDetails
+  attachments: [Attachment!]
+}
+
+"""Bubble with position, author, and media."""
+type BubbleDetails {
+  id: UUID!
+  bubbleId: UUID!
+  content: String
+  mentions: [UUID!]
+  resolvedAt: DateTime
+  resolvedBy: UUID
+  attachments: [Attachment!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── File and Folder Types ────────────────────────────────────────────────────
+
+"""Node in the project file folder hierarchy."""
+type FolderNode {
+  id: UUID!
+  projectId: UUID!
+  parentId: UUID
+  name: String!
+  isFolder: Boolean!
+  sequence: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  children: [FolderNode!]
+  files: [FileDetails!]
+}
+
+"""File metadata including storage URL and MIME type."""
+type FileDetails {
+  id: UUID!
+  folderId: UUID!
+  projectId: UUID!
+  filename: String!
+  fileUrl: URL!
+  thumbnailUrl: URL
+  mimeType: String!
+  fileSize: Int!
+  uploadedBy: UUID!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Report Types ─────────────────────────────────────────────────────────────
+
+"""Generated project report."""
+type Report {
+  id: UUID!
+  projectId: UUID!
+  name: String!
+  type: String!
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: ReportDetails
+}
+
+"""Report metadata including export URL and form references."""
+type ReportDetails {
+  id: UUID!
+  reportId: UUID!
+  description: String
+  exportUrl: URL
+  formIds: [UUID!]
+  taskIds: [UUID!]
+  dateRangeStart: DateTime
+  dateRangeEnd: DateTime
+  generatedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Team and User Types ──────────────────────────────────────────────────────
+
+"""Team within a project or account."""
+type Team {
+  id: UUID!
+  projectId: UUID
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: TeamDetails
+  members: [User!]
+}
+
+"""Team membership and permission scope."""
+type TeamDetails {
+  id: UUID!
+  teamId: UUID!
+  description: String
+  permissions: JSON
+  isDefault: Boolean!
+  memberCount: Int!
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Fieldwire account user."""
+type User {
+  id: UUID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole!
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: UserDetails
+}
+
+"""Extended user profile including role and region assignments."""
+type UserDetails {
+  id: UUID!
+  userId: UUID!
+  phoneNumber: String
+  jobTitle: String
+  companyId: UUID
+  avatarUrl: URL
+  region: Region
+  lastLoginAt: DateTime
+  projectPermissions: JSON
+  teamIds: [UUID!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Company Types ────────────────────────────────────────────────────────────
+
+"""Company or organisation in the Fieldwire account."""
+type Company {
+  id: UUID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: CompanyDetails
+  users: [User!]
+}
+
+"""Company metadata including logo and contact info."""
+type CompanyDetails {
+  id: UUID!
+  companyId: UUID!
+  logoUrl: URL
+  website: URL
+  address: String
+  city: String
+  state: String
+  country: String
+  postalCode: String
+  phoneNumber: String
+  primaryContactId: UUID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Access and Auth Types ────────────────────────────────────────────────────
+
+"""Pending project or team invitation."""
+type Invite {
+  id: UUID!
+  email: String!
+  projectId: UUID
+  teamId: UUID
+  role: UserRole!
+  expiresAt: DateTime!
+  createdAt: DateTime!
+  details: InviteDetails
+}
+
+"""Invite with expiry, role, and sender."""
+type InviteDetails {
+  id: UUID!
+  inviteId: UUID!
+  senderId: UUID!
+  message: String
+  acceptedAt: DateTime
+  acceptedBy: UUID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Long-lived API key for account access."""
+type APIKey {
+  id: UUID!
+  name: String!
+  lastFour: String!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  isActive: Boolean!
+}
+
+"""Short-lived JWT access token."""
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  expiresAt: DateTime!
+  region: Region!
+}
+
+# ─── Webhook Types ────────────────────────────────────────────────────────────
+
+"""Webhook subscription configuration."""
+type Webhook {
+  id: UUID!
+  projectId: UUID
+  url: URL!
+  events: [WebhookEvent!]!
+  isActive: Boolean!
+  entityFilters: [UUID!]
+  projectFilters: [UUID!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Search Types ─────────────────────────────────────────────────────────────
+
+"""Search query parameters."""
+input Search {
+  query: String!
+  projectId: UUID
+  entityTypes: [String!]
+  dateFrom: DateTime
+  dateTo: DateTime
+  limit: Int
+  offset: Int
+}
+
+"""Paginated search results across entity types."""
+type SearchResults {
+  total: Int!
+  offset: Int!
+  limit: Int!
+  projects: [Project!]
+  tasks: [Task!]
+  forms: [Form!]
+  sheets: [Sheet!]
+  attachments: [Attachment!]
+  rfis: [RFI!]
+  submittals: [Submittal!]
+}
+
+# ─── RFI Types ────────────────────────────────────────────────────────────────
+
+"""Request for Information record."""
+type RFI {
+  id: UUID!
+  projectId: UUID!
+  number: String!
+  subject: String!
+  status: RFIStatus!
+  ballInCourtId: UUID
+  dueDate: DateTime
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: RFIDetails
+  attachments: [Attachment!]
+  watchers: [User!]
+}
+
+"""RFI with ball-in-court, responses, and attachments."""
+type RFIDetails {
+  id: UUID!
+  rfiId: UUID!
+  question: String
+  officialResponse: String
+  specSection: String
+  drawingReference: String
+  costImpact: Float
+  scheduleImpact: Int
+  closedAt: DateTime
+  closedBy: UUID
+  responses: [JSON!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Submittal Types ──────────────────────────────────────────────────────────
+
+"""Submittal package record."""
+type Submittal {
+  id: UUID!
+  projectId: UUID!
+  number: String!
+  title: String!
+  status: SubmittalStatus!
+  specSectionId: UUID
+  ballInCourtId: UUID
+  dueDate: DateTime
+  createdBy: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: SubmittalDetails
+  attachments: [Attachment!]
+  watchers: [User!]
+}
+
+"""Submittal with spec section, approval chain, and attachments."""
+type SubmittalDetails {
+  id: UUID!
+  submittalId: UUID!
+  description: String
+  specSection: String
+  revision: String
+  approvalChain: [JSON!]
+  closedAt: DateTime
+  closedBy: UUID
+  exportUrl: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Financial Types ──────────────────────────────────────────────────────────
+
+"""Budget line item tied to a cost code."""
+type BudgetLineItem {
+  id: UUID!
+  projectId: UUID!
+  costCodeId: UUID!
+  description: String!
+  budgetedAmount: Float!
+  actualAmount: Float
+  committedAmount: Float
+  pendingAmount: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  costCode: CostCode
+  changeOrders: [ChangeOrder!]
+}
+
+"""Change order record with status and amounts."""
+type ChangeOrder {
+  id: UUID!
+  projectId: UUID!
+  budgetLineItemId: UUID
+  number: String!
+  title: String!
+  status: ChangeOrderStatus!
+  amount: Float!
+  description: String
+  createdBy: UUID!
+  approvedBy: UUID
+  approvedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Tier cost code for budget categorisation."""
+type CostCode {
+  id: UUID!
+  projectId: UUID!
+  code: String!
+  description: String!
+  division: String
+  subdivision: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  budgetLineItems: [BudgetLineItem!]
+}
+
+# ─── Query ────────────────────────────────────────────────────────────────────
+
+type Query {
+  """Retrieve a project by ID."""
+  project(id: UUID!): Project
+
+  """List all projects in the account."""
+  projects(status: ProjectStatus, region: Region, limit: Int, offset: Int): [Project!]!
+
+  """Retrieve a floorplan by ID."""
+  floorplan(id: UUID!): Floorplan
+
+  """List floorplans in a project."""
+  floorplans(projectId: UUID!, limit: Int, offset: Int): [Floorplan!]!
+
+  """Retrieve a sheet by ID."""
+  sheet(id: UUID!): Sheet
+
+  """List sheets in a floorplan."""
+  sheets(floorplanId: UUID!, limit: Int, offset: Int): [Sheet!]!
+
+  """Retrieve a task by ID."""
+  task(id: UUID!): Task
+
+  """List tasks in a project."""
+  tasks(projectId: UUID!, status: TaskStatus, priority: TaskPriority, assigneeId: UUID, limit: Int, offset: Int): [Task!]!
+
+  """Retrieve a form by ID."""
+  form(id: UUID!): Form
+
+  """List forms in a project."""
+  forms(projectId: UUID!, status: String, limit: Int, offset: Int): [Form!]!
+
+  """Retrieve a form template by ID."""
+  formTemplate(id: UUID!): FormTemplate
+
+  """List account form templates."""
+  formTemplates(limit: Int, offset: Int): [FormTemplate!]!
+
+  """Retrieve an attachment by ID."""
+  attachment(id: UUID!): Attachment
+
+  """List attachments for an entity."""
+  attachments(entityId: UUID!, entityType: String!, limit: Int, offset: Int): [Attachment!]!
+
+  """Retrieve a user by ID."""
+  user(id: UUID!): User
+
+  """List users in the account."""
+  users(projectId: UUID, role: UserRole, limit: Int, offset: Int): [User!]!
+
+  """Retrieve a team by ID."""
+  team(id: UUID!): Team
+
+  """List teams in a project or account."""
+  teams(projectId: UUID, limit: Int, offset: Int): [Team!]!
+
+  """Retrieve a company by ID."""
+  company(id: UUID!): Company
+
+  """List companies in the account."""
+  companies(limit: Int, offset: Int): [Company!]!
+
+  """Retrieve a webhook by ID."""
+  webhook(id: UUID!): Webhook
+
+  """List webhooks for a project or account."""
+  webhooks(projectId: UUID, limit: Int, offset: Int): [Webhook!]!
+
+  """Retrieve an RFI by ID."""
+  rfi(id: UUID!): RFI
+
+  """List RFIs in a project."""
+  rfis(projectId: UUID!, status: RFIStatus, limit: Int, offset: Int): [RFI!]!
+
+  """Retrieve a submittal by ID."""
+  submittal(id: UUID!): Submittal
+
+  """List submittals in a project."""
+  submittals(projectId: UUID!, status: SubmittalStatus, limit: Int, offset: Int): [Submittal!]!
+
+  """Retrieve a budget line item by ID."""
+  budgetLineItem(id: UUID!): BudgetLineItem
+
+  """List budget line items in a project."""
+  budgetLineItems(projectId: UUID!, costCodeId: UUID, limit: Int, offset: Int): [BudgetLineItem!]!
+
+  """Retrieve a change order by ID."""
+  changeOrder(id: UUID!): ChangeOrder
+
+  """List change orders in a project."""
+  changeOrders(projectId: UUID!, status: ChangeOrderStatus, limit: Int, offset: Int): [ChangeOrder!]!
+
+  """Retrieve a location by ID."""
+  location(id: UUID!): Location
+
+  """List locations in a project."""
+  locations(projectId: UUID!, sheetId: UUID, limit: Int, offset: Int): [Location!]!
+
+  """Retrieve a report by ID."""
+  report(id: UUID!): Report
+
+  """List reports in a project."""
+  reports(projectId: UUID!, type: String, limit: Int, offset: Int): [Report!]!
+
+  """Retrieve a folder node by ID."""
+  folderNode(id: UUID!): FolderNode
+
+  """List root folder nodes in a project."""
+  folderNodes(projectId: UUID!, parentId: UUID, limit: Int, offset: Int): [FolderNode!]!
+
+  """Retrieve the current API key."""
+  apiKey(id: UUID!): APIKey
+
+  """List API keys in the account."""
+  apiKeys(limit: Int, offset: Int): [APIKey!]!
+
+  """List pending invites."""
+  invites(projectId: UUID, limit: Int, offset: Int): [Invite!]!
+
+  """Search across entity types."""
+  search(input: Search!): SearchResults!
+}
+
+# ─── Mutation ─────────────────────────────────────────────────────────────────
+
+type Mutation {
+  """Exchange a long-lived API key for a short-lived JWT token."""
+  createToken(apiKey: String!): Token!
+
+  """Create a new project."""
+  createProject(name: String!, region: Region!): Project!
+
+  """Update a project."""
+  updateProject(id: UUID!, name: String, status: ProjectStatus): Project!
+
+  """Archive a project."""
+  archiveProject(id: UUID!): Project!
+
+  """Create a task in a project."""
+  createTask(projectId: UUID!, name: String!, status: TaskStatus, priority: TaskPriority, assigneeId: UUID, sheetId: UUID, positionX: Float, positionY: Float): Task!
+
+  """Update a task."""
+  updateTask(id: UUID!, name: String, status: TaskStatus, priority: TaskPriority, assigneeId: UUID, dueDate: DateTime): Task!
+
+  """Delete a task."""
+  deleteTask(id: UUID!): Boolean!
+
+  """Create a check item on a task."""
+  createChecklistItem(taskId: UUID!, name: String!, sequence: Int): ChecklistItem!
+
+  """Update a check item."""
+  updateChecklistItem(id: UUID!, name: String, isCompleted: Boolean, sequence: Int): ChecklistItem!
+
+  """Create a bubble on a sheet."""
+  createBubble(sheetId: UUID!, taskId: UUID, positionX: Float!, positionY: Float!, content: String): Bubble!
+
+  """Resolve a bubble."""
+  resolveBubble(id: UUID!): Bubble!
+
+  """Create a form record from a template."""
+  createForm(projectId: UUID!, templateId: UUID!, name: String!, assignedTo: UUID, dueDate: DateTime): Form!
+
+  """Update a form record."""
+  updateForm(id: UUID!, status: String, assignedTo: UUID, dueDate: DateTime): Form!
+
+  """Create a webhook subscription."""
+  createWebhook(projectId: UUID, url: URL!, events: [WebhookEvent!]!, entityFilters: [UUID!], projectFilters: [UUID!]): Webhook!
+
+  """Update a webhook subscription."""
+  updateWebhook(id: UUID!, url: URL, events: [WebhookEvent!], isActive: Boolean, entityFilters: [UUID!], projectFilters: [UUID!]): Webhook!
+
+  """Delete a webhook subscription."""
+  deleteWebhook(id: UUID!): Boolean!
+
+  """Create an RFI."""
+  createRFI(projectId: UUID!, subject: String!, question: String, specSection: String, ballInCourtId: UUID, dueDate: DateTime): RFI!
+
+  """Update an RFI."""
+  updateRFI(id: UUID!, status: RFIStatus, officialResponse: String, ballInCourtId: UUID): RFI!
+
+  """Create a submittal."""
+  createSubmittal(projectId: UUID!, title: String!, specSectionId: UUID, ballInCourtId: UUID, dueDate: DateTime): Submittal!
+
+  """Update a submittal."""
+  updateSubmittal(id: UUID!, status: SubmittalStatus, ballInCourtId: UUID): Submittal!
+
+  """Invite a user to a project."""
+  createInvite(email: String!, projectId: UUID, teamId: UUID, role: UserRole!): Invite!
+
+  """Create a budget line item."""
+  createBudgetLineItem(projectId: UUID!, costCodeId: UUID!, description: String!, budgetedAmount: Float!): BudgetLineItem!
+
+  """Update a budget line item."""
+  updateBudgetLineItem(id: UUID!, budgetedAmount: Float, actualAmount: Float): BudgetLineItem!
+
+  """Create a change order."""
+  createChangeOrder(projectId: UUID!, title: String!, amount: Float!, budgetLineItemId: UUID, description: String): ChangeOrder!
+
+  """Update a change order status."""
+  updateChangeOrder(id: UUID!, status: ChangeOrderStatus, amount: Float): ChangeOrder!
+}
