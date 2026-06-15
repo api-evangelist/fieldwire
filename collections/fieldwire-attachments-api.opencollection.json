@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Attachments and Media API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "S3 Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get AWS POST Token For Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/aws_post_tokens",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a one-day signed AWS POST token that the client uses to upload\nthe binary directly to Amazon S3. The token contains the post URL,\npolicy, and form fields required for the S3 `POST object` operation;\nclients then add a `file` form field and POST to AWS directly.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Attachments In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/attachments",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Attachments In Project"
+        },
+        {
+          "info": {
+            "name": "Create Attachment In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/attachments",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Markups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Attachment Markups In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/attachment_markups",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Attachment Markups In Project"
+        },
+        {
+          "info": {
+            "name": "Create Attachment Markup In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/attachment_markups",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a markup overlay on an attachment. The `data` field follows the\nGeoJSON Feature schema with `properties.style` in {`arrow`, `drawing`,\n`measurement`, `text`} and `geometry.type` in {`LineString`, `Polygon`}.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

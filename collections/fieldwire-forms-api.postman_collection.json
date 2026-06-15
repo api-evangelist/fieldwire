@@ -1,0 +1,864 @@
+{
+  "item": [
+    {
+      "id": "2f2f23ea-df9b-43af-a005-eeeacca13d1d",
+      "name": "Form Templates",
+      "description": {
+        "content": "Account-level form template definitions, publication, and transfer.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "f267c59f-c9e4-4348-a911-09d1ed77bd19",
+      "name": "Form Sections",
+      "description": {
+        "content": "Section structure within a form template.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01f2e4fe-381f-45cb-af1a-4bbb74339f7e",
+          "name": "Get Form Template Sections",
+          "request": {
+            "name": "Get Form Template Sections",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "form_templates",
+                ":form_template_id",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "form_template_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e6ba778-8284-4894-85d1-9df8f6fbd86a",
+              "name": "Section list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "form_templates",
+                    ":form_template_id",
+                    "sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "form_template_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2080,\n    \"form_template_id\": 8559,\n    \"name\": \"string\",\n    \"position\": 6570.792864782222,\n    \"is_repeatable\": false\n  },\n  {\n    \"id\": 5181,\n    \"form_template_id\": 5994,\n    \"name\": \"string\",\n    \"position\": 3689.650883193836,\n    \"is_repeatable\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "674e93b8-d10b-48f8-a995-5fce9e891736",
+          "name": "Create Form Template Section",
+          "request": {
+            "name": "Create Form Template Section",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "form_templates",
+                ":form_template_id",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "form_template_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4830498-575c-4775-8658-f5ebb4426f05",
+              "name": "Created section.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "form_templates",
+                    ":form_template_id",
+                    "sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "form_template_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9264,\n  \"form_template_id\": 9842,\n  \"name\": \"string\",\n  \"position\": 3404.464951031366,\n  \"is_repeatable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "44901945-84fc-45c2-aa4d-94190000c55f",
+      "name": "Form Inputs",
+      "description": {
+        "content": "Inputs (text, number, photo, signature, choice, etc.) inside a section.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0f62cfa-7f8b-47cb-b9ee-6f4760fb9d67",
+          "name": "Get Form Template Section Inputs",
+          "request": {
+            "name": "Get Form Template Section Inputs",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "form_templates",
+                ":form_template_id",
+                "sections",
+                ":section_id",
+                "inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "form_template_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "section_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b8708e8-d862-4200-8e34-d92f59ed954d",
+              "name": "Input list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "form_templates",
+                    ":form_template_id",
+                    "sections",
+                    ":section_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "form_template_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "section_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8887,\n    \"section_id\": 365,\n    \"name\": \"string\",\n    \"kind\": \"multi_choice\",\n    \"is_required\": false,\n    \"data_type_id\": 6731,\n    \"position\": 5077.5715559315995\n  },\n  {\n    \"id\": 9598,\n    \"section_id\": 7695,\n    \"name\": \"string\",\n    \"kind\": \"number\",\n    \"is_required\": false,\n    \"data_type_id\": 783,\n    \"position\": 9683.08972692334\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "581e2608-376c-4863-97c2-51cf6bd40adb",
+          "name": "Create Form Template Section Input",
+          "request": {
+            "name": "Create Form Template Section Input",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "form_templates",
+                ":form_template_id",
+                "sections",
+                ":section_id",
+                "inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "form_template_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "section_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"section_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"is_required\": \"<boolean>\",\n  \"data_type_id\": \"<long>\",\n  \"position\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d466602c-c5fc-4ce4-8da2-881fc63b7950",
+              "name": "Created input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "form_templates",
+                    ":form_template_id",
+                    "sections",
+                    ":section_id",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "form_template_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "section_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"section_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"is_required\": \"<boolean>\",\n  \"data_type_id\": \"<long>\",\n  \"position\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1935,\n  \"section_id\": 9,\n  \"name\": \"string\",\n  \"kind\": \"boolean\",\n  \"is_required\": true,\n  \"data_type_id\": 6564,\n  \"position\": 2807.936836997974\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "44aa304e-32bf-4752-8cc5-6fcca4e1b010",
+      "name": "Form Records",
+      "description": {
+        "content": "Captured form responses per project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd456050-b508-40bc-8617-04e0f43afd83",
+          "name": "Get Forms In Project",
+          "request": {
+            "name": "Get Forms In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "892af079-598d-4705-af1c-f9f45654ca94",
+              "name": "Form record list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 895,\n    \"project_id\": 4282,\n    \"form_template_id\": 5761,\n    \"name\": \"string\",\n    \"status\": \"approved\",\n    \"created_at\": \"1998-10-12T19:12:26.767Z\",\n    \"updated_at\": \"1947-03-28T03:38:40.057Z\"\n  },\n  {\n    \"id\": 9051,\n    \"project_id\": 2982,\n    \"form_template_id\": 6190,\n    \"name\": \"string\",\n    \"status\": \"approved\",\n    \"created_at\": \"1957-12-04T03:24:48.527Z\",\n    \"updated_at\": \"2023-10-07T08:56:59.661Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd946b6a-6f12-4ba3-9e7d-a9677502ec42",
+          "name": "Create Form In Project",
+          "request": {
+            "name": "Create Form In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78b23b19-6f9f-4ad5-99da-b32c846ba825",
+              "name": "Created form record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6338,\n  \"project_id\": 5656,\n  \"form_template_id\": 1005,\n  \"name\": \"string\",\n  \"status\": \"draft\",\n  \"created_at\": \"1988-08-31T01:34:39.300Z\",\n  \"updated_at\": \"1958-05-01T06:16:54.093Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abc13525-9c8d-4bbc-9d1c-650000eed27d",
+          "name": "Get Form By ID",
+          "request": {
+            "name": "Get Form By ID",
+            "description": {
+              "content": "Returns the form record with all section records, values, and signatures.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "forms",
+                ":form_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "form_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "836daa93-5c99-4ba7-aba3-c741532cbf12",
+              "name": "Form record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "forms",
+                    ":form_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "form_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5163,\n  \"project_id\": 1632,\n  \"form_template_id\": 6967,\n  \"name\": \"string\",\n  \"status\": \"in_review\",\n  \"created_at\": \"1949-09-21T21:35:36.823Z\",\n  \"updated_at\": \"2020-12-29T04:55:58.572Z\",\n  \"section_records\": [\n    {\n      \"id\": 3621,\n      \"section_id\": 8197,\n      \"values\": [\n        {\n          \"input_id\": 4194,\n          \"value\": \"string\"\n        },\n        {\n          \"input_id\": 8303,\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 6981,\n      \"section_id\": 8020,\n      \"values\": [\n        {\n          \"input_id\": 4285,\n          \"value\": \"string\"\n        },\n        {\n          \"input_id\": 7379,\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.us.fieldwire.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f9f3d26-2fb7-4555-ab22-e19c654d9079",
+    "name": "Fieldwire Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Build account-level form templates (sections, inputs, custom data types,\nstatuses, permissions) and capture form records (with section records,\nvalues, signatures, and markups) in the field. Powers Fieldwire's daily\nreports, safety inspections, QA/QC checklists, and any custom data\ncollection workflow.\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Project Financials API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Budget Line Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Budget Line Items In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/budget_line_items",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Budget Line Items In Project"
+        },
+        {
+          "info": {
+            "name": "Create Budget Line Item In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/budget_line_items",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Budget Line Item In Project"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Actual Costs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Actual Costs In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/actual_costs",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Actual Costs In Project"
+        },
+        {
+          "info": {
+            "name": "Create Actual Cost In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/actual_costs",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Actual Cost In Project"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Change Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Change Orders In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/change_orders",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Change Orders In Project"
+        },
+        {
+          "info": {
+            "name": "Create Change Order In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/change_orders",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Change Order In Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

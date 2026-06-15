@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Tasks API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Tasks In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Tasks In Project"
+        },
+        {
+          "info": {
+            "name": "Create Task In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Task In Project"
+        },
+        {
+          "info": {
+            "name": "Get Task By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Task By ID"
+        },
+        {
+          "info": {
+            "name": "Update Task By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Task By ID"
+        },
+        {
+          "info": {
+            "name": "Delete Task By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Task By ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Task Check Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Check Items In Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id/check_items",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Check Items In Task"
+        },
+        {
+          "info": {
+            "name": "Create Check Item In Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id/check_items",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Check Item In Task"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bubbles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bubbles In Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id/bubbles",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve all bubbles (comments, photos, video, links, attachments) associated with a task."
+        },
+        {
+          "info": {
+            "name": "Create Bubble In Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/tasks/:task_id/bubbles",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new bubble in a task. Bubble kinds include `comment`, `photo`,\n`video`, `link`, `pdf`, and `attachment` (S3-uploaded file).\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Task Relations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Task Relations In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/task_relations",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Task Relations In Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

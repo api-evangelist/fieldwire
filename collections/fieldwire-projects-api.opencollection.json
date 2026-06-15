@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Projects API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Project status filter."
+              }
+            ]
+          },
+          "docs": "List all projects in the account. Supports filtering by status\n(`active`, `deleted`, `all`) via the `status` query parameter.\n"
+        },
+        {
+          "info": {
+            "name": "Create Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new construction project."
+        },
+        {
+          "info": {
+            "name": "Get Project By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Get Project By ID"
+        },
+        {
+          "info": {
+            "name": "Update Project By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Project By ID"
+        },
+        {
+          "info": {
+            "name": "Delete Project By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Soft-delete (archive) a project; restore via `restore_project_by_id`."
+        },
+        {
+          "info": {
+            "name": "Restore Project By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/restore",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Restore Project By ID"
+        },
+        {
+          "info": {
+            "name": "Transfer Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/transfer",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer a project from one Fieldwire account to another. Triggers a project.transferred webhook event."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Project Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/users",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Get Project Users"
+        },
+        {
+          "info": {
+            "name": "Invite Project User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/users",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invite Project User"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Project Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/teams",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Get Project Teams"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Project Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/stats",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Get Project Stats"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

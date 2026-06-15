@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Webhooks API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/subscriptions"
+          },
+          "docs": "Get Subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook subscription. Required fields: `subscription_name`\n(max 50 chars), `description` (max 200 chars), `post_url`, and\n`subscription_status`. Optional filters: `entity_filters` (max 20),\n`project_filters` (max 100).\n"
+        },
+        {
+          "info": {
+            "name": "Get Subscription By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Subscription By ID"
+        },
+        {
+          "info": {
+            "name": "Update Subscription By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.us.fieldwire.com/api/v3/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Subscription By ID"
+        },
+        {
+          "info": {
+            "name": "Delete Subscription By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://client-api.us.fieldwire.com/api/v3/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Subscription By ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

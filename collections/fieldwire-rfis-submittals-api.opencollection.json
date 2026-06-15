@@ -1,0 +1,188 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire RFIs and Submittals API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RFIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get RFIs In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/rfis",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get RFIs In Project"
+        },
+        {
+          "info": {
+            "name": "Create RFI In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/rfis",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create RFI In Project"
+        },
+        {
+          "info": {
+            "name": "Get RFI By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/rfis/:rfi_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rfi_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get RFI By ID"
+        },
+        {
+          "info": {
+            "name": "Update RFI By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/rfis/:rfi_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rfi_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update RFI By ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Submittals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Submittals In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/submittals",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Submittals In Project"
+        },
+        {
+          "info": {
+            "name": "Create Submittal In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/submittals",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Submittal In Project"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Spec Sections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Spec Sections In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/spec_sections",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Spec Sections In Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

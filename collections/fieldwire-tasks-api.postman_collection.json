@@ -1,0 +1,1224 @@
+{
+  "item": [
+    {
+      "id": "f6574128-c9f9-4d9c-995c-6aacb7e3c557",
+      "name": "Tasks",
+      "description": {
+        "content": "Project task lifecycle and assignment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "adfea125-f102-49a9-a2a3-77d704a93c6f",
+          "name": "Get Tasks In Project",
+          "request": {
+            "name": "Get Tasks In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93f304fc-60a9-4a23-8fbc-4bd9c33b488b",
+              "name": "Task list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4411,\n    \"project_id\": 5000,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"status_id\": 6095,\n    \"priority\": 1144,\n    \"category\": \"string\",\n    \"floorplan_id\": 6312,\n    \"location_id\": 2530,\n    \"team_id\": 1796,\n    \"owner_user_id\": 4858,\n    \"creator_user_id\": 4845,\n    \"due_at\": \"1976-01-02T19:54:21.860Z\",\n    \"completed_at\": \"1999-05-08T13:01:33.512Z\",\n    \"created_at\": \"1960-10-13T07:13:58.292Z\",\n    \"updated_at\": \"2019-01-14T13:23:14.604Z\",\n    \"custom_attributes\": {\n      \"key_0\": \"string\"\n    }\n  },\n  {\n    \"id\": 2808,\n    \"project_id\": 8717,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"status_id\": 7614,\n    \"priority\": 1702,\n    \"category\": \"string\",\n    \"floorplan_id\": 6230,\n    \"location_id\": 9152,\n    \"team_id\": 8415,\n    \"owner_user_id\": 787,\n    \"creator_user_id\": 385,\n    \"due_at\": \"1988-09-22T03:36:28.389Z\",\n    \"completed_at\": \"1947-08-24T05:08:52.734Z\",\n    \"created_at\": \"1956-10-23T04:30:48.512Z\",\n    \"updated_at\": \"1988-11-25T04:38:31.875Z\",\n    \"custom_attributes\": {\n      \"key_0\": true,\n      \"key_1\": \"string\",\n      \"key_2\": false\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fd438ba-91da-4fba-ac30-44245dde7c71",
+          "name": "Create Task In Project",
+          "request": {
+            "name": "Create Task In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 5794.160809599988,\n    \"key_1\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "585b8b3b-5a55-4b73-ad00-911f379ace8c",
+              "name": "Created task.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 114,\n  \"project_id\": 3741,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 7477,\n  \"priority\": 7160,\n  \"category\": \"string\",\n  \"floorplan_id\": 3639,\n  \"location_id\": 7932,\n  \"team_id\": 8810,\n  \"owner_user_id\": 9734,\n  \"creator_user_id\": 7145,\n  \"due_at\": \"1987-03-02T02:54:12.243Z\",\n  \"completed_at\": \"1973-11-17T14:05:46.610Z\",\n  \"created_at\": \"1990-05-01T06:19:21.782Z\",\n  \"updated_at\": \"2008-01-18T20:00:11.091Z\",\n  \"custom_attributes\": {\n    \"key_0\": 3186,\n    \"key_1\": 1297,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "966e5b1c-b5aa-4b41-a750-0575e2c85c61",
+          "name": "Get Task By ID",
+          "request": {
+            "name": "Get Task By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e2ed38c-03b7-4d82-a1b2-8bec254a4ac1",
+              "name": "Task.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 114,\n  \"project_id\": 3741,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 7477,\n  \"priority\": 7160,\n  \"category\": \"string\",\n  \"floorplan_id\": 3639,\n  \"location_id\": 7932,\n  \"team_id\": 8810,\n  \"owner_user_id\": 9734,\n  \"creator_user_id\": 7145,\n  \"due_at\": \"1987-03-02T02:54:12.243Z\",\n  \"completed_at\": \"1973-11-17T14:05:46.610Z\",\n  \"created_at\": \"1990-05-01T06:19:21.782Z\",\n  \"updated_at\": \"2008-01-18T20:00:11.091Z\",\n  \"custom_attributes\": {\n    \"key_0\": 3186,\n    \"key_1\": 1297,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62ad291b-3bea-4216-875e-946f4ec0c480",
+          "name": "Update Task By ID",
+          "request": {
+            "name": "Update Task By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 7995\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5695aa7-844b-4485-8e22-f002fb8da0c6",
+              "name": "Updated task.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 2951\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 114,\n  \"project_id\": 3741,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 7477,\n  \"priority\": 7160,\n  \"category\": \"string\",\n  \"floorplan_id\": 3639,\n  \"location_id\": 7932,\n  \"team_id\": 8810,\n  \"owner_user_id\": 9734,\n  \"creator_user_id\": 7145,\n  \"due_at\": \"1987-03-02T02:54:12.243Z\",\n  \"completed_at\": \"1973-11-17T14:05:46.610Z\",\n  \"created_at\": \"1990-05-01T06:19:21.782Z\",\n  \"updated_at\": \"2008-01-18T20:00:11.091Z\",\n  \"custom_attributes\": {\n    \"key_0\": 3186,\n    \"key_1\": 1297,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3e71614-3c43-4779-81f3-12c96db525e5",
+          "name": "Delete Task By ID",
+          "request": {
+            "name": "Delete Task By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66bab644-64c2-42c2-bfcc-d51bab9664ae",
+              "name": "Task deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b894f773-eca0-439b-814b-1fdf7fcfabdd",
+      "name": "Task Check Items",
+      "description": {
+        "content": "Sub-checklist items within a task.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "219ceb54-d4f9-4af9-8bb2-cb8d1445de60",
+          "name": "Get Check Items In Task",
+          "request": {
+            "name": "Get Check Items In Task",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id",
+                "check_items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "224a6296-40c7-4a39-b278-0f7296bbb21a",
+              "name": "Check item list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id",
+                    "check_items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8851,\n    \"task_id\": 1762,\n    \"name\": \"string\",\n    \"is_completed\": true,\n    \"position\": 2894.693823484532,\n    \"completed_at\": \"2025-11-01T04:02:45.826Z\"\n  },\n  {\n    \"id\": 9789,\n    \"task_id\": 2930,\n    \"name\": \"string\",\n    \"is_completed\": true,\n    \"position\": 8978.468578733082,\n    \"completed_at\": \"1970-09-22T21:12:17.472Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "005f5017-e269-460e-bef8-86c72b1c8a17",
+          "name": "Create Check Item In Task",
+          "request": {
+            "name": "Create Check Item In Task",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id",
+                "check_items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"task_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"is_completed\": \"<boolean>\",\n  \"position\": \"<double>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d16f7d79-ef19-4929-a3b0-3d2ae025202c",
+              "name": "Created check item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id",
+                    "check_items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"task_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"is_completed\": \"<boolean>\",\n  \"position\": \"<double>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3201,\n  \"task_id\": 8146,\n  \"name\": \"string\",\n  \"is_completed\": false,\n  \"position\": 3807.6439701404242,\n  \"completed_at\": \"1999-12-30T23:23:32.937Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3e4b6096-586a-4748-941e-d0a1ce8e1ffc",
+      "name": "Task Relations",
+      "description": {
+        "content": "Parent/child and dependency relations between tasks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26e55faf-f0ce-46ad-8ac5-9a574308a0d7",
+          "name": "Get Task Relations In Project",
+          "request": {
+            "name": "Get Task Relations In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "task_relations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c1a6b6e-ea6c-4446-8e87-2602fa6f4576",
+              "name": "Relation list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "task_relations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7636,\n    \"source_task_id\": 7825,\n    \"target_task_id\": 6839,\n    \"kind\": \"parent\",\n    \"created_at\": \"2007-07-11T20:19:23.612Z\"\n  },\n  {\n    \"id\": 465,\n    \"source_task_id\": 1349,\n    \"target_task_id\": 9096,\n    \"kind\": \"parent\",\n    \"created_at\": \"1990-05-07T04:43:45.306Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "30d1b732-a33d-495e-8e23-0d57d951cccd",
+      "name": "Bubbles",
+      "description": {
+        "content": "Task-attached comments, photos, video, links, and file attachments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9c43365-7063-4ac6-8eec-e22b7804d069",
+          "name": "Get Bubbles In Task",
+          "request": {
+            "name": "Get Bubbles In Task",
+            "description": {
+              "content": "Retrieve all bubbles (comments, photos, video, links, attachments) associated with a task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id",
+                "bubbles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "360213a3-6fea-4118-898e-33c2253daf89",
+              "name": "Bubble list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id",
+                    "bubbles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7552,\n    \"task_id\": 5011,\n    \"kind\": \"video\",\n    \"text\": \"string\",\n    \"attachment_id\": 2588,\n    \"author_user_id\": 9694,\n    \"created_at\": \"1958-03-30T01:31:57.714Z\"\n  },\n  {\n    \"id\": 3604,\n    \"task_id\": 4482,\n    \"kind\": \"photo\",\n    \"text\": \"string\",\n    \"attachment_id\": 3831,\n    \"author_user_id\": 531,\n    \"created_at\": \"1958-04-13T12:27:08.294Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1bbd7c8-d608-4ac6-83cb-aa24080f5f73",
+          "name": "Create Bubble In Task",
+          "request": {
+            "name": "Create Bubble In Task",
+            "description": {
+              "content": "Create a new bubble in a task. Bubble kinds include `comment`, `photo`,\n`video`, `link`, `pdf`, and `attachment` (S3-uploaded file).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "tasks",
+                ":task_id",
+                "bubbles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "task_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kind\": \"<string>\",\n  \"text\": \"<string>\",\n  \"attachment_id\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c84cb4cb-1b55-4daa-b564-433f1dbfbac5",
+              "name": "Created bubble.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "tasks",
+                    ":task_id",
+                    "bubbles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "task_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"kind\": \"<string>\",\n  \"text\": \"<string>\",\n  \"attachment_id\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8542,\n  \"task_id\": 8965,\n  \"kind\": \"video\",\n  \"text\": \"string\",\n  \"attachment_id\": 5376,\n  \"author_user_id\": 9405,\n  \"created_at\": \"2015-04-12T23:35:03.935Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.us.fieldwire.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "333cafc6-426a-48f6-a970-1dc6a151745a",
+    "name": "Fieldwire Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create and manage construction tasks — punch list items, inspections,\nwork assignments — including bubbles (comments, photos, video, links),\ncheck items, task relations, task types, and custom task attributes.\nTasks support up to 500 check items per entry. All paths are project-scoped\nand resolve against the regional Fieldwire project host.\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

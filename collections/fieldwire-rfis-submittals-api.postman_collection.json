@@ -1,0 +1,823 @@
+{
+  "item": [
+    {
+      "id": "b76d4040-ebc6-42d5-a7de-ecc6019b212a",
+      "name": "RFIs",
+      "description": {
+        "content": "Requests for Information lifecycle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66a7b90e-9d44-4d73-adb5-ddc2037a6ca0",
+          "name": "Get RFIs In Project",
+          "request": {
+            "name": "Get RFIs In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "rfis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87a31eb7-c108-4548-8c71-af973b768eec",
+              "name": "RFI list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "rfis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 783,\n    \"project_id\": 5796,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"question\": \"string\",\n    \"answer\": \"string\",\n    \"status\": \"answered\",\n    \"priority\": \"normal\",\n    \"spec_section_id\": 1102,\n    \"ball_in_court_user_id\": 2695,\n    \"due_at\": \"2021-04-04T09:32:15.049Z\",\n    \"created_at\": \"2017-08-10T08:13:22.330Z\",\n    \"updated_at\": \"1977-02-20T09:55:33.531Z\"\n  },\n  {\n    \"id\": 2874,\n    \"project_id\": 2871,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"question\": \"string\",\n    \"answer\": \"string\",\n    \"status\": \"void\",\n    \"priority\": \"normal\",\n    \"spec_section_id\": 6891,\n    \"ball_in_court_user_id\": 1600,\n    \"due_at\": \"1956-03-31T21:38:45.615Z\",\n    \"created_at\": \"1988-12-14T18:14:55.484Z\",\n    \"updated_at\": \"1977-03-16T04:46:29.227Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da2bfd62-9e72-4aa2-9e57-89c1e4a26e1d",
+          "name": "Create RFI In Project",
+          "request": {
+            "name": "Create RFI In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "rfis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1fed4340-4320-411a-8a73-5dc086466410",
+              "name": "Created RFI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "rfis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 812,\n  \"project_id\": 7906,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"question\": \"string\",\n  \"answer\": \"string\",\n  \"status\": \"void\",\n  \"priority\": \"urgent\",\n  \"spec_section_id\": 2238,\n  \"ball_in_court_user_id\": 2146,\n  \"due_at\": \"1962-05-16T14:54:13.678Z\",\n  \"created_at\": \"2019-02-24T06:06:54.679Z\",\n  \"updated_at\": \"1998-11-09T11:46:16.592Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97756c5e-7dc9-4b05-b425-54f0747dd0a6",
+          "name": "Get RFI By ID",
+          "request": {
+            "name": "Get RFI By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "rfis",
+                ":rfi_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "rfi_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b14fe333-ac32-401e-8245-0fcc921e1392",
+              "name": "RFI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "rfis",
+                    ":rfi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "rfi_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 812,\n  \"project_id\": 7906,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"question\": \"string\",\n  \"answer\": \"string\",\n  \"status\": \"void\",\n  \"priority\": \"urgent\",\n  \"spec_section_id\": 2238,\n  \"ball_in_court_user_id\": 2146,\n  \"due_at\": \"1962-05-16T14:54:13.678Z\",\n  \"created_at\": \"2019-02-24T06:06:54.679Z\",\n  \"updated_at\": \"1998-11-09T11:46:16.592Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6096bb6c-1c61-41dd-ae7f-1dd320d736fd",
+          "name": "Update RFI By ID",
+          "request": {
+            "name": "Update RFI By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "rfis",
+                ":rfi_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "rfi_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9bc56dc-8503-4400-b1d2-8aeaef42f55d",
+              "name": "Updated RFI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "rfis",
+                    ":rfi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "rfi_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 812,\n  \"project_id\": 7906,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"question\": \"string\",\n  \"answer\": \"string\",\n  \"status\": \"void\",\n  \"priority\": \"urgent\",\n  \"spec_section_id\": 2238,\n  \"ball_in_court_user_id\": 2146,\n  \"due_at\": \"1962-05-16T14:54:13.678Z\",\n  \"created_at\": \"2019-02-24T06:06:54.679Z\",\n  \"updated_at\": \"1998-11-09T11:46:16.592Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6aefac80-4ab9-4313-aa09-fba2f54ecb76",
+      "name": "Submittals",
+      "description": {
+        "content": "Submittal lifecycle, approvals, and types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9a4988e-0803-4405-92df-9f13ea45ded7",
+          "name": "Get Submittals In Project",
+          "request": {
+            "name": "Get Submittals In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "submittals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc010325-5d46-4ddd-b25b-eac9b2fb5f41",
+              "name": "Submittal list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "submittals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1079,\n    \"project_id\": 8253,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"approved\",\n    \"spec_section_id\": 8244,\n    \"ball_in_court_user_id\": 5442,\n    \"due_at\": \"1952-03-29T11:06:06.286Z\",\n    \"created_at\": \"1972-05-03T18:39:48.586Z\",\n    \"updated_at\": \"1989-02-26T17:49:49.640Z\"\n  },\n  {\n    \"id\": 1057,\n    \"project_id\": 9789,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"submitted\",\n    \"spec_section_id\": 1419,\n    \"ball_in_court_user_id\": 5007,\n    \"due_at\": \"2007-08-10T09:54:24.970Z\",\n    \"created_at\": \"1991-12-21T16:01:31.654Z\",\n    \"updated_at\": \"1976-03-29T13:49:01.159Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af5c9502-21b1-4e5f-a3cf-1e4ac7fe306e",
+          "name": "Create Submittal In Project",
+          "request": {
+            "name": "Create Submittal In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "submittals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95bb1b36-dd19-4941-a257-47907e9e1be9",
+              "name": "Created submittal.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "submittals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5370,\n  \"project_id\": 5311,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"approved\",\n  \"spec_section_id\": 1848,\n  \"ball_in_court_user_id\": 5692,\n  \"due_at\": \"2002-06-26T21:29:42.620Z\",\n  \"created_at\": \"2001-02-16T05:03:48.070Z\",\n  \"updated_at\": \"1963-06-16T20:18:02.293Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "074f32f2-82b4-4b8f-a159-3236c3f21ab4",
+      "name": "Spec Sections",
+      "description": {
+        "content": "Specification sections used to organise submittals.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af4f9ce7-989d-4775-9130-609704a789f7",
+          "name": "Get Spec Sections In Project",
+          "request": {
+            "name": "Get Spec Sections In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "spec_sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17769660-974b-47c1-8760-0d2a18e6b0c6",
+              "name": "Spec section list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "spec_sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4121,\n    \"project_id\": 7423,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"division\": \"string\",\n    \"created_at\": \"1967-02-14T01:51:38.464Z\"\n  },\n  {\n    \"id\": 7816,\n    \"project_id\": 5741,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"division\": \"string\",\n    \"created_at\": \"2000-09-12T03:56:02.739Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.us.fieldwire.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f7f824dd-8cbe-46b8-9362-f69619b086da",
+    "name": "Fieldwire RFIs and Submittals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Track Requests for Information (RFIs), submittals, submittal types, spec\nsections, attachments, markups, watchers, approvals, and submittal log\nextraction across construction projects.\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

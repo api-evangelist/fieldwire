@@ -1,0 +1,214 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Plans and Sheets API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Floorplans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Floorplans In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/floorplans",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Floorplans In Project"
+        },
+        {
+          "info": {
+            "name": "Create Floorplan In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/floorplans",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new floorplan; sheets are uploaded separately via the Attachments API."
+        },
+        {
+          "info": {
+            "name": "Get Floorplan By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/floorplans/:floorplan_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "floorplan_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Floorplan By ID"
+        },
+        {
+          "info": {
+            "name": "Update Floorplan By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/floorplans/:floorplan_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "floorplan_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Floorplan By ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sheets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Sheets In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/sheets",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Sheets In Project"
+        },
+        {
+          "info": {
+            "name": "Create Sheet In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/sheets",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new sheet version. The underlying PDF is uploaded via the Attachments S3 token flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hyperlinks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Hyperlinks In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/hyperlinks",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Hyperlinks In Project"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Building Information Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Building Information Models In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/building_information_models",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Building Information Models In Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

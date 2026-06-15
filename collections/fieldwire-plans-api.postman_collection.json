@@ -1,0 +1,935 @@
+{
+  "item": [
+    {
+      "id": "1907a340-1ed0-44db-9e74-31debe8901d8",
+      "name": "Floorplans",
+      "description": {
+        "content": "Floorplan lifecycle, hierarchy, and collections.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ef626b0-75ed-46b9-b5ab-d4234cb565e4",
+          "name": "Get Floorplans In Project",
+          "request": {
+            "name": "Get Floorplans In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "floorplans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2bc300b-a403-4c49-9ac8-e80b0c1bfa02",
+              "name": "Floorplan list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "floorplans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8577,\n    \"project_id\": 3156,\n    \"name\": \"string\",\n    \"sheet_id\": 8946,\n    \"parent_id\": 2651,\n    \"floorplan_collection_id\": 5924,\n    \"position\": 782.8494846967849,\n    \"created_at\": \"1997-07-24T08:13:50.350Z\",\n    \"updated_at\": \"1964-03-06T11:36:01.100Z\"\n  },\n  {\n    \"id\": 4808,\n    \"project_id\": 3378,\n    \"name\": \"string\",\n    \"sheet_id\": 8193,\n    \"parent_id\": 8557,\n    \"floorplan_collection_id\": 2171,\n    \"position\": 5924.589661625244,\n    \"created_at\": \"1992-08-03T11:39:25.735Z\",\n    \"updated_at\": \"2005-06-17T16:11:59.436Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbed08b9-1c58-4335-918e-7cd478b75789",
+          "name": "Create Floorplan In Project",
+          "request": {
+            "name": "Create Floorplan In Project",
+            "description": {
+              "content": "Create a new floorplan; sheets are uploaded separately via the Attachments API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "floorplans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_id\": \"<long>\",\n  \"floorplan_collection_id\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18157265-f8c4-47d2-a768-dd5ba80db4b3",
+              "name": "Created floorplan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "floorplans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"parent_id\": \"<long>\",\n  \"floorplan_collection_id\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 239,\n  \"project_id\": 7496,\n  \"name\": \"string\",\n  \"sheet_id\": 1932,\n  \"parent_id\": 8645,\n  \"floorplan_collection_id\": 663,\n  \"position\": 2331.724426737042,\n  \"created_at\": \"1970-07-27T06:36:45.005Z\",\n  \"updated_at\": \"1987-10-17T21:11:19.875Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "744276a2-8d84-4013-9a5d-fe9cc8504a46",
+          "name": "Get Floorplan By ID",
+          "request": {
+            "name": "Get Floorplan By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "floorplans",
+                ":floorplan_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "floorplan_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb2f2ec3-d928-4639-ae58-06474ac60650",
+              "name": "Floorplan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "floorplans",
+                    ":floorplan_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "floorplan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 239,\n  \"project_id\": 7496,\n  \"name\": \"string\",\n  \"sheet_id\": 1932,\n  \"parent_id\": 8645,\n  \"floorplan_collection_id\": 663,\n  \"position\": 2331.724426737042,\n  \"created_at\": \"1970-07-27T06:36:45.005Z\",\n  \"updated_at\": \"1987-10-17T21:11:19.875Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07c6bdce-b355-4661-8aac-779dc6eff25f",
+          "name": "Update Floorplan By ID",
+          "request": {
+            "name": "Update Floorplan By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "floorplans",
+                ":floorplan_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "floorplan_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_id\": \"<long>\",\n  \"floorplan_collection_id\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a8456f4-7afa-469f-9ad3-b43305af7e3f",
+              "name": "Updated floorplan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "floorplans",
+                    ":floorplan_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "floorplan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"parent_id\": \"<long>\",\n  \"floorplan_collection_id\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 239,\n  \"project_id\": 7496,\n  \"name\": \"string\",\n  \"sheet_id\": 1932,\n  \"parent_id\": 8645,\n  \"floorplan_collection_id\": 663,\n  \"position\": 2331.724426737042,\n  \"created_at\": \"1970-07-27T06:36:45.005Z\",\n  \"updated_at\": \"1987-10-17T21:11:19.875Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b4c6a81a-a75f-4916-b09e-14b6a425b520",
+      "name": "Sheets",
+      "description": {
+        "content": "Sheet upload and version management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42da51cc-13ae-4499-acbc-79de2c053411",
+          "name": "Get Sheets In Project",
+          "request": {
+            "name": "Get Sheets In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "sheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39e4346e-781a-47e8-b2ad-1813e347db1c",
+              "name": "Sheet list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "sheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4772,\n    \"floorplan_id\": 4924,\n    \"sheet_number\": \"string\",\n    \"title\": \"string\",\n    \"version\": 2236,\n    \"original_pdf_url\": \"https://H.fvyJOQFu38SE+RhRffYTHGzMG23kytQ+a9tIkHyKt\",\n    \"thumb_url\": \"http://lRxSZAJ.ohConwgz-3P\",\n    \"is_active\": true,\n    \"created_at\": \"1965-09-06T10:34:37.272Z\",\n    \"updated_at\": \"1972-07-20T16:36:29.360Z\"\n  },\n  {\n    \"id\": 6594,\n    \"floorplan_id\": 6255,\n    \"sheet_number\": \"string\",\n    \"title\": \"string\",\n    \"version\": 8108,\n    \"original_pdf_url\": \"http://UycBWVdRaUqFdMg.kxoDjFg2KpzA4bNOgknMU\",\n    \"thumb_url\": \"https://uLeJub.xznfkyhje+Owy+VUXIe95Oe,qS5d4d7hxBbfzawM02PXPF0cuZqStMvJMvUktf6DTYEfIZ3NqWnREOZaR\",\n    \"is_active\": true,\n    \"created_at\": \"1984-04-11T09:42:56.644Z\",\n    \"updated_at\": \"1977-10-16T23:40:03.221Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "130db78f-044d-4010-923f-5d4d916eef7d",
+          "name": "Create Sheet In Project",
+          "request": {
+            "name": "Create Sheet In Project",
+            "description": {
+              "content": "Register a new sheet version. The underlying PDF is uploaded via the Attachments S3 token flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "sheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"floorplan_id\": \"<long>\",\n  \"sheet_number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"attachment_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3c3b81a-b78c-44d2-9a64-8603a4c33b3a",
+              "name": "Created sheet.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "sheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"floorplan_id\": \"<long>\",\n  \"sheet_number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"attachment_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7340,\n  \"floorplan_id\": 8802,\n  \"sheet_number\": \"string\",\n  \"title\": \"string\",\n  \"version\": 7367,\n  \"original_pdf_url\": \"http://VDzWydDAKSDzoSuMbC.oywKprPQxCyjhnDG1u8CtjbwngYuUQ1suIFHQuD6hShkxAf\",\n  \"thumb_url\": \"https://jtnnjUcdazKFrwUebSRFnkHAS.govmSbI2Tv9IO8pBt5YiBIonkzrit0\",\n  \"is_active\": false,\n  \"created_at\": \"2008-04-24T02:23:49.918Z\",\n  \"updated_at\": \"1973-03-04T12:36:48.110Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b9d508b5-7941-4ae6-8415-d3a4c55c1aaa",
+      "name": "Hyperlinks",
+      "description": {
+        "content": "Single and multi-hyperlink jumps between sheets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "176cf30e-3391-4c48-ab25-d5dfeeb811e9",
+          "name": "Get Hyperlinks In Project",
+          "request": {
+            "name": "Get Hyperlinks In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "hyperlinks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8b3e0cd-92aa-43d2-81c5-7de890ab6107",
+              "name": "Hyperlink list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "hyperlinks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7001,\n    \"source_sheet_id\": 5356,\n    \"target_sheet_id\": 5390,\n    \"label\": \"string\",\n    \"position\": {\n      \"x\": 5135.943783153464,\n      \"y\": 7511.282923851418\n    }\n  },\n  {\n    \"id\": 9933,\n    \"source_sheet_id\": 3649,\n    \"target_sheet_id\": 2958,\n    \"label\": \"string\",\n    \"position\": {\n      \"x\": 3705.059956212721,\n      \"y\": 8030.710591926117\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d207773b-e042-472a-b304-f83490940d29",
+      "name": "Building Information Models",
+      "description": {
+        "content": "BIM and BIM versions attached to a project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c9ece07-111c-4501-8e02-14edba1c82d5",
+          "name": "Get Building Information Models In Project",
+          "request": {
+            "name": "Get Building Information Models In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "building_information_models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7a64ffa-fb5c-4dd1-837b-56f71723ec98",
+              "name": "BIM list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "building_information_models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6718,\n    \"project_id\": 7767,\n    \"name\": \"string\",\n    \"latest_version_id\": 9697,\n    \"created_at\": \"1977-05-16T08:21:37.935Z\",\n    \"updated_at\": \"1959-05-07T22:37:01.259Z\"\n  },\n  {\n    \"id\": 8411,\n    \"project_id\": 2026,\n    \"name\": \"string\",\n    \"latest_version_id\": 8117,\n    \"created_at\": \"2023-09-07T10:55:34.547Z\",\n    \"updated_at\": \"1953-03-15T04:45:51.829Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.us.fieldwire.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34bd5b91-e4ae-4ef5-b997-90cd9ca8ebd3",
+    "name": "Fieldwire Plans and Sheets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Upload PDF drawing sets, manage sheet versioning and floorplan hierarchies,\norganise plans into collections, calibrate scale, and attach Building\nInformation Models (BIM) with versioned object trees. Used by general\ncontractors, architects, and specialty contractors to keep the latest\ndrawings in the field.\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

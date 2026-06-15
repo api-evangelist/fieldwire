@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Forms API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Sections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Form Template Sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/account/form_templates/:form_template_id/sections",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Form Template Sections"
+        },
+        {
+          "info": {
+            "name": "Create Form Template Section",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/account/form_templates/:form_template_id/sections",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Form Template Section"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Form Inputs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Form Template Section Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/account/form_templates/:form_template_id/sections/:section_id/inputs",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "section_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Form Template Section Inputs"
+        },
+        {
+          "info": {
+            "name": "Create Form Template Section Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/account/form_templates/:form_template_id/sections/:section_id/inputs",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "section_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Form Template Section Input"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Form Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Forms In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/forms",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Forms In Project"
+        },
+        {
+          "info": {
+            "name": "Create Form In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/forms",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Form In Project"
+        },
+        {
+          "info": {
+            "name": "Get Form By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.us.fieldwire.com/api/v3/projects/:project_id/forms/:form_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "form_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the form record with all section records, values, and signatures."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

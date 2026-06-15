@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Exchange API Key For Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/api_keys/jwt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange the long-lived refresh token (API key) generated from the\nFieldwire account settings for a short-lived JWT access token. The JWT\nprotects all subsequent calls and expires in minutes to hours.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/users"
+          },
+          "docs": "List all users belonging to the authenticated Fieldwire account."
+        },
+        {
+          "info": {
+            "name": "Get Account User By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "Account user identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a single account user by ID."
+        },
+        {
+          "info": {
+            "name": "Update Account User By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.super.fieldwire.com/account/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "Account user identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update profile fields, role, or status for an account user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Form Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Form Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates"
+          },
+          "docs": "List form templates published at the account level."
+        },
+        {
+          "info": {
+            "name": "Create Account Form Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new account-level form template."
+        },
+        {
+          "info": {
+            "name": "Get Account Form Template By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates/:form_template_id",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account form template identifier."
+              }
+            ]
+          },
+          "docs": "Get Account Form Template By ID"
+        },
+        {
+          "info": {
+            "name": "Update Account Form Template By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates/:form_template_id",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account form template identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Account Form Template By ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Stamps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Custom Stamps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/custom_stamps"
+          },
+          "docs": "Get Account Custom Stamps"
+        },
+        {
+          "info": {
+            "name": "Create Account Custom Stamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/account/custom_stamps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Account Custom Stamp"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

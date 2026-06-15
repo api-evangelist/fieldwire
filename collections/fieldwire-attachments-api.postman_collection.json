@@ -1,0 +1,610 @@
+{
+  "item": [
+    {
+      "id": "81505d82-a7b6-4b5d-bb6e-a25e0974ca85",
+      "name": "S3 Tokens",
+      "description": {
+        "content": "Short-lived signed AWS POST tokens for direct-to-S3 uploads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c9ef663-51af-476e-a567-ce3f09c09b4a",
+          "name": "Get AWS POST Token For Upload",
+          "request": {
+            "name": "Get AWS POST Token For Upload",
+            "description": {
+              "content": "Request a one-day signed AWS POST token that the client uses to upload\nthe binary directly to Amazon S3. The token contains the post URL,\npolicy, and form fields required for the S3 `POST object` operation;\nclients then add a `file` form field and POST to AWS directly.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "aws_post_tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\",\n  \"size\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "508ad231-dadd-41db-97dd-e835bce52eeb",
+              "name": "Signed POST token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "aws_post_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\",\n  \"content_type\": \"image/jpeg\",\n  \"size\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5458,\n  \"post_address\": \"http://VHJMUsxVmpxdpZXvIOOj.saswz5yAzKLIXqQGBmZnEGi4cJKR4Pu-CStEkkcNwfZw20rl\",\n  \"fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"expires_at\": \"1981-03-07T18:19:27.141Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b1d44023-f005-40c4-9b50-a78d575ea91f",
+      "name": "Attachments",
+      "description": {
+        "content": "Project attachment lifecycle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d6b9d7e-de80-4dad-8e9d-40e7bcdae054",
+          "name": "Get Attachments In Project",
+          "request": {
+            "name": "Get Attachments In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "attachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dd4911e-96b5-4a62-92a8-bb13b85beb2f",
+              "name": "Attachment list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2750,\n    \"project_id\": 9466,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 1164,\n    \"url\": \"http://wH.aqqiUa7f8eRRdy3bo3bqq6L\",\n    \"thumb_url\": \"http://RmRudpFnKzCbRMBEOQwDkPdGTTC.wqfkfn.my-zsbQUYGexxlc39wSG-ZRBuBxss+q9lfj29NhlEI7aqkWc-ype85WrqtOTmM,LTzrhc9TI36Vmxi7CI8.\",\n    \"created_at\": \"1958-10-28T12:47:13.969Z\",\n    \"updated_at\": \"1964-11-30T16:50:31.406Z\"\n  },\n  {\n    \"id\": 8924,\n    \"project_id\": 3715,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 7256,\n    \"url\": \"https://foiVTvatQllSjILvaPMfoQEkBAQkzrBo.alrnUU+D-bNFB-MxEcFo09PynO.uCng4S2mB3vzHqJmD+uQZE7OjewqfucvhprBe-m\",\n    \"thumb_url\": \"https://qeMCb.ytHTZNihEv9yqOxJKNxPa5izDkVrq\",\n    \"created_at\": \"1984-03-14T04:29:04.491Z\",\n    \"updated_at\": \"2008-10-03T21:15:21.031Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6a42071-4360-4293-9057-733e4962af82",
+          "name": "Create Attachment In Project",
+          "request": {
+            "name": "Create Attachment In Project",
+            "description": {
+              "content": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "attachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94b4caa7-b34b-448c-8f00-e6f584dc0001",
+              "name": "Registered attachment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8805,\n  \"project_id\": 744,\n  \"filename\": \"string\",\n  \"content_type\": \"string\",\n  \"size\": 1381,\n  \"url\": \"http://yipWEnStUSUimjilvdG.ujrf2cbP.sf8Mv98h8.QGBiXly0T2fCXExo3fEMy4xasyYj9-DTJ\",\n  \"thumb_url\": \"https://TjBrRmKfjdWplAMcHwXQhuFBgbL.osvsCrZcPW3JIdx\",\n  \"created_at\": \"2011-08-24T07:08:05.391Z\",\n  \"updated_at\": \"1992-03-27T18:40:25.221Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7ea2fcf6-68d2-4fff-8c55-fc24de93cd14",
+      "name": "Markups",
+      "description": {
+        "content": "GeoJSON-shaped markup overlays drawn on attachments and sheets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "151fe27f-a227-4628-a81e-8b5386b90f10",
+          "name": "Get Attachment Markups In Project",
+          "request": {
+            "name": "Get Attachment Markups In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "attachment_markups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a24c52c-ff6c-43bf-a948-3d7f5c03c5f9",
+              "name": "Markup list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "attachment_markups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6247,\n    \"attachment_id\": 373,\n    \"data\": {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"style\": \"drawing\",\n        \"color\": \"string\",\n        \"opacity\": 9461.636152503266,\n        \"width\": 6323.199588023305,\n        \"description\": \"string\",\n        \"fontSize\": 4816\n      },\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [\n            3240.610801314249,\n            4390.5750147607605\n          ],\n          [\n            3102.487035064918,\n            3109.285826027587\n          ]\n        ]\n      }\n    },\n    \"author_user_id\": 8222,\n    \"created_at\": \"1946-06-28T13:43:26.429Z\"\n  },\n  {\n    \"id\": 2817,\n    \"attachment_id\": 5091,\n    \"data\": {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"style\": \"measurement\",\n        \"color\": \"string\",\n        \"opacity\": 7334.8928960597195,\n        \"width\": 3186.037210544599,\n        \"description\": \"string\",\n        \"fontSize\": 8800\n      },\n      \"geometry\": {\n        \"type\": \"LineString\",\n        \"coordinates\": [\n          [\n            8317.203634320838,\n            3120.3965173869474\n          ],\n          [\n            3878.99173537097,\n            8581.664972536126\n          ]\n        ]\n      }\n    },\n    \"author_user_id\": 2383,\n    \"created_at\": \"1964-08-29T06:44:23.875Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31695816-3ee6-4680-9796-6eb595aa5bcc",
+          "name": "Create Attachment Markup In Project",
+          "request": {
+            "name": "Create Attachment Markup In Project",
+            "description": {
+              "content": "Create a markup overlay on an attachment. The `data` field follows the\nGeoJSON Feature schema with `properties.style` in {`arrow`, `drawing`,\n`measurement`, `text`} and `geometry.type` in {`LineString`, `Polygon`}.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "attachment_markups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attachment_id\": \"<long>\",\n  \"data\": {\n    \"type\": \"<string>\",\n    \"properties\": {\n      \"style\": \"<string>\",\n      \"color\": \"<string>\",\n      \"opacity\": \"<double>\",\n      \"width\": \"<double>\",\n      \"description\": \"<string>\",\n      \"fontSize\": \"<integer>\"\n    },\n    \"geometry\": {\n      \"type\": \"<string>\",\n      \"coordinates\": [\n        [\n          \"<double>\",\n          \"<double>\"\n        ],\n        [\n          \"<double>\",\n          \"<double>\"\n        ]\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3deabd99-8761-4187-9748-cfb3c729fd70",
+              "name": "Created markup.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "attachment_markups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attachment_id\": \"<long>\",\n  \"data\": {\n    \"type\": \"Feature\",\n    \"properties\": {\n      \"style\": \"arrow\",\n      \"color\": \"string\",\n      \"opacity\": 2846.848108760276,\n      \"width\": 4274.624598966279,\n      \"description\": \"string\",\n      \"fontSize\": 8916\n    },\n    \"geometry\": {\n      \"type\": \"LineString\",\n      \"coordinates\": [\n        [\n          2725.15558401901,\n          8134.746635029503\n        ],\n        [\n          239.6146461223936,\n          6559.525270948072\n        ]\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7288,\n  \"attachment_id\": 3620,\n  \"data\": {\n    \"type\": \"Feature\",\n    \"properties\": {\n      \"style\": \"text\",\n      \"color\": \"string\",\n      \"opacity\": 8087.133795554502,\n      \"width\": 9709.404215917264,\n      \"description\": \"string\",\n      \"fontSize\": 1107\n    },\n    \"geometry\": {\n      \"type\": \"Polygon\",\n      \"coordinates\": [\n        [\n          7014.472693551717,\n          3915.630844802974\n        ],\n        [\n          2524.8808824101466,\n          3455.9016455961023\n        ]\n      ]\n    }\n  },\n  \"author_user_id\": 992,\n  \"created_at\": \"2006-08-01T12:59:29.981Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.us.fieldwire.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec11970a-1950-45ac-ba12-d74f5414ae75",
+    "name": "Fieldwire Attachments and Media API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Two-step direct-to-S3 upload flow for project attachments — photos, video,\nPDFs, drawings, spec pages — and the markup overlays drawn on top of them.\nClients first request a signed AWS S3 POST token (1-day TTL), then POST\nthe binary file directly to AWS, and finally register the attachment in\nFieldwire. Markups follow the GeoJSON Feature schema with `arrow`,\n`drawing`, `measurement`, and `text` styles.\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

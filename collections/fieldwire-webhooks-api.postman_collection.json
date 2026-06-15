@@ -1,0 +1,505 @@
+{
+  "item": [
+    {
+      "id": "09b10529-b7b3-43ea-8875-2c4e99fc6dca",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Webhook subscription lifecycle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b69e5273-78da-49eb-97e7-16dc8c1ec673",
+          "name": "Get Subscriptions",
+          "request": {
+            "name": "Get Subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a592a5c5-1753-48f5-ab4c-192aa166792c",
+              "name": "Subscription list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"subscription_id\": 1094,\n    \"subscription_name\": \"string\",\n    \"description\": \"string\",\n    \"post_url\": \"http://jOxSZnhBCkcXLIGjXO.crcbtjM4bajjjTxAw-x9qOvEodJH4ewPcx1rIqRA--kqvXyKokANocRo\",\n    \"subscription_status\": \"disabled\",\n    \"account_id\": 4026,\n    \"internal\": false,\n    \"entity_filters\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project_filters\": [\n      8278,\n      8128\n    ]\n  },\n  {\n    \"subscription_id\": 6928,\n    \"subscription_name\": \"string\",\n    \"description\": \"string\",\n    \"post_url\": \"https://BcoUgoMTAjkJBFZsprFaTw.qque78N7xiNGNXsAk,Fdjyo32rLds8M9oiHUCvZfJzwOvYVTptY5MBK3LdZZ43fhZvvD\",\n    \"subscription_status\": \"disabled\",\n    \"account_id\": 4804,\n    \"internal\": false,\n    \"entity_filters\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project_filters\": [\n      5004,\n      7517\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99123526-f312-43c9-863f-d7ba79929aef",
+          "name": "Create Subscription",
+          "request": {
+            "name": "Create Subscription",
+            "description": {
+              "content": "Create a webhook subscription. Required fields: `subscription_name`\n(max 50 chars), `description` (max 200 chars), `post_url`, and\n`subscription_status`. Optional filters: `entity_filters` (max 20),\n`project_filters` (max 100).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "24158b36-d865-499a-8a27-ef815d886559",
+              "name": "Created subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription_id\": 8448,\n  \"subscription_name\": \"string\",\n  \"description\": \"string\",\n  \"post_url\": \"http://eSsTJUkvYPlhvuwnlTSp.ukzHgsQkSqISVHKj.OpK5MAYcy8FQFKgLCUyeHnFTDsvlxBVsN7kHEiQPZ2ZY5MJ6aP8puWV3AAZWfc0-tYcH\",\n  \"subscription_status\": \"disabled\",\n  \"account_id\": 6871,\n  \"internal\": true,\n  \"entity_filters\": [\n    \"string\",\n    \"string\"\n  ],\n  \"project_filters\": [\n    42,\n    6074\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "880336d6-957d-4917-b866-7083b243d3e3",
+          "name": "Get Subscription By ID",
+          "request": {
+            "name": "Get Subscription By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "subscription_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83fe79bb-a2ae-42b6-bc75-477c4614ad24",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription_id\": 8448,\n  \"subscription_name\": \"string\",\n  \"description\": \"string\",\n  \"post_url\": \"http://eSsTJUkvYPlhvuwnlTSp.ukzHgsQkSqISVHKj.OpK5MAYcy8FQFKgLCUyeHnFTDsvlxBVsN7kHEiQPZ2ZY5MJ6aP8puWV3AAZWfc0-tYcH\",\n  \"subscription_status\": \"disabled\",\n  \"account_id\": 6871,\n  \"internal\": true,\n  \"entity_filters\": [\n    \"string\",\n    \"string\"\n  ],\n  \"project_filters\": [\n    42,\n    6074\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec7c63f5-a9a1-4e4a-b8c3-e377002ba93d",
+          "name": "Update Subscription By ID",
+          "request": {
+            "name": "Update Subscription By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "subscription_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b458516b-9c28-42f9-85c9-db4174e72043",
+              "name": "Updated subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription_id\": 8448,\n  \"subscription_name\": \"string\",\n  \"description\": \"string\",\n  \"post_url\": \"http://eSsTJUkvYPlhvuwnlTSp.ukzHgsQkSqISVHKj.OpK5MAYcy8FQFKgLCUyeHnFTDsvlxBVsN7kHEiQPZ2ZY5MJ6aP8puWV3AAZWfc0-tYcH\",\n  \"subscription_status\": \"disabled\",\n  \"account_id\": 6871,\n  \"internal\": true,\n  \"entity_filters\": [\n    \"string\",\n    \"string\"\n  ],\n  \"project_filters\": [\n    42,\n    6074\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f08d27a-4923-4a8a-8f98-cc8bde0cb76e",
+          "name": "Delete Subscription By ID",
+          "request": {
+            "name": "Delete Subscription By ID",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "subscription_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0609843-c6b8-4755-ba98-b33f6cfdd464",
+              "name": "Subscription deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.us.fieldwire.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "912e0796-1996-4f8e-ac51-2eaa482a4a8e",
+    "name": "Fieldwire Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Configure webhook subscriptions to receive real-time event notifications\nfor attachments, entity tags / taggings, floorplans, forms, hyperlinks,\nmulti-hyperlinks, projects, project resource links, sheets, sheet uploads,\ntasks, task check items, and task relations. Per-subscription\n`entity_filters` (max 20 entries) and `project_filters` (max 100 entries)\nnarrow event delivery.\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
