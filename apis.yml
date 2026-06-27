@@ -251,10 +251,10 @@ common:
   type: GitHubOrganization
 - url: https://github.com/Fieldwire/fieldwire_ruby_sample
   name: Ruby Sample Client
-  type: SDK
+  type: SDKs
 - url: https://github.com/Fieldwire/fieldwire_java_sample
   name: Java Sample Client
-  type: SDK
+  type: SDKs
 - url: https://www.fieldwire.com/pricing/
   name: Fieldwire Pricing
   type: Pricing
