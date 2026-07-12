@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/fieldwire-account-api-openapi.yml, openapi/fieldwire-attachments-api-openapi.yml,
+  openapi/fieldwire-financials-api-openapi.yml, openapi/fieldwire-forms-api-openapi.yml, openapi/fieldwire-plans-api-openapi.yml,
+  openapi/fieldwire-projects-api-openapi.yml, openapi/fieldwire-rfis-submittals-api-openapi.yml,
+  openapi/fieldwire-tasks-api-openapi.yml, openapi/fieldwire-webhooks-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: |-
+    Send the short-lived access token returned by `POST /api_keys/jwt` as
+    `Authorization: Bearer <access_token>`. Also include the
+    `Fieldwire-Version` request header and `Content-Type: application/json`.
+  sources:
+  - openapi/fieldwire-account-api-openapi.yml
+  - openapi/fieldwire-attachments-api-openapi.yml
+  - openapi/fieldwire-financials-api-openapi.yml
+  - openapi/fieldwire-forms-api-openapi.yml
+  - openapi/fieldwire-plans-api-openapi.yml
+  - openapi/fieldwire-projects-api-openapi.yml
+  - openapi/fieldwire-rfis-submittals-api-openapi.yml
+  - openapi/fieldwire-tasks-api-openapi.yml
+  - openapi/fieldwire-webhooks-api-openapi.yml
