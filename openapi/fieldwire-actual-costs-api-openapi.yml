@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,31 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Actual Costs
+  description: Actual cost entries logged against budget lines.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/actual_costs:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getActualCostsInProject
+      summary: Get Actual Costs In Project
       tags:
-      - Attachments
+      - Actual Costs
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Actual cost list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/ActualCost'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createActualCostInProject
+      summary: Create Actual Cost In Project
       tags:
-      - Attachments
+      - Actual Costs
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,56 +61,57 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/ActualCostCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created actual cost.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/ActualCost'
 components:
   schemas:
-    Attachment:
+    ActualCostCreate:
+      type: object
+      required:
+      - budget_line_item_id
+      - amount
+      properties:
+        budget_line_item_id:
+          type: integer
+          format: int64
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        incurred_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+    ActualCost:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
+        budget_line_item_id:
           type: integer
           format: int64
-        filename:
+        amount:
+          type: number
+          format: double
+        currency:
           type: string
-        content_type:
+        incurred_at:
           type: string
-        size:
-          type: integer
-          format: int64
-        url:
+          format: date-time
+        description:
           type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id

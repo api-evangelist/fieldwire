@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Project Users API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,31 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Project Users
+  description: User membership, roles, and removal across projects.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/users:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getProjectUsers
+      summary: Get Project Users
       tags:
-      - Attachments
+      - Project Users
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Project user list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/ProjectUser'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createProjectUser
+      summary: Invite Project User
       tags:
-      - Attachments
+      - Project Users
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,61 +61,67 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/ProjectUserCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Project user invited.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/ProjectUser'
 components:
   schemas:
-    Attachment:
+    ProjectUser:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        user_id:
+          type: integer
+          format: int64
         project_id:
           type: integer
           format: int64
-        filename:
+        role:
           type: string
-        content_type:
+          enum:
+          - admin
+          - member
+          - follower
+        email:
           type: string
-        size:
-          type: integer
-          format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
+          format: email
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
+    ProjectUserCreate:
       type: object
       required:
-      - aws_post_token_id
+      - email
+      - role
       properties:
-        aws_post_token_id:
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+          - admin
+          - member
+          - follower
+        team_id:
           type: integer
           format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id
       in: path
       required: true
+      description: Project identifier.
       schema:
         type: integer
         format: int64

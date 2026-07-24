@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Account Actual Costs Form Records API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
+security:
+- BearerAuth: []
+tags:
+- name: Form Records
+  description: Captured form responses per project.
+paths:
+  /projects/{project_id}/forms:
+    get:
+      operationId: getFormsInProject
+      summary: Get Forms In Project
+      tags:
+      - Form Records
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Form record list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormRecord'
+    post:
+      operationId: createFormInProject
+      summary: Create Form In Project
+      tags:
+      - Form Records
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormRecordCreate'
+      responses:
+        '201':
+          description: Created form record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormRecord'
+  /projects/{project_id}/forms/{form_id}:
+    get:
+      operationId: getFormById
+      summary: Get Form By ID
+      description: Returns the form record with all section records, values, and signatures.
+      tags:
+      - Form Records
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FormId'
+      responses:
+        '200':
+          description: Form record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormRecordFull'
+components:
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    FormId:
+      name: form_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    FormRecordCreate:
+      type: object
+      required:
+      - form_template_id
+      properties:
+        form_template_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    FormRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        form_template_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - in_review
+          - approved
+          - rejected
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    FormRecordFull:
+      allOf:
+      - $ref: '#/components/schemas/FormRecord'
+      - type: object
+        properties:
+          section_records:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                section_id:
+                  type: integer
+                  format: int64
+                values:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      input_id:
+                        type: integer
+                        format: int64
+                      value:
+                        description: Input value (type depends on input kind).
+                        oneOf:
+                        - type: string
+                        - type: number
+                        - type: boolean
+                        - type: array
+                          items:
+                            type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '

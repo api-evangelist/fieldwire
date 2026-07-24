@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Building Information Models API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,56 +29,29 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Building Information Models
+  description: BIM and BIM versions attached to a project.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/building_information_models:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getBuildingInformationModelsInProject
+      summary: Get Building Information Models In Project
       tags:
-      - Attachments
+      - Building Information Models
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: BIM list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
-    post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
-      tags:
-      - Attachments
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AttachmentCreate'
-      responses:
-        '201':
-          description: Registered attachment.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/BuildingInformationModel'
 components:
   schemas:
-    Attachment:
+    BuildingInformationModel:
       type: object
       properties:
         id:
@@ -87,37 +60,17 @@ components:
         project_id:
           type: integer
           format: int64
-        filename:
+        name:
           type: string
-        content_type:
-          type: string
-        size:
+        latest_version_id:
           type: integer
           format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id

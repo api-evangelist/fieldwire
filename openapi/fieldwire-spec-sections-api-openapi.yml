@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Spec Sections API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,56 +29,29 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Spec Sections
+  description: Specification sections used to organise submittals.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/spec_sections:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getSpecSectionsInProject
+      summary: Get Spec Sections In Project
       tags:
-      - Attachments
+      - Spec Sections
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Spec section list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
-    post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
-      tags:
-      - Attachments
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AttachmentCreate'
-      responses:
-        '201':
-          description: Registered attachment.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/SpecSection'
 components:
   schemas:
-    Attachment:
+    SpecSection:
       type: object
       properties:
         id:
@@ -87,37 +60,15 @@ components:
         project_id:
           type: integer
           format: int64
-        filename:
+        number:
           type: string
-        content_type:
+        title:
           type: string
-        size:
-          type: integer
-          format: int64
-        url:
+        division:
           type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id

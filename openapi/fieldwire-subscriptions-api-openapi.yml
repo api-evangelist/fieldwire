@@ -1,13 +1,21 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Webhooks API
-  description: |
-    Configure webhook subscriptions to receive real-time event notifications
-    for attachments, entity tags / taggings, floorplans, forms, hyperlinks,
-    multi-hyperlinks, projects, project resource links, sheets, sheet uploads,
-    tasks, task check items, and task relations. Per-subscription
-    `entity_filters` (max 20 entries) and `project_filters` (max 100 entries)
-    narrow event delivery.
+  title: Fieldwire Account Actual Costs Subscriptions API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -16,21 +24,20 @@ info:
     name: Fieldwire Terms of Service
     url: https://www.fieldwire.com/terms/
 servers:
-  - url: https://client-api.us.fieldwire.com/api/v3
-    description: US Region
-  - url: https://client-api.eu.fieldwire.com/api/v3
-    description: EU Region
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
 security:
-  - BearerAuth: []
+- BearerAuth: []
 tags:
-  - name: Subscriptions
-    description: Webhook subscription lifecycle.
+- name: Subscriptions
+  description: Webhook subscription lifecycle.
 paths:
   /subscriptions:
     get:
       operationId: getSubscriptions
       summary: Get Subscriptions
-      tags: [Subscriptions]
+      tags:
+      - Subscriptions
       responses:
         '200':
           description: Subscription list.
@@ -43,12 +50,17 @@ paths:
     post:
       operationId: createSubscription
       summary: Create Subscription
-      description: |
-        Create a webhook subscription. Required fields: `subscription_name`
+      description: 'Create a webhook subscription. Required fields: `subscription_name`
+
         (max 50 chars), `description` (max 200 chars), `post_url`, and
+
         `subscription_status`. Optional filters: `entity_filters` (max 20),
+
         `project_filters` (max 100).
-      tags: [Subscriptions]
+
+        '
+      tags:
+      - Subscriptions
       requestBody:
         required: true
         content:
@@ -66,9 +78,10 @@ paths:
     get:
       operationId: getSubscriptionById
       summary: Get Subscription By ID
-      tags: [Subscriptions]
+      tags:
+      - Subscriptions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/SubscriptionId'
       responses:
         '200':
           description: Subscription.
@@ -79,9 +92,10 @@ paths:
     patch:
       operationId: updateSubscriptionById
       summary: Update Subscription By ID
-      tags: [Subscriptions]
+      tags:
+      - Subscriptions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/SubscriptionId'
       requestBody:
         required: true
         content:
@@ -98,27 +112,76 @@ paths:
     delete:
       operationId: deleteSubscriptionById
       summary: Delete Subscription By ID
-      tags: [Subscriptions]
+      tags:
+      - Subscriptions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/SubscriptionId'
       responses:
         '204':
           description: Subscription deleted.
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-  parameters:
-    SubscriptionId:
-      name: subscription_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
+    SubscriptionUpdate:
+      type: object
+      properties:
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
+    SubscriptionCreate:
+      type: object
+      required:
+      - subscription_name
+      - description
+      - post_url
+      - subscription_status
+      properties:
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
     Subscription:
       type: object
       properties:
@@ -136,7 +199,9 @@ components:
           format: uri
         subscription_status:
           type: string
-          enum: [enabled, disabled]
+          enum:
+          - enabled
+          - disabled
         account_id:
           type: integer
           format: int64
@@ -147,67 +212,38 @@ components:
           maxItems: 20
           items:
             type: string
-            description: |
-              Entity name to filter on, e.g. `task`, `attachment`, `floorplan`,
+            description: 'Entity name to filter on, e.g. `task`, `attachment`, `floorplan`,
+
               `form`, `project`, `sheet`, `hyperlink`, `multi_hyperlink`,
+
               `entity_tag`, `entity_tagging`, `project_resource_link`,
+
               `task_check_item`, `task_relation`, `sheet_upload`.
+
+              '
         project_filters:
           type: array
           maxItems: 100
           items:
             type: integer
             format: int64
-    SubscriptionCreate:
-      type: object
-      required: [subscription_name, description, post_url, subscription_status]
-      properties:
-        subscription_name:
-          type: string
-          maxLength: 50
-        description:
-          type: string
-          maxLength: 200
-        post_url:
-          type: string
-          format: uri
-        subscription_status:
-          type: string
-          enum: [enabled, disabled]
-        entity_filters:
-          type: array
-          maxItems: 20
-          items:
-            type: string
-        project_filters:
-          type: array
-          maxItems: 100
-          items:
-            type: integer
-            format: int64
-    SubscriptionUpdate:
-      type: object
-      properties:
-        subscription_name:
-          type: string
-          maxLength: 50
-        description:
-          type: string
-          maxLength: 200
-        post_url:
-          type: string
-          format: uri
-        subscription_status:
-          type: string
-          enum: [enabled, disabled]
-        entity_filters:
-          type: array
-          maxItems: 20
-          items:
-            type: string
-        project_filters:
-          type: array
-          maxItems: 100
-          items:
-            type: integer
-            format: int64
+  parameters:
+    SubscriptionId:
+      name: subscription_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '

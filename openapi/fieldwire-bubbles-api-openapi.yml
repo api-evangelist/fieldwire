@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Bubbles API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,96 +29,112 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Bubbles
+  description: Task-attached comments, photos, video, links, and file attachments.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/tasks/{task_id}/bubbles:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getBubblesInTask
+      summary: Get Bubbles In Task
+      description: Retrieve all bubbles (comments, photos, video, links, attachments) associated with a task.
       tags:
-      - Attachments
+      - Bubbles
       parameters:
       - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/TaskId'
       responses:
         '200':
-          description: Attachment list.
+          description: Bubble list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/Bubble'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
+      operationId: createBubbleInTask
+      summary: Create Bubble In Task
+      description: 'Create a new bubble in a task. Bubble kinds include `comment`, `photo`,
 
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
+        `video`, `link`, `pdf`, and `attachment` (S3-uploaded file).
 
         '
       tags:
-      - Attachments
+      - Bubbles
       parameters:
       - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/TaskId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/BubbleCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created bubble.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/Bubble'
 components:
   schemas:
-    Attachment:
+    BubbleCreate:
+      type: object
+      required:
+      - kind
+      properties:
+        kind:
+          type: string
+          enum:
+          - comment
+          - photo
+          - video
+          - link
+          - pdf
+          - attachment
+        text:
+          type: string
+        attachment_id:
+          type: integer
+          format: int64
+    Bubble:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
+        task_id:
           type: integer
           format: int64
-        filename:
+        kind:
           type: string
-        content_type:
+          enum:
+          - comment
+          - photo
+          - video
+          - link
+          - pdf
+          - attachment
+        text:
           type: string
-        size:
+        attachment_id:
           type: integer
           format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
+        author_user_id:
+          type: integer
+          format: int64
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
     ProjectId:
       name: project_id
       in: path

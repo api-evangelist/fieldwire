@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Change Orders API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,31 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Change Orders
+  description: Project change orders that adjust scope and budget.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/change_orders:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getChangeOrdersInProject
+      summary: Get Change Orders In Project
       tags:
-      - Attachments
+      - Change Orders
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Change order list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/ChangeOrder'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createChangeOrderInProject
+      summary: Create Change Order In Project
       tags:
-      - Attachments
+      - Change Orders
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,17 +61,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/ChangeOrderCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created change order.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/ChangeOrder'
 components:
   schemas:
-    Attachment:
+    ChangeOrder:
       type: object
       properties:
         id:
@@ -87,36 +80,49 @@ components:
         project_id:
           type: integer
           format: int64
-        filename:
+        number:
           type: string
-        content_type:
+        title:
           type: string
-        size:
-          type: integer
-          format: int64
-        url:
+        status:
           type: string
-          format: uri
-        thumb_url:
+          enum:
+          - draft
+          - submitted
+          - approved
+          - rejected
+          - void
+        amount:
+          type: number
+          format: double
+        currency:
           type: string
-          format: uri
+        submitted_at:
+          type: string
+          format: date-time
+        approved_at:
+          type: string
+          format: date-time
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
+    ChangeOrderCreate:
       type: object
       required:
-      - aws_post_token_id
+      - title
+      - amount
       properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
+        title:
           type: string
-        content_type:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        number:
           type: string
   parameters:
     ProjectId:

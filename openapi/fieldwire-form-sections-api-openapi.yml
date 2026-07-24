@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Form Sections API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,98 +29,67 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Form Sections
+  description: Section structure within a form template.
 paths:
-  /projects/{project_id}/attachments:
+  /account/form_templates/{form_template_id}/sections:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getFormTemplateSections
+      summary: Get Form Template Sections
       tags:
-      - Attachments
+      - Form Sections
       parameters:
-      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FormTemplateId'
       responses:
         '200':
-          description: Attachment list.
+          description: Section list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/FormTemplateSection'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createFormTemplateSection
+      summary: Create Form Template Section
       tags:
-      - Attachments
+      - Form Sections
       parameters:
-      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FormTemplateId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/FormTemplateSection'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created section.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/FormTemplateSection'
 components:
   schemas:
-    Attachment:
+    FormTemplateSection:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
+        form_template_id:
           type: integer
           format: int64
-        filename:
+        name:
           type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-          format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
+        position:
+          type: number
+          format: double
+        is_repeatable:
+          type: boolean
   parameters:
-    ProjectId:
-      name: project_id
+    FormTemplateId:
+      name: form_template_id
       in: path
       required: true
       schema:

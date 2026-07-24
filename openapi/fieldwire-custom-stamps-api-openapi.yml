@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Custom Stamps API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,75 +29,53 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Custom Stamps
+  description: Account-level custom stamps used on markups across projects.
 paths:
-  /projects/{project_id}/attachments:
+  /account/custom_stamps:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getAccountCustomStamps
+      summary: Get Account Custom Stamps
       tags:
-      - Attachments
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
+      - Custom Stamps
       responses:
         '200':
-          description: Attachment list.
+          description: Custom stamp list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/CustomStamp'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createAccountCustomStamp
+      summary: Create Account Custom Stamp
       tags:
-      - Attachments
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
+      - Custom Stamps
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/CustomStamp'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created custom stamp.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/CustomStamp'
 components:
   schemas:
-    Attachment:
+    CustomStamp:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
-          type: integer
-          format: int64
-        filename:
+        name:
           type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-          format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
+        attachment_url:
           type: string
           format: uri
         created_at:
@@ -106,26 +84,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

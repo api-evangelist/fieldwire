@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Account Actual Costs Authentication API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+  description: Refresh-token / JWT exchange and session management.
+paths:
+  /api_keys/jwt:
+    post:
+      operationId: getApiKeyJwt
+      summary: Exchange API Key For Access Token
+      description: 'Exchange the long-lived refresh token (API key) generated from the
+
+        Fieldwire account settings for a short-lived JWT access token. The JWT
+
+        protects all subsequent calls and expires in minutes to hours.
+
+        '
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JwtRequest'
+      responses:
+        '200':
+          description: Access token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtResponse'
+        '401':
+          description: Invalid or revoked refresh token.
+components:
+  schemas:
+    JwtRequest:
+      type: object
+      required:
+      - api_token
+      properties:
+        api_token:
+          type: string
+          description: Long-lived refresh token (API key) from the Fieldwire account settings.
+    JwtResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Short-lived JWT used as the bearer token for subsequent calls.
+        expires_at:
+          type: string
+          format: date-time
+          description: Access-token expiry timestamp (ISO 8601, UTC).
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '

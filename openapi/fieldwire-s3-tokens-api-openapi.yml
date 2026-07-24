@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs S3 Tokens API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,24 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: S3 Tokens
+  description: Short-lived signed AWS POST tokens for direct-to-S3 uploads.
 paths:
-  /projects/{project_id}/attachments:
-    get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
-      tags:
-      - Attachments
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
-      responses:
-        '200':
-          description: Attachment list.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Attachment'
+  /projects/{project_id}/aws_post_tokens:
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
+      operationId: addAwsPostTokens
+      summary: Get AWS POST Token For Upload
+      description: 'Request a one-day signed AWS POST token that the client uses to upload
 
-        the POST-token flow. The `aws_post_token_id` ties the registration
+        the binary directly to Amazon S3. The token contains the post URL,
 
-        back to the previously issued token.
+        policy, and form fields required for the S3 `POST object` operation;
+
+        clients then add a `file` form field and POST to AWS directly.
 
         '
       tags:
-      - Attachments
+      - S3 Tokens
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,56 +54,46 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              type: object
+              required:
+              - filename
+              - content_type
+              properties:
+                filename:
+                  type: string
+                content_type:
+                  type: string
+                  example: image/jpeg
+                size:
+                  type: integer
+                  format: int64
       responses:
-        '201':
-          description: Registered attachment.
+        '200':
+          description: Signed POST token.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/AwsPostToken'
 components:
   schemas:
-    Attachment:
+    AwsPostToken:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-          format: int64
-        url:
+        post_address:
           type: string
           format: uri
-        thumb_url:
-          type: string
-          format: uri
-        created_at:
+          description: AWS S3 endpoint to POST to.
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+          description: Form fields (key, policy, signature, etc.) required by S3.
+        expires_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id

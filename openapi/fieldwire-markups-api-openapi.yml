@@ -1,0 +1,177 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Account Actual Costs Markups API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
+security:
+- BearerAuth: []
+tags:
+- name: Markups
+  description: GeoJSON-shaped markup overlays drawn on attachments and sheets.
+paths:
+  /projects/{project_id}/attachment_markups:
+    get:
+      operationId: getAttachmentMarkupsInProject
+      summary: Get Attachment Markups In Project
+      tags:
+      - Markups
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Markup list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttachmentMarkup'
+    post:
+      operationId: createAttachmentMarkupInProject
+      summary: Create Attachment Markup In Project
+      description: 'Create a markup overlay on an attachment. The `data` field follows the
+
+        GeoJSON Feature schema with `properties.style` in {`arrow`, `drawing`,
+
+        `measurement`, `text`} and `geometry.type` in {`LineString`, `Polygon`}.
+
+        '
+      tags:
+      - Markups
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachmentMarkupCreate'
+      responses:
+        '201':
+          description: Created markup.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentMarkup'
+components:
+  schemas:
+    AttachmentMarkup:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attachment_id:
+          type: integer
+          format: int64
+        data:
+          $ref: '#/components/schemas/MarkupGeoJsonFeature'
+        author_user_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+    AttachmentMarkupCreate:
+      type: object
+      required:
+      - attachment_id
+      - data
+      properties:
+        attachment_id:
+          type: integer
+          format: int64
+        data:
+          $ref: '#/components/schemas/MarkupGeoJsonFeature'
+    MarkupGeoJsonFeature:
+      type: object
+      required:
+      - type
+      - properties
+      - geometry
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        properties:
+          type: object
+          properties:
+            style:
+              type: string
+              enum:
+              - arrow
+              - drawing
+              - measurement
+              - text
+            color:
+              type: string
+              description: Hex colour, e.g. "#FF0000".
+            opacity:
+              type: number
+              format: double
+            width:
+              type: number
+              format: double
+            description:
+              type: string
+            fontSize:
+              type: integer
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - LineString
+              - Polygon
+            coordinates:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+                  format: double
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '

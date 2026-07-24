@@ -1,13 +1,21 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Projects API
-  description: |
-    Create, retrieve, update, archive, transfer, and synchronise construction
-    projects across a Fieldwire account, plus project-level users, teams,
-    permissions, stats, and notifications. Project data is region-resident:
-    US accounts must call `client-api.us.fieldwire.com/api/v3` and EU accounts
-    must call `client-api.eu.fieldwire.com/api/v3`. Choose the server that
-    matches the account's region (returned by the Account API).
+  title: Fieldwire Account Actual Costs Projects API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -16,39 +24,37 @@ info:
     name: Fieldwire Terms of Service
     url: https://www.fieldwire.com/terms/
 servers:
-  - url: https://client-api.us.fieldwire.com/api/v3
-    description: US Region
-  - url: https://client-api.eu.fieldwire.com/api/v3
-    description: EU Region
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
 security:
-  - BearerAuth: []
+- BearerAuth: []
 tags:
-  - name: Projects
-    description: Project lifecycle, archival, transfer, and synchronisation.
-  - name: Project Users
-    description: User membership, roles, and removal across projects.
-  - name: Project Teams
-    description: Team-level grouping of users on a project.
-  - name: Project Stats
-    description: Aggregate project counts and status statistics.
+- name: Projects
+  description: Project lifecycle, archival, transfer, and synchronisation.
 paths:
   /projects:
     get:
       operationId: getProjects
       summary: Get Projects
-      description: |
-        List all projects in the account. Supports filtering by status
+      description: 'List all projects in the account. Supports filtering by status
+
         (`active`, `deleted`, `all`) via the `status` query parameter.
-      tags: [Projects]
+
+        '
+      tags:
+      - Projects
       parameters:
-        - name: status
-          in: query
-          required: false
-          description: Project status filter.
-          schema:
-            type: string
-            enum: [active, deleted, all]
-            default: active
+      - name: status
+        in: query
+        required: false
+        description: Project status filter.
+        schema:
+          type: string
+          enum:
+          - active
+          - deleted
+          - all
+          default: active
       responses:
         '200':
           description: Project list.
@@ -62,7 +68,8 @@ paths:
       operationId: createProject
       summary: Create Project
       description: Create a new construction project.
-      tags: [Projects]
+      tags:
+      - Projects
       requestBody:
         required: true
         content:
@@ -80,9 +87,10 @@ paths:
     get:
       operationId: getProjectById
       summary: Get Project By ID
-      tags: [Projects]
+      tags:
+      - Projects
       parameters:
-        - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
           description: Project.
@@ -93,9 +101,10 @@ paths:
     patch:
       operationId: updateProjectById
       summary: Update Project By ID
-      tags: [Projects]
+      tags:
+      - Projects
       parameters:
-        - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/ProjectId'
       requestBody:
         required: true
         content:
@@ -113,9 +122,10 @@ paths:
       operationId: deleteProjectById
       summary: Delete Project By ID
       description: Soft-delete (archive) a project; restore via `restore_project_by_id`.
-      tags: [Projects]
+      tags:
+      - Projects
       parameters:
-        - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/ProjectId'
       responses:
         '204':
           description: Project archived.
@@ -123,9 +133,10 @@ paths:
     post:
       operationId: restoreProjectById
       summary: Restore Project By ID
-      tags: [Projects]
+      tags:
+      - Projects
       parameters:
-        - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
           description: Restored project.
@@ -138,16 +149,18 @@ paths:
       operationId: transferProject
       summary: Transfer Project
       description: Transfer a project from one Fieldwire account to another. Triggers a project.transferred webhook event.
-      tags: [Projects]
+      tags:
+      - Projects
       parameters:
-        - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/ProjectId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [target_account_id]
+              required:
+              - target_account_id
               properties:
                 target_account_id:
                   type: integer
@@ -156,87 +169,29 @@ paths:
       responses:
         '202':
           description: Transfer accepted.
-  /projects/{project_id}/users:
-    get:
-      operationId: getProjectUsers
-      summary: Get Project Users
-      tags: [Project Users]
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-      responses:
-        '200':
-          description: Project user list.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ProjectUser'
-    post:
-      operationId: createProjectUser
-      summary: Invite Project User
-      tags: [Project Users]
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProjectUserCreate'
-      responses:
-        '201':
-          description: Project user invited.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectUser'
-  /projects/{project_id}/teams:
-    get:
-      operationId: getProjectTeams
-      summary: Get Project Teams
-      tags: [Project Teams]
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-      responses:
-        '200':
-          description: Team list.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Team'
-  /projects/{project_id}/stats:
-    get:
-      operationId: getProjectStats
-      summary: Get Project Stats
-      tags: [Project Stats]
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-      responses:
-        '200':
-          description: Project statistics.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectStats'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: Project identifier.
-      schema:
-        type: integer
-        format: int64
   schemas:
+    ProjectUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        time_zone:
+          type: string
+        currency:
+          type: string
     Project:
       type: object
       properties:
@@ -263,7 +218,9 @@ components:
           type: string
         status:
           type: string
-          enum: [active, deleted]
+          enum:
+          - active
+          - deleted
         is_archived:
           type: boolean
         owner_account_id:
@@ -277,7 +234,8 @@ components:
           format: date-time
     ProjectCreate:
       type: object
-      required: [name]
+      required:
+      - name
       properties:
         name:
           type: string
@@ -297,93 +255,24 @@ components:
           type: string
         currency:
           type: string
-    ProjectUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        code:
-          type: string
-        description:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        time_zone:
-          type: string
-        currency:
-          type: string
-    ProjectUser:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        user_id:
-          type: integer
-          format: int64
-        project_id:
-          type: integer
-          format: int64
-        role:
-          type: string
-          enum: [admin, member, follower]
-        email:
-          type: string
-          format: email
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    ProjectUserCreate:
-      type: object
-      required: [email, role]
-      properties:
-        email:
-          type: string
-          format: email
-        role:
-          type: string
-          enum: [admin, member, follower]
-        team_id:
-          type: integer
-          format: int64
-    Team:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        project_id:
-          type: integer
-          format: int64
-        created_at:
-          type: string
-          format: date-time
-    ProjectStats:
-      type: object
-      properties:
-        project_id:
-          type: integer
-          format: int64
-        task_count:
-          type: integer
-        sheet_count:
-          type: integer
-        attachment_count:
-          type: integer
-        form_count:
-          type: integer
-        rfi_count:
-          type: integer
-        submittal_count:
-          type: integer
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: Project identifier.
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '

@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Account Actual Costs Form Templates API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
+security:
+- BearerAuth: []
+tags:
+- name: Form Templates
+  description: Account-level form template lifecycle, duplication, and transfer.
+paths:
+  /account/form_templates:
+    get:
+      operationId: getAccountFormTemplates
+      summary: Get Account Form Templates
+      description: List form templates published at the account level.
+      tags:
+      - Form Templates
+      responses:
+        '200':
+          description: Form template list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormTemplate'
+    post:
+      operationId: createAccountFormTemplate
+      summary: Create Account Form Template
+      description: Create a new account-level form template.
+      tags:
+      - Form Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormTemplate'
+      responses:
+        '201':
+          description: Created form template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormTemplate'
+  /account/form_templates/{form_template_id}:
+    get:
+      operationId: getAccountFormTemplateById
+      summary: Get Account Form Template By ID
+      tags:
+      - Form Templates
+      parameters:
+      - $ref: '#/components/parameters/FormTemplateId'
+      responses:
+        '200':
+          description: Form template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormTemplate'
+    patch:
+      operationId: updateAccountFormTemplateById
+      summary: Update Account Form Template By ID
+      tags:
+      - Form Templates
+      parameters:
+      - $ref: '#/components/parameters/FormTemplateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormTemplate'
+      responses:
+        '200':
+          description: Updated form template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormTemplate'
+components:
+  parameters:
+    FormTemplateId:
+      name: form_template_id
+      in: path
+      required: true
+      description: Account form template identifier.
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    FormTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        published:
+          type: boolean
+        code:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Form Inputs API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,103 +29,98 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Form Inputs
+  description: Inputs (text, number, photo, signature, choice, etc.) inside a section.
 paths:
-  /projects/{project_id}/attachments:
+  /account/form_templates/{form_template_id}/sections/{section_id}/inputs:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getFormTemplateSectionInputs
+      summary: Get Form Template Section Inputs
       tags:
-      - Attachments
+      - Form Inputs
       parameters:
-      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FormTemplateId'
+      - $ref: '#/components/parameters/SectionId'
       responses:
         '200':
-          description: Attachment list.
+          description: Input list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/FormTemplateInput'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createFormTemplateSectionInput
+      summary: Create Form Template Section Input
       tags:
-      - Attachments
+      - Form Inputs
       parameters:
-      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/FormTemplateId'
+      - $ref: '#/components/parameters/SectionId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/FormTemplateInput'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created input.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/FormTemplateInput'
 components:
-  schemas:
-    Attachment:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        project_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-          format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
-    ProjectId:
-      name: project_id
+    SectionId:
+      name: section_id
       in: path
       required: true
       schema:
         type: integer
         format: int64
+    FormTemplateId:
+      name: form_template_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    FormTemplateInput:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        section_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        kind:
+          type: string
+          enum:
+          - text
+          - number
+          - boolean
+          - choice
+          - multi_choice
+          - date
+          - time
+          - datetime
+          - photo
+          - signature
+          - attachment
+        is_required:
+          type: boolean
+        data_type_id:
+          type: integer
+          format: int64
+        position:
+          type: number
+          format: double
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Tasks API
+  title: Fieldwire Account Actual Costs Floorplans API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,31 +29,32 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Tasks
-  description: Project task lifecycle and assignment.
+- name: Floorplans
+  description: Floorplan lifecycle, hierarchy, and collections.
 paths:
-  /projects/{project_id}/tasks:
+  /projects/{project_id}/floorplans:
     get:
-      operationId: getTasksInProject
-      summary: Get Tasks In Project
+      operationId: getFloorplansInProject
+      summary: Get Floorplans In Project
       tags:
-      - Tasks
+      - Floorplans
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Task list.
+          description: Floorplan list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Task'
+                  $ref: '#/components/schemas/Floorplan'
     post:
-      operationId: createTaskInProject
-      summary: Create Task In Project
+      operationId: createFloorplanInProject
+      summary: Create Floorplan In Project
+      description: Create a new floorplan; sheets are uploaded separately via the Attachments API.
       tags:
-      - Tasks
+      - Floorplans
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -61,89 +62,67 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskCreate'
+              $ref: '#/components/schemas/FloorplanCreate'
       responses:
         '201':
-          description: Created task.
+          description: Created floorplan.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
-  /projects/{project_id}/tasks/{task_id}:
+                $ref: '#/components/schemas/Floorplan'
+  /projects/{project_id}/floorplans/{floorplan_id}:
     get:
-      operationId: getTaskById
-      summary: Get Task By ID
+      operationId: getFloorplanById
+      summary: Get Floorplan By ID
       tags:
-      - Tasks
+      - Floorplans
       parameters:
       - $ref: '#/components/parameters/ProjectId'
-      - $ref: '#/components/parameters/TaskId'
+      - $ref: '#/components/parameters/FloorplanId'
       responses:
         '200':
-          description: Task.
+          description: Floorplan.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
+                $ref: '#/components/schemas/Floorplan'
     patch:
-      operationId: updateTaskById
-      summary: Update Task By ID
+      operationId: updateFloorplanById
+      summary: Update Floorplan By ID
       tags:
-      - Tasks
+      - Floorplans
       parameters:
       - $ref: '#/components/parameters/ProjectId'
-      - $ref: '#/components/parameters/TaskId'
+      - $ref: '#/components/parameters/FloorplanId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskUpdate'
+              $ref: '#/components/schemas/FloorplanUpdate'
       responses:
         '200':
-          description: Updated task.
+          description: Updated floorplan.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
-    delete:
-      operationId: deleteTaskById
-      summary: Delete Task By ID
-      tags:
-      - Tasks
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
-      - $ref: '#/components/parameters/TaskId'
-      responses:
-        '204':
-          description: Task deleted.
+                $ref: '#/components/schemas/Floorplan'
 components:
   schemas:
-    TaskUpdate:
+    FloorplanCreate:
       type: object
+      required:
+      - name
       properties:
         name:
           type: string
-        description:
-          type: string
-        status_id:
+        parent_id:
           type: integer
           format: int64
-        priority:
-          type: integer
-        owner_user_id:
+        floorplan_collection_id:
           type: integer
           format: int64
-        due_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-        custom_attributes:
-          type: object
-          additionalProperties: true
-    Task:
+    Floorplan:
       type: object
       properties:
         id:
@@ -154,83 +133,46 @@ components:
           format: int64
         name:
           type: string
-        description:
-          type: string
-        status_id:
+        sheet_id:
           type: integer
           format: int64
-        priority:
-          type: integer
-        category:
-          type: string
-        floorplan_id:
+        parent_id:
           type: integer
           format: int64
-        location_id:
+          description: Parent floorplan for nested collections.
+        floorplan_collection_id:
           type: integer
           format: int64
-        team_id:
-          type: integer
-          format: int64
-        owner_user_id:
-          type: integer
-          format: int64
-        creator_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
+        position:
+          type: number
+          format: double
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-        custom_attributes:
-          type: object
-          additionalProperties: true
-    TaskCreate:
+    FloorplanUpdate:
       type: object
-      required:
-      - name
       properties:
         name:
           type: string
-        description:
-          type: string
-        status_id:
+        parent_id:
           type: integer
           format: int64
-        priority:
-          type: integer
-        category:
-          type: string
-        floorplan_id:
+        floorplan_collection_id:
           type: integer
           format: int64
-        owner_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-        custom_attributes:
-          type: object
-          additionalProperties: true
   parameters:
-    ProjectId:
-      name: project_id
+    FloorplanId:
+      name: floorplan_id
       in: path
       required: true
       schema:
         type: integer
         format: int64
-    TaskId:
-      name: task_id
+    ProjectId:
+      name: project_id
       in: path
       required: true
       schema:

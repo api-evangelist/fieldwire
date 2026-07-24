@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Budget Line Items API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,31 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Budget Line Items
+  description: Project budget line items tied to tier cost codes.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/budget_line_items:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getBudgetLineItemsInProject
+      summary: Get Budget Line Items In Project
       tags:
-      - Attachments
+      - Budget Line Items
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Budget line item list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/BudgetLineItem'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createBudgetLineItemInProject
+      summary: Create Budget Line Item In Project
       tags:
-      - Attachments
+      - Budget Line Items
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,17 +61,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/BudgetLineItemCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created budget line item.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/BudgetLineItem'
 components:
   schemas:
-    Attachment:
+    BudgetLineItemCreate:
+      type: object
+      required:
+      - name
+      - amount
+      properties:
+        name:
+          type: string
+        tier_cost_code:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+    BudgetLineItem:
       type: object
       properties:
         id:
@@ -87,37 +95,21 @@ components:
         project_id:
           type: integer
           format: int64
-        filename:
+        name:
           type: string
-        content_type:
+        tier_cost_code:
           type: string
-        size:
-          type: integer
-          format: int64
-        url:
+        amount:
+          type: number
+          format: double
+        currency:
           type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id

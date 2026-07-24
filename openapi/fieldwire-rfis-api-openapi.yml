@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Tasks API
+  title: Fieldwire Account Actual Costs RFIs API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,31 +29,31 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Tasks
-  description: Project task lifecycle and assignment.
+- name: RFIs
+  description: Requests for Information lifecycle.
 paths:
-  /projects/{project_id}/tasks:
+  /projects/{project_id}/rfis:
     get:
-      operationId: getTasksInProject
-      summary: Get Tasks In Project
+      operationId: getRfisInProject
+      summary: Get RFIs In Project
       tags:
-      - Tasks
+      - RFIs
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Task list.
+          description: RFI list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Task'
+                  $ref: '#/components/schemas/Rfi'
     post:
-      operationId: createTaskInProject
-      summary: Create Task In Project
+      operationId: createRfiInProject
+      summary: Create RFI In Project
       tags:
-      - Tasks
+      - RFIs
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -61,166 +61,52 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskCreate'
+              $ref: '#/components/schemas/RfiCreate'
       responses:
         '201':
-          description: Created task.
+          description: Created RFI.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
-  /projects/{project_id}/tasks/{task_id}:
+                $ref: '#/components/schemas/Rfi'
+  /projects/{project_id}/rfis/{rfi_id}:
     get:
-      operationId: getTaskById
-      summary: Get Task By ID
+      operationId: getRfiById
+      summary: Get RFI By ID
       tags:
-      - Tasks
+      - RFIs
       parameters:
       - $ref: '#/components/parameters/ProjectId'
-      - $ref: '#/components/parameters/TaskId'
+      - $ref: '#/components/parameters/RfiId'
       responses:
         '200':
-          description: Task.
+          description: RFI.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
+                $ref: '#/components/schemas/Rfi'
     patch:
-      operationId: updateTaskById
-      summary: Update Task By ID
+      operationId: updateRfiById
+      summary: Update RFI By ID
       tags:
-      - Tasks
+      - RFIs
       parameters:
       - $ref: '#/components/parameters/ProjectId'
-      - $ref: '#/components/parameters/TaskId'
+      - $ref: '#/components/parameters/RfiId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskUpdate'
+              $ref: '#/components/schemas/RfiUpdate'
       responses:
         '200':
-          description: Updated task.
+          description: Updated RFI.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
-    delete:
-      operationId: deleteTaskById
-      summary: Delete Task By ID
-      tags:
-      - Tasks
-      parameters:
-      - $ref: '#/components/parameters/ProjectId'
-      - $ref: '#/components/parameters/TaskId'
-      responses:
-        '204':
-          description: Task deleted.
+                $ref: '#/components/schemas/Rfi'
 components:
-  schemas:
-    TaskUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status_id:
-          type: integer
-          format: int64
-        priority:
-          type: integer
-        owner_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-        custom_attributes:
-          type: object
-          additionalProperties: true
-    Task:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        project_id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        description:
-          type: string
-        status_id:
-          type: integer
-          format: int64
-        priority:
-          type: integer
-        category:
-          type: string
-        floorplan_id:
-          type: integer
-          format: int64
-        location_id:
-          type: integer
-          format: int64
-        team_id:
-          type: integer
-          format: int64
-        owner_user_id:
-          type: integer
-          format: int64
-        creator_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        custom_attributes:
-          type: object
-          additionalProperties: true
-    TaskCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status_id:
-          type: integer
-          format: int64
-        priority:
-          type: integer
-        category:
-          type: string
-        floorplan_id:
-          type: integer
-          format: int64
-        owner_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-        custom_attributes:
-          type: object
-          additionalProperties: true
   parameters:
     ProjectId:
       name: project_id
@@ -229,13 +115,117 @@ components:
       schema:
         type: integer
         format: int64
-    TaskId:
-      name: task_id
+    RfiId:
+      name: rfi_id
       in: path
       required: true
       schema:
         type: integer
         format: int64
+  schemas:
+    Rfi:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        number:
+          type: string
+        title:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          - answered
+          - closed
+          - void
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    RfiCreate:
+      type: object
+      required:
+      - title
+      - question
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+    RfiUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          - answered
+          - closed
+          - void
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

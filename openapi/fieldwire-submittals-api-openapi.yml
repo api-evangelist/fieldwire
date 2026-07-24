@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Submittals API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,31 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Submittals
+  description: Submittal lifecycle, approvals, and types.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/submittals:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getSubmittalsInProject
+      summary: Get Submittals In Project
       tags:
-      - Attachments
+      - Submittals
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Submittal list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/Submittal'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createSubmittalInProject
+      summary: Create Submittal In Project
       tags:
-      - Attachments
+      - Submittals
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,17 +61,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/SubmittalCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created submittal.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/Submittal'
 components:
   schemas:
-    Attachment:
+    Submittal:
       type: object
       properties:
         id:
@@ -87,37 +80,58 @@ components:
         project_id:
           type: integer
           format: int64
-        filename:
+        number:
           type: string
-        content_type:
+        title:
           type: string
-        size:
+        type:
+          type: string
+          description: Submittal type (e.g. shop drawing, product data, sample).
+        status:
+          type: string
+          enum:
+          - draft
+          - submitted
+          - in_review
+          - approved
+          - approved_as_noted
+          - revise_and_resubmit
+          - rejected
+          - void
+        spec_section_id:
           type: integer
           format: int64
-        url:
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
           type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
+          format: date-time
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
+    SubmittalCreate:
       type: object
       required:
-      - aws_post_token_id
+      - title
+      - type
       properties:
-        aws_post_token_id:
+        title:
+          type: string
+        type:
+          type: string
+        spec_section_id:
           type: integer
           format: int64
-        filename:
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
           type: string
-        content_type:
-          type: string
+          format: date-time
   parameters:
     ProjectId:
       name: project_id

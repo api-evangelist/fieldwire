@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Sheets API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,38 +29,32 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Sheets
+  description: Sheet upload and version management.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/sheets:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getSheetsInProject
+      summary: Get Sheets In Project
       tags:
-      - Attachments
+      - Sheets
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Attachment list.
+          description: Sheet list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/Sheet'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createSheetInProject
+      summary: Create Sheet In Project
+      description: Register a new sheet version. The underlying PDF is uploaded via the Attachments S3 token flow.
       tags:
-      - Attachments
+      - Sheets
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -68,56 +62,60 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/SheetCreate'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created sheet.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/Sheet'
 components:
   schemas:
-    Attachment:
+    SheetCreate:
+      type: object
+      required:
+      - floorplan_id
+      properties:
+        floorplan_id:
+          type: integer
+          format: int64
+        sheet_number:
+          type: string
+        title:
+          type: string
+        attachment_token:
+          type: string
+          description: AWS POST token identifier for the uploaded PDF.
+    Sheet:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
+        floorplan_id:
           type: integer
           format: int64
-        filename:
+        sheet_number:
           type: string
-        content_type:
+        title:
           type: string
-        size:
+        version:
           type: integer
-          format: int64
-        url:
+        original_pdf_url:
           type: string
           format: uri
         thumb_url:
           type: string
           format: uri
+        is_active:
+          type: boolean
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
     ProjectId:
       name: project_id

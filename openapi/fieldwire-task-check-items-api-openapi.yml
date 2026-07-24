@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Fieldwire Account Actual Costs Attachments API
+  title: Fieldwire Account Actual Costs Task Check Items API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,96 +29,77 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Attachments
-  description: Project attachment lifecycle.
+- name: Task Check Items
+  description: Sub-checklist items within a task.
 paths:
-  /projects/{project_id}/attachments:
+  /projects/{project_id}/tasks/{task_id}/check_items:
     get:
-      operationId: getAttachmentsInProject
-      summary: Get Attachments In Project
+      operationId: getCheckItemsInTask
+      summary: Get Check Items In Task
       tags:
-      - Attachments
+      - Task Check Items
       parameters:
       - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/TaskId'
       responses:
         '200':
-          description: Attachment list.
+          description: Check item list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Attachment'
+                  $ref: '#/components/schemas/CheckItem'
     post:
-      operationId: createAttachmentInProject
-      summary: Create Attachment In Project
-      description: 'Register an attachment after the binary has been uploaded to S3 via
-
-        the POST-token flow. The `aws_post_token_id` ties the registration
-
-        back to the previously issued token.
-
-        '
+      operationId: createCheckItemInTask
+      summary: Create Check Item In Task
       tags:
-      - Attachments
+      - Task Check Items
       parameters:
       - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/TaskId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AttachmentCreate'
+              $ref: '#/components/schemas/CheckItem'
       responses:
         '201':
-          description: Registered attachment.
+          description: Created check item.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Attachment'
+                $ref: '#/components/schemas/CheckItem'
 components:
   schemas:
-    Attachment:
+    CheckItem:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        project_id:
+        task_id:
           type: integer
           format: int64
-        filename:
+        name:
           type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-          format: int64
-        url:
-          type: string
-          format: uri
-        thumb_url:
-          type: string
-          format: uri
-        created_at:
+        is_completed:
+          type: boolean
+        position:
+          type: number
+          format: double
+        completed_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    AttachmentCreate:
-      type: object
-      required:
-      - aws_post_token_id
-      properties:
-        aws_post_token_id:
-          type: integer
-          format: int64
-        filename:
-          type: string
-        content_type:
-          type: string
   parameters:
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
     ProjectId:
       name: project_id
       in: path

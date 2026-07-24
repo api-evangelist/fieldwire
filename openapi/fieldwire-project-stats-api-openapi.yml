@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Account Actual Costs Project Stats API
+  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+
+    API key (refresh token) for a short-lived JWT access token, and manage
+
+    account-level users, roles, attachments, data types, custom stamps, account
+
+    form templates, and project transfers. All requests target the global super
+
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+
+    `client-api.eu.fieldwire.com`).
+
+    '
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+- url: https://client-api.super.fieldwire.com
+  description: Global Super Host
+security:
+- BearerAuth: []
+tags:
+- name: Project Stats
+  description: Aggregate project counts and status statistics.
+paths:
+  /projects/{project_id}/stats:
+    get:
+      operationId: getProjectStats
+      summary: Get Project Stats
+      tags:
+      - Project Stats
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Project statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectStats'
+components:
+  schemas:
+    ProjectStats:
+      type: object
+      properties:
+        project_id:
+          type: integer
+          format: int64
+        task_count:
+          type: integer
+        sheet_count:
+          type: integer
+        attachment_count:
+          type: integer
+        form_count:
+          type: integer
+        rfi_count:
+          type: integer
+        submittal_count:
+          type: integer
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      description: Project identifier.
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
+
+        `Authorization: Bearer <access_token>`. Also include the
+
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+
+        '
