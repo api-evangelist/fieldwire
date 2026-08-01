@@ -1,0 +1,307 @@
+{
+  "info": {
+    "_postman_id": "105f9942-faae-4a5a-9137-b2fc6d73739a",
+    "name": "Fieldwire Account Actual Costs Task Check Items API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:57.000Z",
+    "updatedAt": "2026-07-28T01:37:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-105f9942-faae-4a5a-9137-b2fc6d73739a"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "tasks",
+              "item": [
+                {
+                  "name": "{task_id}",
+                  "item": [
+                    {
+                      "name": "check_items",
+                      "item": [
+                        {
+                          "name": "Get Check Items In Task",
+                          "id": "813b12ba-f160-465b-ae0f-8c87c68f775d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/check_items",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id",
+                                "check_items"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "499319b4-a1dd-4788-be75-f901fca52c2a",
+                                  "key": "project_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "91575a2a-15b8-46ed-806c-5ea114a46d72",
+                                  "key": "task_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "18f69bdd-ee04-42f9-8bec-fd77135b6c74",
+                              "name": "Check item list.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/check_items",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":project_id",
+                                    "tasks",
+                                    ":task_id",
+                                    "check_items"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "task_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<long>\",\n    \"task_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"is_completed\": \"<boolean>\",\n    \"position\": \"<double>\",\n    \"completed_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"task_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"is_completed\": \"<boolean>\",\n    \"position\": \"<double>\",\n    \"completed_at\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-07-28T01:37:58.000Z",
+                              "updatedAt": "2026-07-28T01:37:58.000Z",
+                              "uid": "35240-18f69bdd-ee04-42f9-8bec-fd77135b6c74"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:37:58.000Z",
+                          "updatedAt": "2026-07-28T01:37:58.000Z",
+                          "uid": "35240-813b12ba-f160-465b-ae0f-8c87c68f775d"
+                        },
+                        {
+                          "name": "Create Check Item In Task",
+                          "id": "ff0e6b0d-0c0c-49c7-80dc-fb23793479e7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<long>\",\n  \"task_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"is_completed\": \"<boolean>\",\n  \"position\": \"<double>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/check_items",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id",
+                                "check_items"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4c4e586d-a82e-45c5-80ed-5678f068ef59",
+                                  "key": "project_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "6a6bb446-d9f2-4a3c-bbc5-c2fd2d3d54ec",
+                                  "key": "task_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "4f8bb21f-a6f2-4429-9c56-6b359b9ca19b",
+                              "name": "Created check item.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<long>\",\n  \"task_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"is_completed\": \"<boolean>\",\n  \"position\": \"<double>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/check_items",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":project_id",
+                                    "tasks",
+                                    ":task_id",
+                                    "check_items"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "task_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<long>\",\n  \"task_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"is_completed\": \"<boolean>\",\n  \"position\": \"<double>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T01:37:58.000Z",
+                              "updatedAt": "2026-07-28T01:37:58.000Z",
+                              "uid": "35240-4f8bb21f-a6f2-4429-9c56-6b359b9ca19b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:37:58.000Z",
+                          "updatedAt": "2026-07-28T01:37:58.000Z",
+                          "uid": "35240-ff0e6b0d-0c0c-49c7-80dc-fb23793479e7"
+                        }
+                      ],
+                      "id": "f14dbced-1668-4c87-a428-ef5da78cf9bf",
+                      "createdAt": "2026-07-28T01:37:58.000Z",
+                      "updatedAt": "2026-07-28T01:37:58.000Z",
+                      "uid": "35240-f14dbced-1668-4c87-a428-ef5da78cf9bf"
+                    }
+                  ],
+                  "id": "d7b2c03c-8128-4370-aca0-06eb8b0f30ca",
+                  "createdAt": "2026-07-28T01:37:58.000Z",
+                  "updatedAt": "2026-07-28T01:37:58.000Z",
+                  "uid": "35240-d7b2c03c-8128-4370-aca0-06eb8b0f30ca"
+                }
+              ],
+              "id": "4570ebeb-3e20-465e-86b5-a5302b97df4a",
+              "createdAt": "2026-07-28T01:37:58.000Z",
+              "updatedAt": "2026-07-28T01:37:58.000Z",
+              "uid": "35240-4570ebeb-3e20-465e-86b5-a5302b97df4a"
+            }
+          ],
+          "id": "2fa6da00-c475-4698-a064-339805ac63e9",
+          "createdAt": "2026-07-28T01:37:58.000Z",
+          "updatedAt": "2026-07-28T01:37:58.000Z",
+          "uid": "35240-2fa6da00-c475-4698-a064-339805ac63e9"
+        }
+      ],
+      "id": "88e6eda1-4df6-4e38-a8ca-0c1307207189",
+      "createdAt": "2026-07-28T01:37:58.000Z",
+      "updatedAt": "2026-07-28T01:37:58.000Z",
+      "uid": "35240-88e6eda1-4df6-4e38-a8ca-0c1307207189"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

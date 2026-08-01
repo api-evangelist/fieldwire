@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "6c4da375-7aff-486f-a927-515f6e4a1d9a",
+    "name": "Fieldwire Account Actual Costs Project Users API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:46.000Z",
+    "updatedAt": "2026-07-28T01:37:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c4da375-7aff-486f-a927-515f6e4a1d9a"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "Get Project Users",
+                  "id": "bcddf656-fc6f-4a4c-8d2a-0193788dc2b7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2e5fe523-3786-4d09-af88-efe619b49201",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) Project identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "9e62caab-7181-4ad2-9082-654c2928f8c8",
+                      "name": "Project user list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"user_id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"role\": \"admin\",\n    \"email\": \"<email>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"user_id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"role\": \"admin\",\n    \"email\": \"<email>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:46.000Z",
+                      "updatedAt": "2026-07-28T01:37:46.000Z",
+                      "uid": "35240-9e62caab-7181-4ad2-9082-654c2928f8c8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:46.000Z",
+                  "updatedAt": "2026-07-28T01:37:46.000Z",
+                  "uid": "35240-bcddf656-fc6f-4a4c-8d2a-0193788dc2b7"
+                },
+                {
+                  "name": "Invite Project User",
+                  "id": "352af150-6403-4ebd-badc-ea6571d68104",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"team_id\": \"<long>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "67bb509c-c82d-4b00-91ef-ce582e7d4cbf",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) Project identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "199a8d7f-509b-4352-8e06-36d9050401e7",
+                      "name": "Project user invited.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"team_id\": \"<long>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"user_id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"role\": \"follower\",\n  \"email\": \"<email>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:46.000Z",
+                      "updatedAt": "2026-07-28T01:37:46.000Z",
+                      "uid": "35240-199a8d7f-509b-4352-8e06-36d9050401e7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:46.000Z",
+                  "updatedAt": "2026-07-28T01:37:46.000Z",
+                  "uid": "35240-352af150-6403-4ebd-badc-ea6571d68104"
+                }
+              ],
+              "id": "e65b5e12-901b-4988-9fad-8dd0f39eeba4",
+              "createdAt": "2026-07-28T01:37:46.000Z",
+              "updatedAt": "2026-07-28T01:37:46.000Z",
+              "uid": "35240-e65b5e12-901b-4988-9fad-8dd0f39eeba4"
+            }
+          ],
+          "id": "3b17cd52-bc04-4f17-9d00-26a29e202b41",
+          "createdAt": "2026-07-28T01:37:46.000Z",
+          "updatedAt": "2026-07-28T01:37:46.000Z",
+          "uid": "35240-3b17cd52-bc04-4f17-9d00-26a29e202b41"
+        }
+      ],
+      "id": "1ebd822a-3c43-41a8-971a-735367372286",
+      "createdAt": "2026-07-28T01:37:46.000Z",
+      "updatedAt": "2026-07-28T01:37:46.000Z",
+      "uid": "35240-1ebd822a-3c43-41a8-971a-735367372286"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

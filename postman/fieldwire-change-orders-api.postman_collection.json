@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "530d802a-dbda-4646-bb24-2f7c36c16019",
+    "name": "Fieldwire Account Actual Costs Change Orders API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:34.000Z",
+    "updatedAt": "2026-07-28T01:37:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-530d802a-dbda-4646-bb24-2f7c36c16019"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "change_orders",
+              "item": [
+                {
+                  "name": "Get Change Orders In Project",
+                  "id": "77a36116-8d53-429e-894c-0b193a992062",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/change_orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "change_orders"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5d48c9af-e76f-4fcd-91be-cc6fb672d831",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "862f5b6a-d316-4240-ad3a-cd177113b015",
+                      "name": "Change order list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/change_orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "change_orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"status\": \"void\",\n    \"amount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"submitted_at\": \"<dateTime>\",\n    \"approved_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"status\": \"submitted\",\n    \"amount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"submitted_at\": \"<dateTime>\",\n    \"approved_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:35.000Z",
+                      "updatedAt": "2026-07-28T01:37:35.000Z",
+                      "uid": "35240-862f5b6a-d316-4240-ad3a-cd177113b015"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:35.000Z",
+                  "updatedAt": "2026-07-28T01:37:35.000Z",
+                  "uid": "35240-77a36116-8d53-429e-894c-0b193a992062"
+                },
+                {
+                  "name": "Create Change Order In Project",
+                  "id": "589606da-65c4-4eee-b68a-02fa2d615fc8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/change_orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "change_orders"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eb7f1591-1b8d-43cd-9c5d-5989b9b72ce8",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "9c230c5b-ca12-4333-870d-b5dd27989652",
+                      "name": "Created change order.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/change_orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "change_orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"void\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"submitted_at\": \"<dateTime>\",\n  \"approved_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:35.000Z",
+                      "updatedAt": "2026-07-28T01:37:35.000Z",
+                      "uid": "35240-9c230c5b-ca12-4333-870d-b5dd27989652"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:35.000Z",
+                  "updatedAt": "2026-07-28T01:37:35.000Z",
+                  "uid": "35240-589606da-65c4-4eee-b68a-02fa2d615fc8"
+                }
+              ],
+              "id": "bbc26a9e-5691-438c-bb7c-a2e33ab12a82",
+              "createdAt": "2026-07-28T01:37:35.000Z",
+              "updatedAt": "2026-07-28T01:37:35.000Z",
+              "uid": "35240-bbc26a9e-5691-438c-bb7c-a2e33ab12a82"
+            }
+          ],
+          "id": "aae12ce6-be3e-4b7d-b201-466add5e6606",
+          "createdAt": "2026-07-28T01:37:35.000Z",
+          "updatedAt": "2026-07-28T01:37:35.000Z",
+          "uid": "35240-aae12ce6-be3e-4b7d-b201-466add5e6606"
+        }
+      ],
+      "id": "6e196167-8109-4fbe-8e74-996c9eebdee2",
+      "createdAt": "2026-07-28T01:37:35.000Z",
+      "updatedAt": "2026-07-28T01:37:35.000Z",
+      "uid": "35240-6e196167-8109-4fbe-8e74-996c9eebdee2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

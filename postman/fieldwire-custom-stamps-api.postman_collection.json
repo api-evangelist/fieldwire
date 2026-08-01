@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "9bd70a33-4dc2-4ede-a7e9-d88b35386bcc",
+    "name": "Fieldwire Account Actual Costs Custom Stamps API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:36.000Z",
+    "updatedAt": "2026-07-28T01:37:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9bd70a33-4dc2-4ede-a7e9-d88b35386bcc"
+  },
+  "item": [
+    {
+      "name": "account",
+      "item": [
+        {
+          "name": "custom_stamps",
+          "item": [
+            {
+              "name": "Get Account Custom Stamps",
+              "id": "be37b6d6-8034-4bf4-8b46-72a4e61b803b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/custom_stamps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "custom_stamps"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "26472e3d-f776-4f48-88d4-e10d8e844b4e",
+                  "name": "Custom stamp list.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/custom_stamps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "custom_stamps"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"attachment_url\": \"<uri>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"attachment_url\": \"<uri>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:37:37.000Z",
+                  "updatedAt": "2026-07-28T01:37:37.000Z",
+                  "uid": "35240-26472e3d-f776-4f48-88d4-e10d8e844b4e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:37:37.000Z",
+              "updatedAt": "2026-07-28T01:37:37.000Z",
+              "uid": "35240-be37b6d6-8034-4bf4-8b46-72a4e61b803b"
+            },
+            {
+              "name": "Create Account Custom Stamp",
+              "id": "d6eba5db-3af6-4703-890d-eb849f4ccbd8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attachment_url\": \"<uri>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/account/custom_stamps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "custom_stamps"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "59602e1e-5416-4be5-b516-3ff95f7165dc",
+                  "name": "Created custom stamp.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attachment_url\": \"<uri>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/custom_stamps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "custom_stamps"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attachment_url\": \"<uri>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:37:37.000Z",
+                  "updatedAt": "2026-07-28T01:37:37.000Z",
+                  "uid": "35240-59602e1e-5416-4be5-b516-3ff95f7165dc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:37:37.000Z",
+              "updatedAt": "2026-07-28T01:37:37.000Z",
+              "uid": "35240-d6eba5db-3af6-4703-890d-eb849f4ccbd8"
+            }
+          ],
+          "id": "daf92f14-6f79-41aa-885f-0a2acc81caea",
+          "createdAt": "2026-07-28T01:37:37.000Z",
+          "updatedAt": "2026-07-28T01:37:37.000Z",
+          "uid": "35240-daf92f14-6f79-41aa-885f-0a2acc81caea"
+        }
+      ],
+      "id": "8cb46b57-1c60-4634-a0ab-6c9f959c8295",
+      "createdAt": "2026-07-28T01:37:37.000Z",
+      "updatedAt": "2026-07-28T01:37:37.000Z",
+      "uid": "35240-8cb46b57-1c60-4634-a0ab-6c9f959c8295"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

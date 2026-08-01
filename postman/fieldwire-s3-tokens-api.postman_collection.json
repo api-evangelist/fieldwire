@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "dd2630ca-758e-4380-896f-b535d7b4c550",
+    "name": "Fieldwire Account Actual Costs S3 Tokens API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:52.000Z",
+    "updatedAt": "2026-07-28T01:37:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dd2630ca-758e-4380-896f-b535d7b4c550"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "aws_post_tokens",
+              "item": [
+                {
+                  "name": "Get AWS POST Token For Upload",
+                  "id": "375ed2a5-924a-4caa-9406-3549f40daa5e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\",\n  \"size\": \"<long>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/aws_post_tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "aws_post_tokens"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e15c4ff-6dd0-4a92-9f19-08db2593bf22",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Request a one-day signed AWS POST token that the client uses to upload\nthe binary directly to Amazon S3. The token contains the post URL,\npolicy, and form fields required for the S3 `POST object` operation;\nclients then add a `file` form field and POST to AWS directly.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "10159860-e014-4ace-8914-d2cc6b020c6d",
+                      "name": "Signed POST token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\",\n  \"size\": \"<long>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/aws_post_tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "aws_post_tokens"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"post_address\": \"<uri>\",\n  \"fields\": {\n    \"eiusmod_097\": \"<string>\"\n  },\n  \"expires_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:53.000Z",
+                      "updatedAt": "2026-07-28T01:37:53.000Z",
+                      "uid": "35240-10159860-e014-4ace-8914-d2cc6b020c6d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:53.000Z",
+                  "updatedAt": "2026-07-28T01:37:53.000Z",
+                  "uid": "35240-375ed2a5-924a-4caa-9406-3549f40daa5e"
+                }
+              ],
+              "id": "95bc589d-a711-4093-8608-3343bd91a22f",
+              "createdAt": "2026-07-28T01:37:53.000Z",
+              "updatedAt": "2026-07-28T01:37:53.000Z",
+              "uid": "35240-95bc589d-a711-4093-8608-3343bd91a22f"
+            }
+          ],
+          "id": "cea6a64d-e72c-47f7-8924-088029115d00",
+          "createdAt": "2026-07-28T01:37:53.000Z",
+          "updatedAt": "2026-07-28T01:37:53.000Z",
+          "uid": "35240-cea6a64d-e72c-47f7-8924-088029115d00"
+        }
+      ],
+      "id": "c3e65180-329a-467c-af05-f6c04997957a",
+      "createdAt": "2026-07-28T01:37:53.000Z",
+      "updatedAt": "2026-07-28T01:37:53.000Z",
+      "uid": "35240-c3e65180-329a-467c-af05-f6c04997957a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

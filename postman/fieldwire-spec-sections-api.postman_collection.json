@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "356a2297-d2af-447e-a856-6f74433b369a",
+    "name": "Fieldwire Account Actual Costs Spec Sections API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:54.000Z",
+    "updatedAt": "2026-07-28T01:37:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-356a2297-d2af-447e-a856-6f74433b369a"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "spec_sections",
+              "item": [
+                {
+                  "name": "Get Spec Sections In Project",
+                  "id": "1dd4a9d9-9f85-4bd5-a10a-fc7624578bb0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/spec_sections",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "spec_sections"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6b697eb7-284c-447f-b4e5-87626ba8468c",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "762b0958-7224-424d-b4d9-5786f0f108cd",
+                      "name": "Spec section list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/spec_sections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "spec_sections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"division\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"division\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:55.000Z",
+                      "updatedAt": "2026-07-28T01:37:55.000Z",
+                      "uid": "35240-762b0958-7224-424d-b4d9-5786f0f108cd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:55.000Z",
+                  "updatedAt": "2026-07-28T01:37:55.000Z",
+                  "uid": "35240-1dd4a9d9-9f85-4bd5-a10a-fc7624578bb0"
+                }
+              ],
+              "id": "f49b5c83-351a-4522-92da-7c15a048e369",
+              "createdAt": "2026-07-28T01:37:55.000Z",
+              "updatedAt": "2026-07-28T01:37:55.000Z",
+              "uid": "35240-f49b5c83-351a-4522-92da-7c15a048e369"
+            }
+          ],
+          "id": "fbae22ac-9064-437c-9b96-be224fdbc655",
+          "createdAt": "2026-07-28T01:37:55.000Z",
+          "updatedAt": "2026-07-28T01:37:55.000Z",
+          "uid": "35240-fbae22ac-9064-437c-9b96-be224fdbc655"
+        }
+      ],
+      "id": "5a1cbcd8-2001-4fd8-8b7a-786bd2ad9c20",
+      "createdAt": "2026-07-28T01:37:55.000Z",
+      "updatedAt": "2026-07-28T01:37:55.000Z",
+      "uid": "35240-5a1cbcd8-2001-4fd8-8b7a-786bd2ad9c20"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "info": {
+    "_postman_id": "440607d2-80aa-4e4b-92c2-c9aee57f384b",
+    "name": "Fieldwire Account Actual Costs Users API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:38:17.000Z",
+    "updatedAt": "2026-07-28T01:38:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-440607d2-80aa-4e4b-92c2-c9aee57f384b"
+  },
+  "item": [
+    {
+      "name": "account",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{user_id}",
+              "item": [
+                {
+                  "name": "Get Account User By ID",
+                  "id": "9550cb3a-eee8-4b40-8cd1-7dc52dabad86",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d68a4d6f-8055-4466-994f-5e07e9e04675",
+                          "key": "user_id",
+                          "value": "<long>",
+                          "description": "(Required) Account user identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single account user by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "314e819e-76df-40d2-909c-5d50869306cd",
+                      "name": "Account user.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/account/users/:user_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "account",
+                            "users",
+                            ":user_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"follower\",\n  \"status\": \"active\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:38:17.000Z",
+                      "updatedAt": "2026-07-28T01:38:17.000Z",
+                      "uid": "35240-314e819e-76df-40d2-909c-5d50869306cd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:38:17.000Z",
+                  "updatedAt": "2026-07-28T01:38:17.000Z",
+                  "uid": "35240-9550cb3a-eee8-4b40-8cd1-7dc52dabad86"
+                },
+                {
+                  "name": "Update Account User By ID",
+                  "id": "f2ecb1da-cec4-4b7f-a51c-9ff1f3dc90c2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"owner\",\n  \"status\": \"deactivated\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6e7f0c5d-e575-467c-9935-f5393b14c22e",
+                          "key": "user_id",
+                          "value": "<long>",
+                          "description": "(Required) Account user identifier."
+                        }
+                      ]
+                    },
+                    "description": "Update profile fields, role, or status for an account user."
+                  },
+                  "response": [
+                    {
+                      "id": "10086a57-c2d4-4c10-a654-f8bab79f7b3e",
+                      "name": "Updated account user.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"owner\",\n  \"status\": \"deactivated\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/account/users/:user_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "account",
+                            "users",
+                            ":user_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"follower\",\n  \"status\": \"active\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:38:17.000Z",
+                      "updatedAt": "2026-07-28T01:38:17.000Z",
+                      "uid": "35240-10086a57-c2d4-4c10-a654-f8bab79f7b3e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:38:17.000Z",
+                  "updatedAt": "2026-07-28T01:38:17.000Z",
+                  "uid": "35240-f2ecb1da-cec4-4b7f-a51c-9ff1f3dc90c2"
+                }
+              ],
+              "id": "11e7d9f4-2cf0-4acd-b8db-d1c91358c174",
+              "createdAt": "2026-07-28T01:38:17.000Z",
+              "updatedAt": "2026-07-28T01:38:17.000Z",
+              "uid": "35240-11e7d9f4-2cf0-4acd-b8db-d1c91358c174"
+            },
+            {
+              "name": "Get Account Users",
+              "id": "b2c370cf-df64-4fde-a7e2-b111b906bd4d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "users"
+                  ]
+                },
+                "description": "List all users belonging to the authenticated Fieldwire account."
+              },
+              "response": [
+                {
+                  "id": "52f7a937-65ab-43be-a9fc-56458a94f01d",
+                  "name": "Account user list.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<long>\",\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"role\": \"follower\",\n    \"status\": \"active\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"email\": \"<email>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"role\": \"member\",\n    \"status\": \"deactivated\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:38:17.000Z",
+                  "updatedAt": "2026-07-28T01:38:17.000Z",
+                  "uid": "35240-52f7a937-65ab-43be-a9fc-56458a94f01d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:38:17.000Z",
+              "updatedAt": "2026-07-28T01:38:17.000Z",
+              "uid": "35240-b2c370cf-df64-4fde-a7e2-b111b906bd4d"
+            }
+          ],
+          "id": "1591d768-6855-402d-b378-f481ee41a486",
+          "createdAt": "2026-07-28T01:38:17.000Z",
+          "updatedAt": "2026-07-28T01:38:17.000Z",
+          "uid": "35240-1591d768-6855-402d-b378-f481ee41a486"
+        }
+      ],
+      "id": "dd9f21c3-aa21-49e3-a638-62b57967d253",
+      "createdAt": "2026-07-28T01:38:17.000Z",
+      "updatedAt": "2026-07-28T01:38:17.000Z",
+      "uid": "35240-dd9f21c3-aa21-49e3-a638-62b57967d253"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

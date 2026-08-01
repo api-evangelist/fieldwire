@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "bc980ced-f650-4510-be9c-67a0b3c66a91",
+    "name": "Fieldwire Account Actual Costs Building Information Models API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:33.000Z",
+    "updatedAt": "2026-07-28T01:37:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc980ced-f650-4510-be9c-67a0b3c66a91"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "building_information_models",
+              "item": [
+                {
+                  "name": "Get Building Information Models In Project",
+                  "id": "7c0dd03d-dab6-4282-bbfe-78e8abc18dc7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/building_information_models",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "building_information_models"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f40dbf4e-78f1-4fe5-9d6b-da452846ca4e",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "339df976-3dfe-4b13-8316-704a096503f1",
+                      "name": "BIM list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/building_information_models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "building_information_models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"latest_version_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"latest_version_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:34.000Z",
+                      "updatedAt": "2026-07-28T01:37:34.000Z",
+                      "uid": "35240-339df976-3dfe-4b13-8316-704a096503f1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:34.000Z",
+                  "updatedAt": "2026-07-28T01:37:34.000Z",
+                  "uid": "35240-7c0dd03d-dab6-4282-bbfe-78e8abc18dc7"
+                }
+              ],
+              "id": "c519614c-db51-4d95-8089-dc5ca8a88be5",
+              "createdAt": "2026-07-28T01:37:34.000Z",
+              "updatedAt": "2026-07-28T01:37:34.000Z",
+              "uid": "35240-c519614c-db51-4d95-8089-dc5ca8a88be5"
+            }
+          ],
+          "id": "e6581c86-8a33-4676-bcf2-b853104d494d",
+          "createdAt": "2026-07-28T01:37:34.000Z",
+          "updatedAt": "2026-07-28T01:37:34.000Z",
+          "uid": "35240-e6581c86-8a33-4676-bcf2-b853104d494d"
+        }
+      ],
+      "id": "82438fa3-3763-4a34-917c-389ede06f35b",
+      "createdAt": "2026-07-28T01:37:34.000Z",
+      "updatedAt": "2026-07-28T01:37:34.000Z",
+      "uid": "35240-82438fa3-3763-4a34-917c-389ede06f35b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

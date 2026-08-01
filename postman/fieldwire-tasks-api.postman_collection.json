@@ -1,0 +1,586 @@
+{
+  "info": {
+    "_postman_id": "98a68b19-c6eb-4a7c-b3e3-89772e87e145",
+    "name": "Fieldwire Account Actual Costs Tasks API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:10.000Z",
+    "updatedAt": "2026-07-28T01:37:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98a68b19-c6eb-4a7c-b3e3-89772e87e145"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "tasks",
+              "item": [
+                {
+                  "name": "{task_id}",
+                  "item": [
+                    {
+                      "name": "Get Task By ID",
+                      "id": "16bc1842-83e9-4435-a6d6-b1080eee26d7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "tasks",
+                            ":task_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a62ab24d-ddd9-4a29-9b1a-fb1dc4ef0324",
+                              "key": "project_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "ed538e28-7ab5-4055-8478-40ec604d0d48",
+                              "key": "task_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "3b66e8a9-cd04-48bb-8d70-00c79a82b163",
+                          "name": "Task.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                },
+                                {
+                                  "key": "task_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"location_id\": \"<long>\",\n  \"team_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"creator_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"fugiat_e9\": false,\n    \"reprehenderit_e2\": \"exercitati\",\n    \"dolor5_\": 92851481\n  }\n}",
+                          "createdAt": "2026-07-28T01:37:11.000Z",
+                          "updatedAt": "2026-07-28T01:37:11.000Z",
+                          "uid": "35240-3b66e8a9-cd04-48bb-8d70-00c79a82b163"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:11.000Z",
+                      "updatedAt": "2026-07-28T01:37:11.000Z",
+                      "uid": "35240-16bc1842-83e9-4435-a6d6-b1080eee26d7"
+                    },
+                    {
+                      "name": "Update Task By ID",
+                      "id": "39cbbd65-b1d0-45b3-bf1e-15afbab2a8a0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"cupidatat_b\": \"laborum elit anim\",\n    \"nulla_1f\": \"quis esse ad pariatur\",\n    \"in_25\": false\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "tasks",
+                            ":task_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "82dadfba-78c8-4d2b-9204-dbfc7be6944a",
+                              "key": "project_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "894eca80-d088-4086-aabd-c8d2c7b50088",
+                              "key": "task_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "9c31ecb0-523b-489b-b662-b239802dac9a",
+                          "name": "Updated task.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"cupidatat_b\": \"laborum elit anim\",\n    \"nulla_1f\": \"quis esse ad pariatur\",\n    \"in_25\": false\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                },
+                                {
+                                  "key": "task_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"location_id\": \"<long>\",\n  \"team_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"creator_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"fugiat_e9\": false,\n    \"reprehenderit_e2\": \"exercitati\",\n    \"dolor5_\": 92851481\n  }\n}",
+                          "createdAt": "2026-07-28T01:37:11.000Z",
+                          "updatedAt": "2026-07-28T01:37:11.000Z",
+                          "uid": "35240-9c31ecb0-523b-489b-b662-b239802dac9a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:11.000Z",
+                      "updatedAt": "2026-07-28T01:37:11.000Z",
+                      "uid": "35240-39cbbd65-b1d0-45b3-bf1e-15afbab2a8a0"
+                    },
+                    {
+                      "name": "Delete Task By ID",
+                      "id": "dc3f665c-5d03-4042-a864-9c2a24d96fa3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "tasks",
+                            ":task_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2fec12e6-461c-4cb0-a3f7-406164de839c",
+                              "key": "project_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "6655abd6-b2b7-4198-933f-c4947c9c6553",
+                              "key": "task_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "f01d5eb3-5073-41fd-8ff6-84375881d9e3",
+                          "name": "Task deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                },
+                                {
+                                  "key": "task_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:37:11.000Z",
+                          "updatedAt": "2026-07-28T01:37:11.000Z",
+                          "uid": "35240-f01d5eb3-5073-41fd-8ff6-84375881d9e3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:11.000Z",
+                      "updatedAt": "2026-07-28T01:37:11.000Z",
+                      "uid": "35240-dc3f665c-5d03-4042-a864-9c2a24d96fa3"
+                    }
+                  ],
+                  "id": "7b3a5a63-0025-4113-8b15-eb3662ebd244",
+                  "createdAt": "2026-07-28T01:37:11.000Z",
+                  "updatedAt": "2026-07-28T01:37:11.000Z",
+                  "uid": "35240-7b3a5a63-0025-4113-8b15-eb3662ebd244"
+                },
+                {
+                  "name": "Get Tasks In Project",
+                  "id": "493b0f7e-ef2a-4ee6-852c-42fa08fbfc4b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "tasks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a9029c34-5779-402a-a30a-ebf9b9e5198e",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2cc72c09-a59a-4c4a-9c63-2536769f6dd5",
+                      "name": "Task list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/tasks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "tasks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"status_id\": \"<long>\",\n    \"priority\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"floorplan_id\": \"<long>\",\n    \"location_id\": \"<long>\",\n    \"team_id\": \"<long>\",\n    \"owner_user_id\": \"<long>\",\n    \"creator_user_id\": \"<long>\",\n    \"due_at\": \"<dateTime>\",\n    \"completed_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_attributes\": {\n      \"dolor_8\": true,\n      \"exercitation02_\": 5198005,\n      \"veniam_1\": false\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"status_id\": \"<long>\",\n    \"priority\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"floorplan_id\": \"<long>\",\n    \"location_id\": \"<long>\",\n    \"team_id\": \"<long>\",\n    \"owner_user_id\": \"<long>\",\n    \"creator_user_id\": \"<long>\",\n    \"due_at\": \"<dateTime>\",\n    \"completed_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_attributes\": {\n      \"ex7\": 22613461.967859343\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:11.000Z",
+                      "updatedAt": "2026-07-28T01:37:11.000Z",
+                      "uid": "35240-2cc72c09-a59a-4c4a-9c63-2536769f6dd5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:11.000Z",
+                  "updatedAt": "2026-07-28T01:37:11.000Z",
+                  "uid": "35240-493b0f7e-ef2a-4ee6-852c-42fa08fbfc4b"
+                },
+                {
+                  "name": "Create Task In Project",
+                  "id": "0061c023-8170-4891-ad3a-dbb0fae8dda7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"cupidatata\": false\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "tasks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "677bd69b-b4a5-46f8-96c2-8b4fbc7ff6d5",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "169844a5-1747-47bf-a3e6-66971319e673",
+                      "name": "Created task.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"cupidatata\": false\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/tasks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "tasks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"location_id\": \"<long>\",\n  \"team_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"creator_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"fugiat_e9\": false,\n    \"reprehenderit_e2\": \"exercitati\",\n    \"dolor5_\": 92851481\n  }\n}",
+                      "createdAt": "2026-07-28T01:37:11.000Z",
+                      "updatedAt": "2026-07-28T01:37:11.000Z",
+                      "uid": "35240-169844a5-1747-47bf-a3e6-66971319e673"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:11.000Z",
+                  "updatedAt": "2026-07-28T01:37:11.000Z",
+                  "uid": "35240-0061c023-8170-4891-ad3a-dbb0fae8dda7"
+                }
+              ],
+              "id": "1e5e36c5-0796-4a29-8118-e2f3b14177cb",
+              "createdAt": "2026-07-28T01:37:11.000Z",
+              "updatedAt": "2026-07-28T01:37:11.000Z",
+              "uid": "35240-1e5e36c5-0796-4a29-8118-e2f3b14177cb"
+            }
+          ],
+          "id": "ebd09edd-1a29-4d91-af94-71c7f871a7a3",
+          "createdAt": "2026-07-28T01:37:11.000Z",
+          "updatedAt": "2026-07-28T01:37:11.000Z",
+          "uid": "35240-ebd09edd-1a29-4d91-af94-71c7f871a7a3"
+        }
+      ],
+      "id": "3c379498-8cbe-424e-a65e-35723d1c306b",
+      "createdAt": "2026-07-28T01:37:11.000Z",
+      "updatedAt": "2026-07-28T01:37:11.000Z",
+      "uid": "35240-3c379498-8cbe-424e-a65e-35723d1c306b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

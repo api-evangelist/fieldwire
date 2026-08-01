@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "42d89c25-c4cd-485a-8224-95f0f1e123f6",
+    "name": "Fieldwire Account Actual Costs Task Relations API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:38:04.000Z",
+    "updatedAt": "2026-07-28T01:38:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-42d89c25-c4cd-485a-8224-95f0f1e123f6"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "task_relations",
+              "item": [
+                {
+                  "name": "Get Task Relations In Project",
+                  "id": "aa08ff63-1f2e-4dc3-abe5-42893587e9dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/task_relations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "task_relations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "aa6a459b-5d42-47b0-93fb-7d5c0859370b",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "76c95573-532d-4d86-aafd-e89bdf7f4b24",
+                      "name": "Relation list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/task_relations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "task_relations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"source_task_id\": \"<long>\",\n    \"target_task_id\": \"<long>\",\n    \"kind\": \"parent\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"source_task_id\": \"<long>\",\n    \"target_task_id\": \"<long>\",\n    \"kind\": \"related\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:38:05.000Z",
+                      "updatedAt": "2026-07-28T01:38:05.000Z",
+                      "uid": "35240-76c95573-532d-4d86-aafd-e89bdf7f4b24"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:38:05.000Z",
+                  "updatedAt": "2026-07-28T01:38:05.000Z",
+                  "uid": "35240-aa08ff63-1f2e-4dc3-abe5-42893587e9dd"
+                }
+              ],
+              "id": "089a61b9-f2c1-43af-8372-9190b1592364",
+              "createdAt": "2026-07-28T01:38:05.000Z",
+              "updatedAt": "2026-07-28T01:38:05.000Z",
+              "uid": "35240-089a61b9-f2c1-43af-8372-9190b1592364"
+            }
+          ],
+          "id": "fc511f92-976f-4420-81ad-145a4abb1be8",
+          "createdAt": "2026-07-28T01:38:05.000Z",
+          "updatedAt": "2026-07-28T01:38:05.000Z",
+          "uid": "35240-fc511f92-976f-4420-81ad-145a4abb1be8"
+        }
+      ],
+      "id": "d90deaa6-caa1-4276-9294-a2ffa77041d6",
+      "createdAt": "2026-07-28T01:38:05.000Z",
+      "updatedAt": "2026-07-28T01:38:05.000Z",
+      "uid": "35240-d90deaa6-caa1-4276-9294-a2ffa77041d6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

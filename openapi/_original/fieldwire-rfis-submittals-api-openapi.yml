@@ -1,0 +1,320 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire RFIs and Submittals API
+  description: |
+    Track Requests for Information (RFIs), submittals, submittal types, spec
+    sections, attachments, markups, watchers, approvals, and submittal log
+    extraction across construction projects.
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+  - url: https://client-api.us.fieldwire.com/api/v3
+    description: US Region
+  - url: https://client-api.eu.fieldwire.com/api/v3
+    description: EU Region
+security:
+  - BearerAuth: []
+tags:
+  - name: RFIs
+    description: Requests for Information lifecycle.
+  - name: Submittals
+    description: Submittal lifecycle, approvals, and types.
+  - name: Spec Sections
+    description: Specification sections used to organise submittals.
+paths:
+  /projects/{project_id}/rfis:
+    get:
+      operationId: getRfisInProject
+      summary: Get RFIs In Project
+      tags: [RFIs]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: RFI list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rfi'
+    post:
+      operationId: createRfiInProject
+      summary: Create RFI In Project
+      tags: [RFIs]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RfiCreate'
+      responses:
+        '201':
+          description: Created RFI.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rfi'
+  /projects/{project_id}/rfis/{rfi_id}:
+    get:
+      operationId: getRfiById
+      summary: Get RFI By ID
+      tags: [RFIs]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/RfiId'
+      responses:
+        '200':
+          description: RFI.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rfi'
+    patch:
+      operationId: updateRfiById
+      summary: Update RFI By ID
+      tags: [RFIs]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/RfiId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RfiUpdate'
+      responses:
+        '200':
+          description: Updated RFI.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rfi'
+  /projects/{project_id}/submittals:
+    get:
+      operationId: getSubmittalsInProject
+      summary: Get Submittals In Project
+      tags: [Submittals]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Submittal list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Submittal'
+    post:
+      operationId: createSubmittalInProject
+      summary: Create Submittal In Project
+      tags: [Submittals]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmittalCreate'
+      responses:
+        '201':
+          description: Created submittal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submittal'
+  /projects/{project_id}/spec_sections:
+    get:
+      operationId: getSpecSectionsInProject
+      summary: Get Spec Sections In Project
+      tags: [Spec Sections]
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Spec section list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SpecSection'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    RfiId:
+      name: rfi_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Rfi:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        number:
+          type: string
+        title:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+          enum: [draft, open, answered, closed, void]
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    RfiCreate:
+      type: object
+      required: [title, question]
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+    RfiUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+          enum: [draft, open, answered, closed, void]
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+    Submittal:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        number:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+          description: Submittal type (e.g. shop drawing, product data, sample).
+        status:
+          type: string
+          enum: [draft, submitted, in_review, approved, approved_as_noted, revise_and_resubmit, rejected, void]
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    SubmittalCreate:
+      type: object
+      required: [title, type]
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+    SpecSection:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        project_id:
+          type: integer
+          format: int64
+        number:
+          type: string
+        title:
+          type: string
+        division:
+          type: string
+        created_at:
+          type: string
+          format: date-time

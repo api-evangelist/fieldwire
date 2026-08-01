@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "8a1dd7bf-c14b-4bea-80d6-6074b29554ad",
+    "name": "Fieldwire Account Actual Costs Project Stats API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:44.000Z",
+    "updatedAt": "2026-07-28T01:37:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8a1dd7bf-c14b-4bea-80d6-6074b29554ad"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Get Project Stats",
+                  "id": "eb9aebb3-ea2f-4b68-bde2-2b7af76a5e7e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "stats"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bd439e7e-53ff-4263-b021-229120d19264",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) Project identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b13293c0-9ee7-46f0-8c05-836b2ed5f67a",
+                      "name": "Project statistics.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "stats"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"project_id\": \"<long>\",\n  \"task_count\": \"<integer>\",\n  \"sheet_count\": \"<integer>\",\n  \"attachment_count\": \"<integer>\",\n  \"form_count\": \"<integer>\",\n  \"rfi_count\": \"<integer>\",\n  \"submittal_count\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:37:45.000Z",
+                      "updatedAt": "2026-07-28T01:37:45.000Z",
+                      "uid": "35240-b13293c0-9ee7-46f0-8c05-836b2ed5f67a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:45.000Z",
+                  "updatedAt": "2026-07-28T01:37:45.000Z",
+                  "uid": "35240-eb9aebb3-ea2f-4b68-bde2-2b7af76a5e7e"
+                }
+              ],
+              "id": "3c4762c1-ec63-443e-9de9-56c6fe80882b",
+              "createdAt": "2026-07-28T01:37:45.000Z",
+              "updatedAt": "2026-07-28T01:37:45.000Z",
+              "uid": "35240-3c4762c1-ec63-443e-9de9-56c6fe80882b"
+            }
+          ],
+          "id": "b6519119-e5b0-4f26-99c3-c35a5917da9c",
+          "createdAt": "2026-07-28T01:37:45.000Z",
+          "updatedAt": "2026-07-28T01:37:45.000Z",
+          "uid": "35240-b6519119-e5b0-4f26-99c3-c35a5917da9c"
+        }
+      ],
+      "id": "45f1c5aa-6306-4faf-8e20-e05f91347f35",
+      "createdAt": "2026-07-28T01:37:45.000Z",
+      "updatedAt": "2026-07-28T01:37:45.000Z",
+      "uid": "35240-45f1c5aa-6306-4faf-8e20-e05f91347f35"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

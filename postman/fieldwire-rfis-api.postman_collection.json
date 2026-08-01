@@ -1,0 +1,500 @@
+{
+  "info": {
+    "_postman_id": "b1811cef-9557-4e52-ad06-42994ab03255",
+    "name": "Fieldwire Account Actual Costs RFIs API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:51.000Z",
+    "updatedAt": "2026-07-28T01:37:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b1811cef-9557-4e52-ad06-42994ab03255"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "rfis",
+              "item": [
+                {
+                  "name": "{rfi_id}",
+                  "item": [
+                    {
+                      "name": "Get RFI By ID",
+                      "id": "8f89e5f3-5cff-4a43-a440-6adeab6a848e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/rfis/:rfi_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "rfis",
+                            ":rfi_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bd33c627-484e-4399-8e24-ec07e1c0777d",
+                              "key": "project_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "c4d2af61-3763-4a7e-997d-c5e45bc6adec",
+                              "key": "rfi_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "d083116c-6fa0-43ef-af6c-493250bbfc48",
+                          "name": "RFI.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/rfis/:rfi_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "rfis",
+                                ":rfi_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                },
+                                {
+                                  "key": "rfi_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"closed\",\n  \"priority\": \"high\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:37:52.000Z",
+                          "updatedAt": "2026-07-28T01:37:52.000Z",
+                          "uid": "35240-d083116c-6fa0-43ef-af6c-493250bbfc48"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:52.000Z",
+                      "updatedAt": "2026-07-28T01:37:52.000Z",
+                      "uid": "35240-8f89e5f3-5cff-4a43-a440-6adeab6a848e"
+                    },
+                    {
+                      "name": "Update RFI By ID",
+                      "id": "fe6d3aa1-6b8d-4a6a-a57f-6a0d6020b41d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"void\",\n  \"priority\": \"normal\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/rfis/:rfi_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "rfis",
+                            ":rfi_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8f3713d-8e51-4575-ab56-4c09e444d6d7",
+                              "key": "project_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "52dc2aee-26ad-44ce-bdf3-a367a0fc5bb8",
+                              "key": "rfi_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "156974be-6933-4855-8495-101c997fa14e",
+                          "name": "Updated RFI.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"void\",\n  \"priority\": \"normal\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/rfis/:rfi_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "rfis",
+                                ":rfi_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project_id"
+                                },
+                                {
+                                  "key": "rfi_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"closed\",\n  \"priority\": \"high\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:37:52.000Z",
+                          "updatedAt": "2026-07-28T01:37:52.000Z",
+                          "uid": "35240-156974be-6933-4855-8495-101c997fa14e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:52.000Z",
+                      "updatedAt": "2026-07-28T01:37:52.000Z",
+                      "uid": "35240-fe6d3aa1-6b8d-4a6a-a57f-6a0d6020b41d"
+                    }
+                  ],
+                  "id": "f8c4e5bb-53f8-4ae6-bf3a-fe78f06ae9e8",
+                  "createdAt": "2026-07-28T01:37:52.000Z",
+                  "updatedAt": "2026-07-28T01:37:52.000Z",
+                  "uid": "35240-f8c4e5bb-53f8-4ae6-bf3a-fe78f06ae9e8"
+                },
+                {
+                  "name": "Get RFIs In Project",
+                  "id": "f618435a-afac-4764-a90c-bc4a0544e201",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/rfis",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "rfis"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2154d2b7-d8e3-4bb5-8035-1d182969b5e6",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "274613de-2dcc-4694-9ddc-57aa718703c6",
+                      "name": "RFI list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/rfis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "rfis"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"question\": \"<string>\",\n    \"answer\": \"<string>\",\n    \"status\": \"draft\",\n    \"priority\": \"high\",\n    \"spec_section_id\": \"<long>\",\n    \"ball_in_court_user_id\": \"<long>\",\n    \"due_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"question\": \"<string>\",\n    \"answer\": \"<string>\",\n    \"status\": \"closed\",\n    \"priority\": \"low\",\n    \"spec_section_id\": \"<long>\",\n    \"ball_in_court_user_id\": \"<long>\",\n    \"due_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:52.000Z",
+                      "updatedAt": "2026-07-28T01:37:52.000Z",
+                      "uid": "35240-274613de-2dcc-4694-9ddc-57aa718703c6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:52.000Z",
+                  "updatedAt": "2026-07-28T01:37:52.000Z",
+                  "uid": "35240-f618435a-afac-4764-a90c-bc4a0544e201"
+                },
+                {
+                  "name": "Create RFI In Project",
+                  "id": "78197c81-6d91-47ca-83ac-9cbfb3e14252",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"priority\": \"high\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/rfis",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "rfis"
+                      ],
+                      "variable": [
+                        {
+                          "id": "927b0b47-07b2-49f7-8459-51b0cdc1cad5",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "bd313747-7dba-4171-9351-5a845d53518e",
+                      "name": "Created RFI.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"priority\": \"high\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/rfis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "rfis"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"closed\",\n  \"priority\": \"high\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:52.000Z",
+                      "updatedAt": "2026-07-28T01:37:52.000Z",
+                      "uid": "35240-bd313747-7dba-4171-9351-5a845d53518e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:52.000Z",
+                  "updatedAt": "2026-07-28T01:37:52.000Z",
+                  "uid": "35240-78197c81-6d91-47ca-83ac-9cbfb3e14252"
+                }
+              ],
+              "id": "4e2a62d0-a18d-47b7-ac9f-0f7132dcb0ab",
+              "createdAt": "2026-07-28T01:37:52.000Z",
+              "updatedAt": "2026-07-28T01:37:52.000Z",
+              "uid": "35240-4e2a62d0-a18d-47b7-ac9f-0f7132dcb0ab"
+            }
+          ],
+          "id": "e6039434-df44-4aa0-818e-3bb78b2ed43c",
+          "createdAt": "2026-07-28T01:37:52.000Z",
+          "updatedAt": "2026-07-28T01:37:52.000Z",
+          "uid": "35240-e6039434-df44-4aa0-818e-3bb78b2ed43c"
+        }
+      ],
+      "id": "f10a41ed-8f41-4fc9-93bd-d6b1729f2ca5",
+      "createdAt": "2026-07-28T01:37:52.000Z",
+      "updatedAt": "2026-07-28T01:37:52.000Z",
+      "uid": "35240-f10a41ed-8f41-4fc9-93bd-d6b1729f2ca5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

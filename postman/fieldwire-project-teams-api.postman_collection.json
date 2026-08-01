@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "fd4df7ef-3073-4411-b5d3-693e76f35e65",
+    "name": "Fieldwire Account Actual Costs Project Teams API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:45.000Z",
+    "updatedAt": "2026-07-28T01:37:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fd4df7ef-3073-4411-b5d3-693e76f35e65"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "teams",
+              "item": [
+                {
+                  "name": "Get Project Teams",
+                  "id": "60635038-8234-4605-b3ea-67d06a96747a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "teams"
+                      ],
+                      "variable": [
+                        {
+                          "id": "39b00f54-8a4e-431e-95da-08ebcf1bb173",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) Project identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "cf6593d9-cc9c-4356-a950-eac84290e247",
+                      "name": "Team list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/teams",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "teams"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"project_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"project_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:46.000Z",
+                      "updatedAt": "2026-07-28T01:37:46.000Z",
+                      "uid": "35240-cf6593d9-cc9c-4356-a950-eac84290e247"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:46.000Z",
+                  "updatedAt": "2026-07-28T01:37:46.000Z",
+                  "uid": "35240-60635038-8234-4605-b3ea-67d06a96747a"
+                }
+              ],
+              "id": "83da9144-c77a-46dc-83d4-adedf4fa4979",
+              "createdAt": "2026-07-28T01:37:46.000Z",
+              "updatedAt": "2026-07-28T01:37:46.000Z",
+              "uid": "35240-83da9144-c77a-46dc-83d4-adedf4fa4979"
+            }
+          ],
+          "id": "b9436519-7f3b-4cc2-96f7-ef8bf3db2854",
+          "createdAt": "2026-07-28T01:37:46.000Z",
+          "updatedAt": "2026-07-28T01:37:46.000Z",
+          "uid": "35240-b9436519-7f3b-4cc2-96f7-ef8bf3db2854"
+        }
+      ],
+      "id": "7b5f6b1c-4c2b-43c9-aed9-b5a0ef0ebd8f",
+      "createdAt": "2026-07-28T01:37:46.000Z",
+      "updatedAt": "2026-07-28T01:37:46.000Z",
+      "uid": "35240-7b5f6b1c-4c2b-43c9-aed9-b5a0ef0ebd8f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

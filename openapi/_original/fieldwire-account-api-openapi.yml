@@ -1,0 +1,325 @@
+openapi: 3.1.0
+info:
+  title: Fieldwire Account API
+  description: |
+    Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+    API key (refresh token) for a short-lived JWT access token, and manage
+    account-level users, roles, attachments, data types, custom stamps, account
+    form templates, and project transfers. All requests target the global super
+    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+    use the regional Projects API (`client-api.us.fieldwire.com` or
+    `client-api.eu.fieldwire.com`).
+  version: v3.1
+  contact:
+    name: Fieldwire Developer Support
+    url: https://developers.fieldwire.com/
+  license:
+    name: Fieldwire Terms of Service
+    url: https://www.fieldwire.com/terms/
+servers:
+  - url: https://client-api.super.fieldwire.com
+    description: Global Super Host
+security:
+  - BearerAuth: []
+tags:
+  - name: Authentication
+    description: Refresh-token / JWT exchange and session management.
+  - name: Users
+    description: Account-level user, role, and permission management.
+  - name: Form Templates
+    description: Account-level form template lifecycle, duplication, and transfer.
+  - name: Custom Stamps
+    description: Account-level custom stamps used on markups across projects.
+paths:
+  /api_keys/jwt:
+    post:
+      operationId: getApiKeyJwt
+      summary: Exchange API Key For Access Token
+      description: |
+        Exchange the long-lived refresh token (API key) generated from the
+        Fieldwire account settings for a short-lived JWT access token. The JWT
+        protects all subsequent calls and expires in minutes to hours.
+      tags: [Authentication]
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JwtRequest'
+      responses:
+        '200':
+          description: Access token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtResponse'
+        '401':
+          description: Invalid or revoked refresh token.
+  /account/users:
+    get:
+      operationId: getAccountUsers
+      summary: Get Account Users
+      description: List all users belonging to the authenticated Fieldwire account.
+      tags: [Users]
+      responses:
+        '200':
+          description: Account user list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountUser'
+  /account/users/{user_id}:
+    get:
+      operationId: getAccountUserById
+      summary: Get Account User By ID
+      description: Retrieve a single account user by ID.
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Account user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountUser'
+    patch:
+      operationId: updateAccountUserById
+      summary: Update Account User By ID
+      description: Update profile fields, role, or status for an account user.
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountUserUpdate'
+      responses:
+        '200':
+          description: Updated account user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountUser'
+  /account/form_templates:
+    get:
+      operationId: getAccountFormTemplates
+      summary: Get Account Form Templates
+      description: List form templates published at the account level.
+      tags: [Form Templates]
+      responses:
+        '200':
+          description: Form template list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormTemplate'
+    post:
+      operationId: createAccountFormTemplate
+      summary: Create Account Form Template
+      description: Create a new account-level form template.
+      tags: [Form Templates]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormTemplate'
+      responses:
+        '201':
+          description: Created form template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormTemplate'
+  /account/form_templates/{form_template_id}:
+    get:
+      operationId: getAccountFormTemplateById
+      summary: Get Account Form Template By ID
+      tags: [Form Templates]
+      parameters:
+        - $ref: '#/components/parameters/FormTemplateId'
+      responses:
+        '200':
+          description: Form template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormTemplate'
+    patch:
+      operationId: updateAccountFormTemplateById
+      summary: Update Account Form Template By ID
+      tags: [Form Templates]
+      parameters:
+        - $ref: '#/components/parameters/FormTemplateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormTemplate'
+      responses:
+        '200':
+          description: Updated form template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormTemplate'
+  /account/custom_stamps:
+    get:
+      operationId: getAccountCustomStamps
+      summary: Get Account Custom Stamps
+      tags: [Custom Stamps]
+      responses:
+        '200':
+          description: Custom stamp list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomStamp'
+    post:
+      operationId: createAccountCustomStamp
+      summary: Create Account Custom Stamp
+      tags: [Custom Stamps]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomStamp'
+      responses:
+        '201':
+          description: Created custom stamp.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomStamp'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Send the short-lived access token returned by `POST /api_keys/jwt` as
+        `Authorization: Bearer <access_token>`. Also include the
+        `Fieldwire-Version` request header and `Content-Type: application/json`.
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: Account user identifier.
+      schema:
+        type: integer
+        format: int64
+    FormTemplateId:
+      name: form_template_id
+      in: path
+      required: true
+      description: Account form template identifier.
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    JwtRequest:
+      type: object
+      required: [api_token]
+      properties:
+        api_token:
+          type: string
+          description: Long-lived refresh token (API key) from the Fieldwire account settings.
+    JwtResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Short-lived JWT used as the bearer token for subsequent calls.
+        expires_at:
+          type: string
+          format: date-time
+          description: Access-token expiry timestamp (ISO 8601, UTC).
+    AccountUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        role:
+          type: string
+          enum: [owner, admin, member, follower]
+        status:
+          type: string
+          enum: [active, invited, deactivated]
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    AccountUserUpdate:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        role:
+          type: string
+          enum: [owner, admin, member, follower]
+        status:
+          type: string
+          enum: [active, invited, deactivated]
+    FormTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        published:
+          type: boolean
+        code:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    CustomStamp:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        attachment_url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time

@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "ddf00c82-b9a0-40be-931d-0b890405936c",
+    "name": "Fieldwire Account Actual Costs Submittals API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:55.000Z",
+    "updatedAt": "2026-07-28T01:37:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ddf00c82-b9a0-40be-931d-0b890405936c"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "submittals",
+              "item": [
+                {
+                  "name": "Get Submittals In Project",
+                  "id": "a28107fd-4d40-46af-b688-e2d6d3feb672",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/submittals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "submittals"
+                      ],
+                      "variable": [
+                        {
+                          "id": "47a5e7a3-744d-4edd-9133-95e0cb59038b",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e2f22b83-3f40-4ba3-9129-eff1a66577b3",
+                      "name": "Submittal list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/submittals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "submittals"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"status\": \"rejected\",\n    \"spec_section_id\": \"<long>\",\n    \"ball_in_court_user_id\": \"<long>\",\n    \"due_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"status\": \"rejected\",\n    \"spec_section_id\": \"<long>\",\n    \"ball_in_court_user_id\": \"<long>\",\n    \"due_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:56.000Z",
+                      "updatedAt": "2026-07-28T01:37:56.000Z",
+                      "uid": "35240-e2f22b83-3f40-4ba3-9129-eff1a66577b3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:56.000Z",
+                  "updatedAt": "2026-07-28T01:37:56.000Z",
+                  "uid": "35240-a28107fd-4d40-46af-b688-e2d6d3feb672"
+                },
+                {
+                  "name": "Create Submittal In Project",
+                  "id": "9969a0a1-7d64-421e-ba70-141121de2153",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/submittals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "submittals"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eaa1eecc-9205-4dc8-a94a-bdb9eb4bc3e9",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1a8154cf-0cdc-492e-94e5-fac7af33401c",
+                      "name": "Created submittal.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/submittals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "submittals"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"approved_as_noted\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:56.000Z",
+                      "updatedAt": "2026-07-28T01:37:56.000Z",
+                      "uid": "35240-1a8154cf-0cdc-492e-94e5-fac7af33401c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:56.000Z",
+                  "updatedAt": "2026-07-28T01:37:56.000Z",
+                  "uid": "35240-9969a0a1-7d64-421e-ba70-141121de2153"
+                }
+              ],
+              "id": "74146e83-e98b-4db0-82fd-4337e1ceab87",
+              "createdAt": "2026-07-28T01:37:56.000Z",
+              "updatedAt": "2026-07-28T01:37:56.000Z",
+              "uid": "35240-74146e83-e98b-4db0-82fd-4337e1ceab87"
+            }
+          ],
+          "id": "62108a5c-7f6d-4fee-b5c7-8e54b5ce9d51",
+          "createdAt": "2026-07-28T01:37:56.000Z",
+          "updatedAt": "2026-07-28T01:37:56.000Z",
+          "uid": "35240-62108a5c-7f6d-4fee-b5c7-8e54b5ce9d51"
+        }
+      ],
+      "id": "bb2ba3f4-8d25-4b3c-b11c-73a5d1ac206f",
+      "createdAt": "2026-07-28T01:37:56.000Z",
+      "updatedAt": "2026-07-28T01:37:56.000Z",
+      "uid": "35240-bb2ba3f4-8d25-4b3c-b11c-73a5d1ac206f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

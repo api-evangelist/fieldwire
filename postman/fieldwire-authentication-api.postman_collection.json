@@ -1,0 +1,199 @@
+{
+  "info": {
+    "_postman_id": "285092df-fff0-48de-923a-897aa5eed712",
+    "name": "Fieldwire Account Actual Costs Authentication API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:13.000Z",
+    "updatedAt": "2026-07-28T01:37:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-285092df-fff0-48de-923a-897aa5eed712"
+  },
+  "item": [
+    {
+      "name": "api_keys",
+      "item": [
+        {
+          "name": "jwt",
+          "item": [
+            {
+              "name": "Exchange API Key For Access Token",
+              "id": "7123ab6b-c534-4ed3-b9a8-d40775d9567c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"api_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api_keys/jwt",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_keys",
+                    "jwt"
+                  ]
+                },
+                "description": "Exchange the long-lived refresh token (API key) generated from the\nFieldwire account settings for a short-lived JWT access token. The JWT\nprotects all subsequent calls and expires in minutes to hours.\n"
+              },
+              "response": [
+                {
+                  "id": "dcf79504-c3ca-45ca-bda1-b2a2d60cd56f",
+                  "name": "Access token issued.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"api_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/jwt",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "jwt"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:37:14.000Z",
+                  "updatedAt": "2026-07-28T01:37:14.000Z",
+                  "uid": "35240-dcf79504-c3ca-45ca-bda1-b2a2d60cd56f"
+                },
+                {
+                  "id": "ded163b6-cf74-48a9-b91a-a2b23b7d892c",
+                  "name": "Invalid or revoked refresh token.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"api_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/jwt",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "jwt"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:37:14.000Z",
+                  "updatedAt": "2026-07-28T01:37:14.000Z",
+                  "uid": "35240-ded163b6-cf74-48a9-b91a-a2b23b7d892c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:37:13.000Z",
+              "updatedAt": "2026-07-28T01:37:13.000Z",
+              "uid": "35240-7123ab6b-c534-4ed3-b9a8-d40775d9567c"
+            }
+          ],
+          "id": "b1c72144-de80-41ed-9519-4eda7e31cd1e",
+          "createdAt": "2026-07-28T01:37:13.000Z",
+          "updatedAt": "2026-07-28T01:37:13.000Z",
+          "uid": "35240-b1c72144-de80-41ed-9519-4eda7e31cd1e"
+        }
+      ],
+      "id": "21813505-2125-4d3d-ae35-77f40da61794",
+      "createdAt": "2026-07-28T01:37:13.000Z",
+      "updatedAt": "2026-07-28T01:37:13.000Z",
+      "uid": "35240-21813505-2125-4d3d-ae35-77f40da61794"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

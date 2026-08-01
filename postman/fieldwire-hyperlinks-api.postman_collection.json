@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "3cdff171-6306-4487-a6cb-7e8dbee613ad",
+    "name": "Fieldwire Account Actual Costs Hyperlinks API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:42.000Z",
+    "updatedAt": "2026-07-28T01:37:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3cdff171-6306-4487-a6cb-7e8dbee613ad"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "hyperlinks",
+              "item": [
+                {
+                  "name": "Get Hyperlinks In Project",
+                  "id": "802a2e4b-070d-4fe5-93ed-1141181bba08",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/hyperlinks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "hyperlinks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7c878060-560d-42e5-abad-c0021683f49e",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "26ee28a5-204b-4d5e-ba94-60b02c9b4ba5",
+                      "name": "Hyperlink list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/hyperlinks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "hyperlinks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"source_sheet_id\": \"<long>\",\n    \"target_sheet_id\": \"<long>\",\n    \"label\": \"<string>\",\n    \"position\": {\n      \"x\": \"<double>\",\n      \"y\": \"<double>\"\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"source_sheet_id\": \"<long>\",\n    \"target_sheet_id\": \"<long>\",\n    \"label\": \"<string>\",\n    \"position\": {\n      \"x\": \"<double>\",\n      \"y\": \"<double>\"\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:43.000Z",
+                      "updatedAt": "2026-07-28T01:37:43.000Z",
+                      "uid": "35240-26ee28a5-204b-4d5e-ba94-60b02c9b4ba5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:43.000Z",
+                  "updatedAt": "2026-07-28T01:37:43.000Z",
+                  "uid": "35240-802a2e4b-070d-4fe5-93ed-1141181bba08"
+                }
+              ],
+              "id": "0c9b808d-9650-4ab8-9a30-74440b6b90f0",
+              "createdAt": "2026-07-28T01:37:43.000Z",
+              "updatedAt": "2026-07-28T01:37:43.000Z",
+              "uid": "35240-0c9b808d-9650-4ab8-9a30-74440b6b90f0"
+            }
+          ],
+          "id": "3bbaf55f-1841-43fb-ad07-61008d48e3c8",
+          "createdAt": "2026-07-28T01:37:43.000Z",
+          "updatedAt": "2026-07-28T01:37:43.000Z",
+          "uid": "35240-3bbaf55f-1841-43fb-ad07-61008d48e3c8"
+        }
+      ],
+      "id": "0f390a79-ab49-4953-87da-63c6cb220a7d",
+      "createdAt": "2026-07-28T01:37:43.000Z",
+      "updatedAt": "2026-07-28T01:37:43.000Z",
+      "uid": "35240-0f390a79-ab49-4953-87da-63c6cb220a7d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

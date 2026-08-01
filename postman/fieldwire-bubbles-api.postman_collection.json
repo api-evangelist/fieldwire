@@ -1,0 +1,309 @@
+{
+  "info": {
+    "_postman_id": "50280c9f-ae69-4557-9e8b-9afb8a06e34b",
+    "name": "Fieldwire Account Actual Costs Bubbles API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:16.000Z",
+    "updatedAt": "2026-07-28T01:37:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50280c9f-ae69-4557-9e8b-9afb8a06e34b"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "tasks",
+              "item": [
+                {
+                  "name": "{task_id}",
+                  "item": [
+                    {
+                      "name": "bubbles",
+                      "item": [
+                        {
+                          "name": "Get Bubbles In Task",
+                          "id": "9ba37f93-5b15-4af5-91cc-efd76eb3ba65",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/bubbles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id",
+                                "bubbles"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a3b25cf4-6f66-4371-8283-dd7c7e78b1af",
+                                  "key": "project_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "49958813-2482-4d63-ad78-be1d11e5bfd0",
+                                  "key": "task_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve all bubbles (comments, photos, video, links, attachments) associated with a task."
+                          },
+                          "response": [
+                            {
+                              "id": "bc67e89b-3dbe-4660-b44f-d2847574e353",
+                              "name": "Bubble list.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/bubbles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":project_id",
+                                    "tasks",
+                                    ":task_id",
+                                    "bubbles"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "task_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<long>\",\n    \"task_id\": \"<long>\",\n    \"kind\": \"pdf\",\n    \"text\": \"<string>\",\n    \"attachment_id\": \"<long>\",\n    \"author_user_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"task_id\": \"<long>\",\n    \"kind\": \"comment\",\n    \"text\": \"<string>\",\n    \"attachment_id\": \"<long>\",\n    \"author_user_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-07-28T01:37:17.000Z",
+                              "updatedAt": "2026-07-28T01:37:17.000Z",
+                              "uid": "35240-bc67e89b-3dbe-4660-b44f-d2847574e353"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:37:16.000Z",
+                          "updatedAt": "2026-07-28T01:37:16.000Z",
+                          "uid": "35240-9ba37f93-5b15-4af5-91cc-efd76eb3ba65"
+                        },
+                        {
+                          "name": "Create Bubble In Task",
+                          "id": "cc4fe229-ba73-41fe-bcf1-3eb8835ae14a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"kind\": \"video\",\n  \"text\": \"<string>\",\n  \"attachment_id\": \"<long>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/bubbles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":project_id",
+                                "tasks",
+                                ":task_id",
+                                "bubbles"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "256cc175-0f9e-4047-809a-bc7b1a4d98c2",
+                                  "key": "project_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "8edb7a19-2bb9-46fc-82bd-bdbfc00ce984",
+                                  "key": "task_id",
+                                  "value": "<long>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Create a new bubble in a task. Bubble kinds include `comment`, `photo`,\n`video`, `link`, `pdf`, and `attachment` (S3-uploaded file).\n"
+                          },
+                          "response": [
+                            {
+                              "id": "81d703a5-0289-48d8-b999-1bb7b15341d4",
+                              "name": "Created bubble.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"kind\": \"video\",\n  \"text\": \"<string>\",\n  \"attachment_id\": \"<long>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:project_id/tasks/:task_id/bubbles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":project_id",
+                                    "tasks",
+                                    ":task_id",
+                                    "bubbles"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project_id"
+                                    },
+                                    {
+                                      "key": "task_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<long>\",\n  \"task_id\": \"<long>\",\n  \"kind\": \"attachment\",\n  \"text\": \"<string>\",\n  \"attachment_id\": \"<long>\",\n  \"author_user_id\": \"<long>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T01:37:17.000Z",
+                              "updatedAt": "2026-07-28T01:37:17.000Z",
+                              "uid": "35240-81d703a5-0289-48d8-b999-1bb7b15341d4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:37:16.000Z",
+                          "updatedAt": "2026-07-28T01:37:16.000Z",
+                          "uid": "35240-cc4fe229-ba73-41fe-bcf1-3eb8835ae14a"
+                        }
+                      ],
+                      "id": "ce5a10f4-b580-4f06-8fff-1a5f04acc5d7",
+                      "createdAt": "2026-07-28T01:37:16.000Z",
+                      "updatedAt": "2026-07-28T01:37:16.000Z",
+                      "uid": "35240-ce5a10f4-b580-4f06-8fff-1a5f04acc5d7"
+                    }
+                  ],
+                  "id": "315c107e-48b6-44ec-8182-21485a62f20e",
+                  "createdAt": "2026-07-28T01:37:16.000Z",
+                  "updatedAt": "2026-07-28T01:37:16.000Z",
+                  "uid": "35240-315c107e-48b6-44ec-8182-21485a62f20e"
+                }
+              ],
+              "id": "049a4a2d-bfb7-4a66-b858-fd28498ea96b",
+              "createdAt": "2026-07-28T01:37:16.000Z",
+              "updatedAt": "2026-07-28T01:37:16.000Z",
+              "uid": "35240-049a4a2d-bfb7-4a66-b858-fd28498ea96b"
+            }
+          ],
+          "id": "bd369f57-2cce-4ed1-8859-5cea70e2af09",
+          "createdAt": "2026-07-28T01:37:16.000Z",
+          "updatedAt": "2026-07-28T01:37:16.000Z",
+          "uid": "35240-bd369f57-2cce-4ed1-8859-5cea70e2af09"
+        }
+      ],
+      "id": "43f50e9b-7567-403b-a09b-24ce0c38b020",
+      "createdAt": "2026-07-28T01:37:16.000Z",
+      "updatedAt": "2026-07-28T01:37:16.000Z",
+      "uid": "35240-43f50e9b-7567-403b-a09b-24ce0c38b020"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

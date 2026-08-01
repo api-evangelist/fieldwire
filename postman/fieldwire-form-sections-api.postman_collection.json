@@ -1,0 +1,276 @@
+{
+  "info": {
+    "_postman_id": "3ddb6fac-c95d-4623-92cf-f96ac0b328fc",
+    "name": "Fieldwire Account Actual Costs Form Sections API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:40.000Z",
+    "updatedAt": "2026-07-28T01:37:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3ddb6fac-c95d-4623-92cf-f96ac0b328fc"
+  },
+  "item": [
+    {
+      "name": "account",
+      "item": [
+        {
+          "name": "form_templates",
+          "item": [
+            {
+              "name": "{form_template_id}",
+              "item": [
+                {
+                  "name": "sections",
+                  "item": [
+                    {
+                      "name": "Get Form Template Sections",
+                      "id": "7404cd32-6254-46bf-a7ee-ec2f3fd6dcba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/account/form_templates/:form_template_id/sections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "account",
+                            "form_templates",
+                            ":form_template_id",
+                            "sections"
+                          ],
+                          "variable": [
+                            {
+                              "id": "28edab7a-962d-4f6a-8fc1-6aaafdf53a89",
+                              "key": "form_template_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "9ddbb3c9-50cc-469b-ab93-7b33272c7f8c",
+                          "name": "Section list.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/account/form_templates/:form_template_id/sections",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "account",
+                                "form_templates",
+                                ":form_template_id",
+                                "sections"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "form_template_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<long>\",\n    \"form_template_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"position\": \"<double>\",\n    \"is_repeatable\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"form_template_id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"position\": \"<double>\",\n    \"is_repeatable\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-07-28T01:37:41.000Z",
+                          "updatedAt": "2026-07-28T01:37:41.000Z",
+                          "uid": "35240-9ddbb3c9-50cc-469b-ab93-7b33272c7f8c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:41.000Z",
+                      "updatedAt": "2026-07-28T01:37:41.000Z",
+                      "uid": "35240-7404cd32-6254-46bf-a7ee-ec2f3fd6dcba"
+                    },
+                    {
+                      "name": "Create Form Template Section",
+                      "id": "11bfc87c-ce09-432c-ad2b-f8452d9f94d5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/account/form_templates/:form_template_id/sections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "account",
+                            "form_templates",
+                            ":form_template_id",
+                            "sections"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0a5af5d5-3681-4cbd-9ff0-464bdac6882e",
+                              "key": "form_template_id",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ec156a00-e90b-4d39-8134-1fa21db699cf",
+                          "name": "Created section.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/account/form_templates/:form_template_id/sections",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "account",
+                                "form_templates",
+                                ":form_template_id",
+                                "sections"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "form_template_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:37:41.000Z",
+                          "updatedAt": "2026-07-28T01:37:41.000Z",
+                          "uid": "35240-ec156a00-e90b-4d39-8134-1fa21db699cf"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:37:41.000Z",
+                      "updatedAt": "2026-07-28T01:37:41.000Z",
+                      "uid": "35240-11bfc87c-ce09-432c-ad2b-f8452d9f94d5"
+                    }
+                  ],
+                  "id": "30dcd714-2a89-4b16-a562-82a5b87e5b4f",
+                  "createdAt": "2026-07-28T01:37:41.000Z",
+                  "updatedAt": "2026-07-28T01:37:41.000Z",
+                  "uid": "35240-30dcd714-2a89-4b16-a562-82a5b87e5b4f"
+                }
+              ],
+              "id": "18f05d99-90cf-4ac5-8103-0dd3dd1e17b2",
+              "createdAt": "2026-07-28T01:37:41.000Z",
+              "updatedAt": "2026-07-28T01:37:41.000Z",
+              "uid": "35240-18f05d99-90cf-4ac5-8103-0dd3dd1e17b2"
+            }
+          ],
+          "id": "ba38c6f6-49b8-4d81-bc74-b7ed4543e66f",
+          "createdAt": "2026-07-28T01:37:41.000Z",
+          "updatedAt": "2026-07-28T01:37:41.000Z",
+          "uid": "35240-ba38c6f6-49b8-4d81-bc74-b7ed4543e66f"
+        }
+      ],
+      "id": "f3c533be-c714-4b66-8f74-ba0d17a56f16",
+      "createdAt": "2026-07-28T01:37:41.000Z",
+      "updatedAt": "2026-07-28T01:37:41.000Z",
+      "uid": "35240-f3c533be-c714-4b66-8f74-ba0d17a56f16"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

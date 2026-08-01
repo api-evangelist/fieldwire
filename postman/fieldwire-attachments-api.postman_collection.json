@@ -1,0 +1,264 @@
+{
+  "info": {
+    "_postman_id": "9aab762c-a5b2-4bc1-a344-1cb5d44ac081",
+    "name": "Fieldwire Account Actual Costs Attachments API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:11.000Z",
+    "updatedAt": "2026-07-28T01:37:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9aab762c-a5b2-4bc1-a344-1cb5d44ac081"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "attachments",
+              "item": [
+                {
+                  "name": "Get Attachments In Project",
+                  "id": "0b1ace04-794a-4bb3-9165-204262065282",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/attachments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "attachments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ad159938-4570-4c4c-ae4e-4dbbc00caded",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b8b5ff09-d67e-47b6-a49b-c8fa55707b0f",
+                      "name": "Attachment list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/attachments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "attachments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"filename\": \"<string>\",\n    \"content_type\": \"<string>\",\n    \"size\": \"<long>\",\n    \"url\": \"<uri>\",\n    \"thumb_url\": \"<uri>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"project_id\": \"<long>\",\n    \"filename\": \"<string>\",\n    \"content_type\": \"<string>\",\n    \"size\": \"<long>\",\n    \"url\": \"<uri>\",\n    \"thumb_url\": \"<uri>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:12.000Z",
+                      "updatedAt": "2026-07-28T01:37:12.000Z",
+                      "uid": "35240-b8b5ff09-d67e-47b6-a49b-c8fa55707b0f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:12.000Z",
+                  "updatedAt": "2026-07-28T01:37:12.000Z",
+                  "uid": "35240-0b1ace04-794a-4bb3-9165-204262065282"
+                },
+                {
+                  "name": "Create Attachment In Project",
+                  "id": "390c73bd-534e-4cdd-8a79-9a6c11a2fd43",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/attachments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "attachments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "efe439a7-fadb-4db5-9a1f-a3b610e1b218",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "6d0eba54-7380-4a48-ac07-55e3527d6022",
+                      "name": "Registered attachment.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/attachments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "attachments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"project_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\",\n  \"size\": \"<long>\",\n  \"url\": \"<uri>\",\n  \"thumb_url\": \"<uri>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:12.000Z",
+                      "updatedAt": "2026-07-28T01:37:12.000Z",
+                      "uid": "35240-6d0eba54-7380-4a48-ac07-55e3527d6022"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:12.000Z",
+                  "updatedAt": "2026-07-28T01:37:12.000Z",
+                  "uid": "35240-390c73bd-534e-4cdd-8a79-9a6c11a2fd43"
+                }
+              ],
+              "id": "ec45c404-3567-4970-afcc-8f2ec0275c64",
+              "createdAt": "2026-07-28T01:37:12.000Z",
+              "updatedAt": "2026-07-28T01:37:12.000Z",
+              "uid": "35240-ec45c404-3567-4970-afcc-8f2ec0275c64"
+            }
+          ],
+          "id": "0d12ef87-015b-487f-80f0-b6a144b3d551",
+          "createdAt": "2026-07-28T01:37:12.000Z",
+          "updatedAt": "2026-07-28T01:37:12.000Z",
+          "uid": "35240-0d12ef87-015b-487f-80f0-b6a144b3d551"
+        }
+      ],
+      "id": "b734150a-a68c-4994-ab3a-aa4ddf29a001",
+      "createdAt": "2026-07-28T01:37:12.000Z",
+      "updatedAt": "2026-07-28T01:37:12.000Z",
+      "uid": "35240-b734150a-a68c-4994-ab3a-aa4ddf29a001"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}

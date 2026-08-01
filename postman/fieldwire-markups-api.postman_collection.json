@@ -1,0 +1,264 @@
+{
+  "info": {
+    "_postman_id": "1f0d355e-ae95-445e-914a-98fa8f6f82ea",
+    "name": "Fieldwire Account Actual Costs Markups API",
+    "description": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:37:43.000Z",
+    "updatedAt": "2026-07-28T01:37:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1f0d355e-ae95-445e-914a-98fa8f6f82ea"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{project_id}",
+          "item": [
+            {
+              "name": "attachment_markups",
+              "item": [
+                {
+                  "name": "Get Attachment Markups In Project",
+                  "id": "2199c325-6b96-4c92-ae78-7c695a3f6896",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/attachment_markups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "attachment_markups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9ebbf361-54c7-4b77-b4ad-0c7910099167",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7220facc-f745-4033-8162-9bdd7f523d71",
+                      "name": "Markup list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/attachment_markups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "attachment_markups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<long>\",\n    \"attachment_id\": \"<long>\",\n    \"data\": {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"style\": \"text\",\n        \"color\": \"<string>\",\n        \"opacity\": \"<double>\",\n        \"width\": \"<double>\",\n        \"description\": \"<string>\",\n        \"fontSize\": \"<integer>\"\n      },\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [\n            \"<double>\",\n            \"<double>\"\n          ],\n          [\n            \"<double>\",\n            \"<double>\"\n          ]\n        ]\n      }\n    },\n    \"author_user_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"attachment_id\": \"<long>\",\n    \"data\": {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"style\": \"measurement\",\n        \"color\": \"<string>\",\n        \"opacity\": \"<double>\",\n        \"width\": \"<double>\",\n        \"description\": \"<string>\",\n        \"fontSize\": \"<integer>\"\n      },\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [\n            \"<double>\",\n            \"<double>\"\n          ],\n          [\n            \"<double>\",\n            \"<double>\"\n          ]\n        ]\n      }\n    },\n    \"author_user_id\": \"<long>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:37:44.000Z",
+                      "updatedAt": "2026-07-28T01:37:44.000Z",
+                      "uid": "35240-7220facc-f745-4033-8162-9bdd7f523d71"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:44.000Z",
+                  "updatedAt": "2026-07-28T01:37:44.000Z",
+                  "uid": "35240-2199c325-6b96-4c92-ae78-7c695a3f6896"
+                },
+                {
+                  "name": "Create Attachment Markup In Project",
+                  "id": "cb585b68-e1a3-4d8c-8171-00406fde2935",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"attachment_id\": \"<long>\",\n  \"data\": {\n    \"type\": \"Feature\",\n    \"properties\": {\n      \"style\": \"measurement\",\n      \"color\": \"<string>\",\n      \"opacity\": \"<double>\",\n      \"width\": \"<double>\",\n      \"description\": \"<string>\",\n      \"fontSize\": \"<integer>\"\n    },\n    \"geometry\": {\n      \"type\": \"Polygon\",\n      \"coordinates\": [\n        [\n          \"<double>\",\n          \"<double>\"\n        ],\n        [\n          \"<double>\",\n          \"<double>\"\n        ]\n      ]\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:project_id/attachment_markups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":project_id",
+                        "attachment_markups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a2e4f764-cf7c-472a-8879-65144c130fab",
+                          "key": "project_id",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Create a markup overlay on an attachment. The `data` field follows the\nGeoJSON Feature schema with `properties.style` in {`arrow`, `drawing`,\n`measurement`, `text`} and `geometry.type` in {`LineString`, `Polygon`}.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "13aa6d29-3484-4772-9ec9-f46892288374",
+                      "name": "Created markup.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"attachment_id\": \"<long>\",\n  \"data\": {\n    \"type\": \"Feature\",\n    \"properties\": {\n      \"style\": \"measurement\",\n      \"color\": \"<string>\",\n      \"opacity\": \"<double>\",\n      \"width\": \"<double>\",\n      \"description\": \"<string>\",\n      \"fontSize\": \"<integer>\"\n    },\n    \"geometry\": {\n      \"type\": \"Polygon\",\n      \"coordinates\": [\n        [\n          \"<double>\",\n          \"<double>\"\n        ],\n        [\n          \"<double>\",\n          \"<double>\"\n        ]\n      ]\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:project_id/attachment_markups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":project_id",
+                            "attachment_markups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<long>\",\n  \"attachment_id\": \"<long>\",\n  \"data\": {\n    \"type\": \"Feature\",\n    \"properties\": {\n      \"style\": \"text\",\n      \"color\": \"<string>\",\n      \"opacity\": \"<double>\",\n      \"width\": \"<double>\",\n      \"description\": \"<string>\",\n      \"fontSize\": \"<integer>\"\n    },\n    \"geometry\": {\n      \"type\": \"LineString\",\n      \"coordinates\": [\n        [\n          \"<double>\",\n          \"<double>\"\n        ],\n        [\n          \"<double>\",\n          \"<double>\"\n        ]\n      ]\n    }\n  },\n  \"author_user_id\": \"<long>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:37:44.000Z",
+                      "updatedAt": "2026-07-28T01:37:44.000Z",
+                      "uid": "35240-13aa6d29-3484-4772-9ec9-f46892288374"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:37:44.000Z",
+                  "updatedAt": "2026-07-28T01:37:44.000Z",
+                  "uid": "35240-cb585b68-e1a3-4d8c-8171-00406fde2935"
+                }
+              ],
+              "id": "ddfe4c58-5def-455a-806f-d72c54ac775a",
+              "createdAt": "2026-07-28T01:37:43.000Z",
+              "updatedAt": "2026-07-28T01:37:43.000Z",
+              "uid": "35240-ddfe4c58-5def-455a-806f-d72c54ac775a"
+            }
+          ],
+          "id": "6c804da3-f76f-4c2c-934f-f18cb15a91e5",
+          "createdAt": "2026-07-28T01:37:43.000Z",
+          "updatedAt": "2026-07-28T01:37:43.000Z",
+          "uid": "35240-6c804da3-f76f-4c2c-934f-f18cb15a91e5"
+        }
+      ],
+      "id": "4a02ee56-bcf6-4c0c-9f38-7dc4004490f2",
+      "createdAt": "2026-07-28T01:37:43.000Z",
+      "updatedAt": "2026-07-28T01:37:43.000Z",
+      "uid": "35240-4a02ee56-bcf6-4c0c-9f38-7dc4004490f2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://client-api.super.fieldwire.com"
+    }
+  ]
+}
