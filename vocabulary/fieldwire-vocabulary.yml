@@ -99,7 +99,7 @@ domains:
     description: Contractual information flow.
     terms:
       - term: RFI
-        definition: Request for Information — a formal question to the design team. Lifecycle states: draft, open, answered, closed, void.
+        definition: "Request for Information — a formal question to the design team. Lifecycle states: draft, open, answered, closed, void."
       - term: Submittal
         definition: A document, sample, or shop drawing submitted for review against the project's spec sections. Lifecycle states include submitted, in_review, approved, approved_as_noted, revise_and_resubmit, rejected, void.
       - term: Spec Section
