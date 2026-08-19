@@ -1,24 +1,24 @@
 {
   "item": [
     {
-      "id": "41b74c20-ec4a-47a8-898d-f61ee8d3dee4",
-      "name": "Attachments",
+      "id": "3709db2d-5116-4f3a-8c19-c1c177695c93",
+      "name": "Change Orders",
       "description": {
-        "content": "Project attachment lifecycle.",
+        "content": "Project change orders that adjust scope and budget.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "7866d12b-e8ac-4194-ad3a-92620b8dc4b5",
-          "name": "Get Attachments In Project",
+          "id": "dd91cbfc-7477-4c97-ae29-457ce4d56f15",
+          "name": "Get Change Orders In Project",
           "request": {
-            "name": "Get Attachments In Project",
+            "name": "Get Change Orders In Project",
             "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "attachments"
+                "change_orders"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -45,14 +45,14 @@
           },
           "response": [
             {
-              "id": "892432e6-f91f-40c8-a122-eeb8ff971cd0",
-              "name": "Attachment list.",
+              "id": "9d518e8f-1d67-4722-a5a8-b189f6dafb5e",
+              "name": "Change order list.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "attachments"
+                    "change_orders"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -93,7 +93,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 1107,\n    \"project_id\": 7132,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 4561,\n    \"url\": \"http://PuZOtaFPsJ.zbktOyB.7X8vMFo56XtaWb9WIfc7MRZCs\",\n    \"thumb_url\": \"https://cAsaT.owcqMQv-kdvwnz4mZZ,fR3YJED.HdYEdo7+pM5\",\n    \"created_at\": \"2000-06-12T04:34:53.155Z\",\n    \"updated_at\": \"2003-01-14T05:13:08.248Z\"\n  },\n  {\n    \"id\": 3319,\n    \"project_id\": 5483,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 6956,\n    \"url\": \"http://VVtSJgygKPKlLAB.kbwIaDOj79u.o+4smBooSO,APUnrTA+bvTGZy9vy\",\n    \"thumb_url\": \"http://H.tkLL8S7bf8ZpMAxMbBLPqRe-NH\",\n    \"created_at\": \"2023-11-11T05:19:39.076Z\",\n    \"updated_at\": \"2008-06-27T16:45:01.928Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": 6260,\n    \"project_id\": 9542,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"status\": \"approved\",\n    \"amount\": 5445.094566878533,\n    \"currency\": \"string\",\n    \"submitted_at\": \"1984-04-12T17:05:54.062Z\",\n    \"approved_at\": \"2025-09-07T21:32:12.334Z\",\n    \"created_at\": \"1982-01-26T04:46:00.359Z\",\n    \"updated_at\": \"1963-03-02T01:09:04.256Z\"\n  },\n  {\n    \"id\": 5118,\n    \"project_id\": 1880,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"status\": \"void\",\n    \"amount\": 4113.911191609676,\n    \"currency\": \"string\",\n    \"submitted_at\": \"1980-08-04T18:21:35.423Z\",\n    \"approved_at\": \"1980-10-30T02:23:30.124Z\",\n    \"created_at\": \"2010-01-09T08:05:18.771Z\",\n    \"updated_at\": \"1946-10-20T01:05:24.324Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -104,19 +104,16 @@
           }
         },
         {
-          "id": "d3ff6824-1d80-4d8a-b110-462786ed762c",
-          "name": "Create Attachment In Project",
+          "id": "02f4f3be-81be-4f90-a42f-a8279cfdd2c0",
+          "name": "Create Change Order In Project",
           "request": {
-            "name": "Create Attachment In Project",
-            "description": {
-              "content": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n",
-              "type": "text/plain"
-            },
+            "name": "Create Change Order In Project",
+            "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "attachments"
+                "change_orders"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -146,7 +143,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"number\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -156,14 +153,14 @@
           },
           "response": [
             {
-              "id": "bcee3eac-ce7f-41a2-a4da-cc2f1b4c234c",
-              "name": "Registered attachment.",
+              "id": "44303dba-c0ad-4677-bc1e-7a07598ddd6f",
+              "name": "Created change order.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "attachments"
+                    "change_orders"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -196,7 +193,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"number\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -212,7 +209,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 4459,\n  \"project_id\": 9134,\n  \"filename\": \"string\",\n  \"content_type\": \"string\",\n  \"size\": 3654,\n  \"url\": \"http://KZASdru.qtfVFoL3CTGZecqQKpPcNhKmM\",\n  \"thumb_url\": \"http://kRdEetoyeend.uwjbf,Pqdf+yYB-ZDLEYIibo2\",\n  \"created_at\": \"2003-02-22T20:23:10.901Z\",\n  \"updated_at\": \"1999-06-20T09:34:20.641Z\"\n}",
+              "body": "{\n  \"id\": 5571,\n  \"project_id\": 3967,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"status\": \"submitted\",\n  \"amount\": 650.6980957067676,\n  \"currency\": \"string\",\n  \"submitted_at\": \"1955-02-07T04:43:32.125Z\",\n  \"approved_at\": \"2003-09-04T15:55:31.631Z\",\n  \"created_at\": \"1958-11-26T03:53:47.789Z\",\n  \"updated_at\": \"2009-07-07T17:33:25.586Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -244,8 +241,8 @@
     ]
   },
   "info": {
-    "_postman_id": "524ae1f6-79c9-48d3-b77d-4ab67eeae8ec",
-    "name": "Fieldwire Account Actual Costs Attachments API",
+    "_postman_id": "8109c894-4d9c-4e63-8b12-dbb9954165ec",
+    "name": "Fieldwire Account Actual Costs Change Orders API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",

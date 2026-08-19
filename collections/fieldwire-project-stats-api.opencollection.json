@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs Project Stats API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/stats",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier."
+              }
+            ]
+          },
+          "docs": "Get Project Stats"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

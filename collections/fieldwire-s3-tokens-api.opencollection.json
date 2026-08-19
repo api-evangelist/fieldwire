@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs S3 Tokens API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "S3 Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get AWS POST Token For Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/aws_post_tokens",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a one-day signed AWS POST token that the client uses to upload\nthe binary directly to Amazon S3. The token contains the post URL,\npolicy, and form fields required for the S3 `POST object` operation;\nclients then add a `file` form field and POST to AWS directly.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

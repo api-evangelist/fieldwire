@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "ab1459aa-b5e7-4046-bd3e-5048fd9c7a60",
+      "name": "Building Information Models",
+      "description": {
+        "content": "BIM and BIM versions attached to a project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9edbf966-ad13-40e7-9c26-915d22cb98af",
+          "name": "Get Building Information Models In Project",
+          "request": {
+            "name": "Get Building Information Models In Project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "building_information_models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61d5c9cd-eea4-49af-a6cb-ae1362c15633",
+              "name": "BIM list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "building_information_models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1545,\n    \"project_id\": 8061,\n    \"name\": \"string\",\n    \"latest_version_id\": 4776,\n    \"created_at\": \"1975-09-02T20:49:55.066Z\",\n    \"updated_at\": \"1959-05-29T06:41:51.906Z\"\n  },\n  {\n    \"id\": 8165,\n    \"project_id\": 7374,\n    \"name\": \"string\",\n    \"latest_version_id\": 865,\n    \"created_at\": \"2011-06-10T02:36:29.576Z\",\n    \"updated_at\": \"2024-09-23T09:18:39.010Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://client-api.super.fieldwire.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4d1a102b-e6f1-41c4-a6b1-483b4d09a3e8",
+    "name": "Fieldwire Account Actual Costs Building Information Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

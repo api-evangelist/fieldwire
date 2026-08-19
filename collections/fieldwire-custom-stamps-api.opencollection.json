@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs Custom Stamps API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Stamps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Custom Stamps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/custom_stamps"
+          },
+          "docs": "Get Account Custom Stamps"
+        },
+        {
+          "info": {
+            "name": "Create Account Custom Stamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/account/custom_stamps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Account Custom Stamp"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs Authentication API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Exchange API Key For Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/api_keys/jwt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange the long-lived refresh token (API key) generated from the\nFieldwire account settings for a short-lived JWT access token. The JWT\nprotects all subsequent calls and expires in minutes to hours.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

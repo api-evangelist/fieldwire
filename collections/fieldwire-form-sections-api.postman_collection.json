@@ -1,24 +1,25 @@
 {
   "item": [
     {
-      "id": "41b74c20-ec4a-47a8-898d-f61ee8d3dee4",
-      "name": "Attachments",
+      "id": "c0e4de26-95f8-4119-b6dd-506d0b2f312e",
+      "name": "Form Sections",
       "description": {
-        "content": "Project attachment lifecycle.",
+        "content": "Section structure within a form template.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "7866d12b-e8ac-4194-ad3a-92620b8dc4b5",
-          "name": "Get Attachments In Project",
+          "id": "c6eae1c3-f636-4d72-92a8-d9defbed0ed3",
+          "name": "Get Form Template Sections",
           "request": {
-            "name": "Get Attachments In Project",
+            "name": "Get Form Template Sections",
             "description": {},
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "attachments"
+                "account",
+                "form_templates",
+                ":form_template_id",
+                "sections"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -29,7 +30,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "project_id",
+                  "key": "form_template_id",
                   "description": "(Required) "
                 }
               ]
@@ -45,14 +46,15 @@
           },
           "response": [
             {
-              "id": "892432e6-f91f-40c8-a122-eeb8ff971cd0",
-              "name": "Attachment list.",
+              "id": "39920b3e-e00e-47e5-b4d2-f708915c9d1c",
+              "name": "Section list.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "attachments"
+                    "account",
+                    "form_templates",
+                    ":form_template_id",
+                    "sections"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -63,7 +65,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "project_id",
+                      "key": "form_template_id",
                       "description": "(Required) "
                     }
                   ]
@@ -93,7 +95,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 1107,\n    \"project_id\": 7132,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 4561,\n    \"url\": \"http://PuZOtaFPsJ.zbktOyB.7X8vMFo56XtaWb9WIfc7MRZCs\",\n    \"thumb_url\": \"https://cAsaT.owcqMQv-kdvwnz4mZZ,fR3YJED.HdYEdo7+pM5\",\n    \"created_at\": \"2000-06-12T04:34:53.155Z\",\n    \"updated_at\": \"2003-01-14T05:13:08.248Z\"\n  },\n  {\n    \"id\": 3319,\n    \"project_id\": 5483,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 6956,\n    \"url\": \"http://VVtSJgygKPKlLAB.kbwIaDOj79u.o+4smBooSO,APUnrTA+bvTGZy9vy\",\n    \"thumb_url\": \"http://H.tkLL8S7bf8ZpMAxMbBLPqRe-NH\",\n    \"created_at\": \"2023-11-11T05:19:39.076Z\",\n    \"updated_at\": \"2008-06-27T16:45:01.928Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": 8569,\n    \"form_template_id\": 9306,\n    \"name\": \"string\",\n    \"position\": 4865.508298642528,\n    \"is_repeatable\": false\n  },\n  {\n    \"id\": 7580,\n    \"form_template_id\": 913,\n    \"name\": \"string\",\n    \"position\": 4500.115532587192,\n    \"is_repeatable\": false\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -104,19 +106,17 @@
           }
         },
         {
-          "id": "d3ff6824-1d80-4d8a-b110-462786ed762c",
-          "name": "Create Attachment In Project",
+          "id": "066ab5b1-b47a-4e7e-9941-948f655e1be1",
+          "name": "Create Form Template Section",
           "request": {
-            "name": "Create Attachment In Project",
-            "description": {
-              "content": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n",
-              "type": "text/plain"
-            },
+            "name": "Create Form Template Section",
+            "description": {},
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "attachments"
+                "account",
+                "form_templates",
+                ":form_template_id",
+                "sections"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -127,7 +127,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "project_id",
+                  "key": "form_template_id",
                   "description": "(Required) "
                 }
               ]
@@ -146,7 +146,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -156,14 +156,15 @@
           },
           "response": [
             {
-              "id": "bcee3eac-ce7f-41a2-a4da-cc2f1b4c234c",
-              "name": "Registered attachment.",
+              "id": "8e927f40-7226-4f5a-a2db-4629c9e8302c",
+              "name": "Created section.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "attachments"
+                    "account",
+                    "form_templates",
+                    ":form_template_id",
+                    "sections"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -174,7 +175,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "project_id",
+                      "key": "form_template_id",
                       "description": "(Required) "
                     }
                   ]
@@ -196,7 +197,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"form_template_id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"position\": \"<double>\",\n  \"is_repeatable\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -212,7 +213,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 4459,\n  \"project_id\": 9134,\n  \"filename\": \"string\",\n  \"content_type\": \"string\",\n  \"size\": 3654,\n  \"url\": \"http://KZASdru.qtfVFoL3CTGZecqQKpPcNhKmM\",\n  \"thumb_url\": \"http://kRdEetoyeend.uwjbf,Pqdf+yYB-ZDLEYIibo2\",\n  \"created_at\": \"2003-02-22T20:23:10.901Z\",\n  \"updated_at\": \"1999-06-20T09:34:20.641Z\"\n}",
+              "body": "{\n  \"id\": 2156,\n  \"form_template_id\": 4257,\n  \"name\": \"string\",\n  \"position\": 6916.736988888111,\n  \"is_repeatable\": false\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -244,8 +245,8 @@
     ]
   },
   "info": {
-    "_postman_id": "524ae1f6-79c9-48d3-b77d-4ab67eeae8ec",
-    "name": "Fieldwire Account Actual Costs Attachments API",
+    "_postman_id": "13d6924f-22e6-41f6-97e8-4947ec0b62ed",
+    "name": "Fieldwire Account Actual Costs Form Sections API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",

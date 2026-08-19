@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs Hyperlinks API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hyperlinks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Hyperlinks In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/hyperlinks",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Hyperlinks In Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

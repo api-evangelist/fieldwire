@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs Spec Sections API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spec Sections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Spec Sections In Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/spec_sections",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Spec Sections In Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Fieldwire Account Actual Costs Tasks API",
+    "name": "Fieldwire Account Actual Costs Floorplans API",
     "version": "v3.1"
   },
   "request": {
@@ -13,18 +13,18 @@
   "items": [
     {
       "info": {
-        "name": "Tasks",
+        "name": "Floorplans",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Get Tasks In Project",
+            "name": "Get Floorplans In Project",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/tasks",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/floorplans",
             "params": [
               {
                 "name": "project_id",
@@ -33,16 +33,16 @@
               }
             ]
           },
-          "docs": "Get Tasks In Project"
+          "docs": "Get Floorplans In Project"
         },
         {
           "info": {
-            "name": "Create Task In Project",
+            "name": "Create Floorplan In Project",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/tasks",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/floorplans",
             "params": [
               {
                 "name": "project_id",
@@ -55,16 +55,16 @@
               "data": "{}"
             }
           },
-          "docs": "Create Task In Project"
+          "docs": "Create a new floorplan; sheets are uploaded separately via the Attachments API."
         },
         {
           "info": {
-            "name": "Get Task By ID",
+            "name": "Get Floorplan By ID",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/tasks/:task_id",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/floorplans/:floorplan_id",
             "params": [
               {
                 "name": "project_id",
@@ -72,22 +72,22 @@
                 "type": "path"
               },
               {
-                "name": "task_id",
+                "name": "floorplan_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Get Task By ID"
+          "docs": "Get Floorplan By ID"
         },
         {
           "info": {
-            "name": "Update Task By ID",
+            "name": "Update Floorplan By ID",
             "type": "http"
           },
           "http": {
             "method": "PATCH",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/tasks/:task_id",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/floorplans/:floorplan_id",
             "params": [
               {
                 "name": "project_id",
@@ -95,7 +95,7 @@
                 "type": "path"
               },
               {
-                "name": "task_id",
+                "name": "floorplan_id",
                 "value": "",
                 "type": "path"
               }
@@ -105,30 +105,7 @@
               "data": "{}"
             }
           },
-          "docs": "Update Task By ID"
-        },
-        {
-          "info": {
-            "name": "Delete Task By ID",
-            "type": "http"
-          },
-          "http": {
-            "method": "DELETE",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/tasks/:task_id",
-            "params": [
-              {
-                "name": "project_id",
-                "value": "",
-                "type": "path"
-              },
-              {
-                "name": "task_id",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Delete Task By ID"
+          "docs": "Update Floorplan By ID"
         }
       ]
     }

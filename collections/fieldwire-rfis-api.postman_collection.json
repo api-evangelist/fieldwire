@@ -1,24 +1,24 @@
 {
   "item": [
     {
-      "id": "b8b6dc69-994a-4c4a-8692-cc345e5b3f64",
-      "name": "Tasks",
+      "id": "5451e7f9-9834-4c5b-a983-32c451c9de94",
+      "name": "RFIs",
       "description": {
-        "content": "Project task lifecycle and assignment.",
+        "content": "Requests for Information lifecycle.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "b05a80d5-50e3-4d77-9354-ffc0ed3e0563",
-          "name": "Get Tasks In Project",
+          "id": "354c374b-d5b6-4050-bc73-8f8c2522c27b",
+          "name": "Get RFIs In Project",
           "request": {
-            "name": "Get Tasks In Project",
+            "name": "Get RFIs In Project",
             "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "tasks"
+                "rfis"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -45,14 +45,14 @@
           },
           "response": [
             {
-              "id": "e4fc11be-3fb6-49f7-b738-fd555332bf85",
-              "name": "Task list.",
+              "id": "2e4458f0-16d6-49ce-a530-c84e47660d61",
+              "name": "RFI list.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "tasks"
+                    "rfis"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -93,7 +93,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 5675,\n    \"project_id\": 8250,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"status_id\": 6585,\n    \"priority\": 2573,\n    \"category\": \"string\",\n    \"floorplan_id\": 5046,\n    \"location_id\": 262,\n    \"team_id\": 1135,\n    \"owner_user_id\": 2825,\n    \"creator_user_id\": 6157,\n    \"due_at\": \"1963-01-13T06:35:11.078Z\",\n    \"completed_at\": \"1954-07-10T09:54:06.618Z\",\n    \"created_at\": \"1951-04-29T16:29:41.593Z\",\n    \"updated_at\": \"1990-08-26T16:20:59.828Z\",\n    \"custom_attributes\": {\n      \"key_0\": 642,\n      \"key_1\": 9040.576630413194\n    }\n  },\n  {\n    \"id\": 7724,\n    \"project_id\": 9575,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"status_id\": 3957,\n    \"priority\": 5263,\n    \"category\": \"string\",\n    \"floorplan_id\": 7554,\n    \"location_id\": 2722,\n    \"team_id\": 6760,\n    \"owner_user_id\": 3523,\n    \"creator_user_id\": 3305,\n    \"due_at\": \"1959-07-21T03:28:31.734Z\",\n    \"completed_at\": \"2002-03-01T17:04:35.656Z\",\n    \"created_at\": \"1950-01-09T00:46:35.351Z\",\n    \"updated_at\": \"2000-10-28T18:11:11.406Z\",\n    \"custom_attributes\": {\n      \"key_0\": 7702\n    }\n  }\n]",
+              "body": "[\n  {\n    \"id\": 6766,\n    \"project_id\": 2946,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"question\": \"string\",\n    \"answer\": \"string\",\n    \"status\": \"closed\",\n    \"priority\": \"low\",\n    \"spec_section_id\": 6870,\n    \"ball_in_court_user_id\": 7390,\n    \"due_at\": \"1969-07-07T03:47:45.294Z\",\n    \"created_at\": \"2021-06-17T01:15:45.973Z\",\n    \"updated_at\": \"2021-11-29T20:14:40.123Z\"\n  },\n  {\n    \"id\": 192,\n    \"project_id\": 7094,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"question\": \"string\",\n    \"answer\": \"string\",\n    \"status\": \"open\",\n    \"priority\": \"high\",\n    \"spec_section_id\": 1000,\n    \"ball_in_court_user_id\": 494,\n    \"due_at\": \"1979-03-30T16:57:35.079Z\",\n    \"created_at\": \"1964-07-20T00:44:23.202Z\",\n    \"updated_at\": \"1988-10-18T12:14:57.865Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -104,16 +104,16 @@
           }
         },
         {
-          "id": "023e0a8b-f71c-403f-b724-5473360389b9",
-          "name": "Create Task In Project",
+          "id": "d9752fc5-e71e-43ea-9741-dfe74c1c06c4",
+          "name": "Create RFI In Project",
           "request": {
-            "name": "Create Task In Project",
+            "name": "Create RFI In Project",
             "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "tasks"
+                "rfis"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -143,7 +143,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 7850\n  }\n}",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -153,14 +153,14 @@
           },
           "response": [
             {
-              "id": "12348710-7815-46bf-bb28-cbd7f925dde0",
-              "name": "Created task.",
+              "id": "13ce1b89-1e9d-483f-964d-ac2ef4c00b1c",
+              "name": "Created RFI.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "tasks"
+                    "rfis"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -193,7 +193,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 9258.484431486102,\n    \"key_1\": 6379,\n    \"key_2\": \"string\"\n  }\n}",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -209,7 +209,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 6685,\n  \"project_id\": 6618,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 2762,\n  \"priority\": 6324,\n  \"category\": \"string\",\n  \"floorplan_id\": 7949,\n  \"location_id\": 6765,\n  \"team_id\": 488,\n  \"owner_user_id\": 8958,\n  \"creator_user_id\": 4490,\n  \"due_at\": \"2013-03-25T17:34:30.091Z\",\n  \"completed_at\": \"1951-10-24T06:30:28.144Z\",\n  \"created_at\": \"1950-03-18T05:51:02.834Z\",\n  \"updated_at\": \"1963-02-18T09:06:51.035Z\",\n  \"custom_attributes\": {\n    \"key_0\": 7653\n  }\n}",
+              "body": "{\n  \"id\": 2969,\n  \"project_id\": 8600,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"question\": \"string\",\n  \"answer\": \"string\",\n  \"status\": \"draft\",\n  \"priority\": \"high\",\n  \"spec_section_id\": 7726,\n  \"ball_in_court_user_id\": 619,\n  \"due_at\": \"1984-12-19T18:14:27.915Z\",\n  \"created_at\": \"1988-06-12T02:04:08.620Z\",\n  \"updated_at\": \"1998-02-07T05:05:46.345Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -220,17 +220,17 @@
           }
         },
         {
-          "id": "fde0ae93-4bb6-455b-8a54-c87810534d64",
-          "name": "Get Task By ID",
+          "id": "f15a6597-83ae-4706-8f80-135938c1049d",
+          "name": "Get RFI By ID",
           "request": {
-            "name": "Get Task By ID",
+            "name": "Get RFI By ID",
             "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "tasks",
-                ":task_id"
+                "rfis",
+                ":rfi_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -248,7 +248,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "task_id",
+                  "key": "rfi_id",
                   "description": "(Required) "
                 }
               ]
@@ -264,15 +264,15 @@
           },
           "response": [
             {
-              "id": "1d1928e4-3373-4275-a31c-2cf8cc01d9d9",
-              "name": "Task.",
+              "id": "b6db711f-9b8f-491a-9722-79831dc8808f",
+              "name": "RFI.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "tasks",
-                    ":task_id"
+                    "rfis",
+                    ":rfi_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -290,7 +290,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "task_id",
+                      "key": "rfi_id",
                       "description": "(Required) "
                     }
                   ]
@@ -320,7 +320,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 6685,\n  \"project_id\": 6618,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 2762,\n  \"priority\": 6324,\n  \"category\": \"string\",\n  \"floorplan_id\": 7949,\n  \"location_id\": 6765,\n  \"team_id\": 488,\n  \"owner_user_id\": 8958,\n  \"creator_user_id\": 4490,\n  \"due_at\": \"2013-03-25T17:34:30.091Z\",\n  \"completed_at\": \"1951-10-24T06:30:28.144Z\",\n  \"created_at\": \"1950-03-18T05:51:02.834Z\",\n  \"updated_at\": \"1963-02-18T09:06:51.035Z\",\n  \"custom_attributes\": {\n    \"key_0\": 7653\n  }\n}",
+              "body": "{\n  \"id\": 2969,\n  \"project_id\": 8600,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"question\": \"string\",\n  \"answer\": \"string\",\n  \"status\": \"draft\",\n  \"priority\": \"high\",\n  \"spec_section_id\": 7726,\n  \"ball_in_court_user_id\": 619,\n  \"due_at\": \"1984-12-19T18:14:27.915Z\",\n  \"created_at\": \"1988-06-12T02:04:08.620Z\",\n  \"updated_at\": \"1998-02-07T05:05:46.345Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -331,17 +331,17 @@
           }
         },
         {
-          "id": "b4020c95-ccf0-44b2-bff9-c6de0c21d218",
-          "name": "Update Task By ID",
+          "id": "d0486212-0662-431d-a11e-9abac877fdbe",
+          "name": "Update RFI By ID",
           "request": {
-            "name": "Update Task By ID",
+            "name": "Update RFI By ID",
             "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "tasks",
-                ":task_id"
+                "rfis",
+                ":rfi_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -359,7 +359,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "task_id",
+                  "key": "rfi_id",
                   "description": "(Required) "
                 }
               ]
@@ -378,7 +378,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": true\n  }\n}",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -388,15 +388,15 @@
           },
           "response": [
             {
-              "id": "26673eec-4cd1-468a-b43b-b6f260fc0926",
-              "name": "Updated task.",
+              "id": "d2c2032c-b83c-494a-9a75-e4586aa017af",
+              "name": "Updated RFI.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "tasks",
-                    ":task_id"
+                    "rfis",
+                    ":rfi_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -414,7 +414,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "task_id",
+                      "key": "rfi_id",
                       "description": "(Required) "
                     }
                   ]
@@ -436,7 +436,7 @@
                 "method": "PATCH",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 6909,\n    \"key_1\": 9169.103565320798\n  }\n}",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"question\": \"<string>\",\n  \"answer\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -452,110 +452,9 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 6685,\n  \"project_id\": 6618,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 2762,\n  \"priority\": 6324,\n  \"category\": \"string\",\n  \"floorplan_id\": 7949,\n  \"location_id\": 6765,\n  \"team_id\": 488,\n  \"owner_user_id\": 8958,\n  \"creator_user_id\": 4490,\n  \"due_at\": \"2013-03-25T17:34:30.091Z\",\n  \"completed_at\": \"1951-10-24T06:30:28.144Z\",\n  \"created_at\": \"1950-03-18T05:51:02.834Z\",\n  \"updated_at\": \"1963-02-18T09:06:51.035Z\",\n  \"custom_attributes\": {\n    \"key_0\": 7653\n  }\n}",
+              "body": "{\n  \"id\": 2969,\n  \"project_id\": 8600,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"question\": \"string\",\n  \"answer\": \"string\",\n  \"status\": \"draft\",\n  \"priority\": \"high\",\n  \"spec_section_id\": 7726,\n  \"ball_in_court_user_id\": 619,\n  \"due_at\": \"1984-12-19T18:14:27.915Z\",\n  \"created_at\": \"1988-06-12T02:04:08.620Z\",\n  \"updated_at\": \"1998-02-07T05:05:46.345Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "10629919-ec94-4d8a-966d-b1cb12de8927",
-          "name": "Delete Task By ID",
-          "request": {
-            "name": "Delete Task By ID",
-            "description": {},
-            "url": {
-              "path": [
-                "projects",
-                ":project_id",
-                "tasks",
-                ":task_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "project_id",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "task_id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8d8027b3-2564-451c-98bb-4eae87df6161",
-              "name": "Task deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":project_id",
-                    "tasks",
-                    ":task_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "project_id",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "task_id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -585,8 +484,8 @@
     ]
   },
   "info": {
-    "_postman_id": "101ece5f-4123-40e4-9e3a-d902c14d4bef",
-    "name": "Fieldwire Account Actual Costs Tasks API",
+    "_postman_id": "2d6e0e3a-d0ac-4608-b043-d53b9af5208e",
+    "name": "Fieldwire Account Actual Costs RFIs API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",

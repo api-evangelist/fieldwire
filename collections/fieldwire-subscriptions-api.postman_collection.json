@@ -1,38 +1,28 @@
 {
   "item": [
     {
-      "id": "b8b6dc69-994a-4c4a-8692-cc345e5b3f64",
-      "name": "Tasks",
+      "id": "f2da77d2-cd32-4901-807e-c5207d960401",
+      "name": "Subscriptions",
       "description": {
-        "content": "Project task lifecycle and assignment.",
+        "content": "Webhook subscription lifecycle.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "b05a80d5-50e3-4d77-9354-ffc0ed3e0563",
-          "name": "Get Tasks In Project",
+          "id": "4212932e-b7ab-4415-965d-f97b51836b28",
+          "name": "Get Subscriptions",
           "request": {
-            "name": "Get Tasks In Project",
+            "name": "Get Subscriptions",
             "description": {},
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "tasks"
+                "subscriptions"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "project_id",
-                  "description": "(Required) "
-                }
-              ]
+              "variable": []
             },
             "header": [
               {
@@ -45,28 +35,18 @@
           },
           "response": [
             {
-              "id": "e4fc11be-3fb6-49f7-b738-fd555332bf85",
-              "name": "Task list.",
+              "id": "8dca3b18-5adf-433b-ac36-749dc6c6baba",
+              "name": "Subscription list.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "tasks"
+                    "subscriptions"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "project_id",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -93,7 +73,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 5675,\n    \"project_id\": 8250,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"status_id\": 6585,\n    \"priority\": 2573,\n    \"category\": \"string\",\n    \"floorplan_id\": 5046,\n    \"location_id\": 262,\n    \"team_id\": 1135,\n    \"owner_user_id\": 2825,\n    \"creator_user_id\": 6157,\n    \"due_at\": \"1963-01-13T06:35:11.078Z\",\n    \"completed_at\": \"1954-07-10T09:54:06.618Z\",\n    \"created_at\": \"1951-04-29T16:29:41.593Z\",\n    \"updated_at\": \"1990-08-26T16:20:59.828Z\",\n    \"custom_attributes\": {\n      \"key_0\": 642,\n      \"key_1\": 9040.576630413194\n    }\n  },\n  {\n    \"id\": 7724,\n    \"project_id\": 9575,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"status_id\": 3957,\n    \"priority\": 5263,\n    \"category\": \"string\",\n    \"floorplan_id\": 7554,\n    \"location_id\": 2722,\n    \"team_id\": 6760,\n    \"owner_user_id\": 3523,\n    \"creator_user_id\": 3305,\n    \"due_at\": \"1959-07-21T03:28:31.734Z\",\n    \"completed_at\": \"2002-03-01T17:04:35.656Z\",\n    \"created_at\": \"1950-01-09T00:46:35.351Z\",\n    \"updated_at\": \"2000-10-28T18:11:11.406Z\",\n    \"custom_attributes\": {\n      \"key_0\": 7702\n    }\n  }\n]",
+              "body": "[\n  {\n    \"subscription_id\": 9458,\n    \"subscription_name\": \"string\",\n    \"description\": \"string\",\n    \"post_url\": \"https://ynwTpBkhgxLULVIDSSVJ.mymUx6wX,EAW+Ozjp,jmLp9jm64Y2,dZQjR\",\n    \"subscription_status\": \"disabled\",\n    \"account_id\": 4463,\n    \"internal\": false,\n    \"entity_filters\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project_filters\": [\n      377,\n      1712\n    ]\n  },\n  {\n    \"subscription_id\": 7173,\n    \"subscription_name\": \"string\",\n    \"description\": \"string\",\n    \"post_url\": \"http://oeTKYydWlmvPtYfiDnPQXPTaN.zjwpn4NzxBDjKIKE9JDUj-wfAa+esexpA0SKa0zoQclNATIMhwUhsjxo9gi\",\n    \"subscription_status\": \"disabled\",\n    \"account_id\": 6322,\n    \"internal\": true,\n    \"entity_filters\": [\n      \"string\",\n      \"string\"\n    ],\n    \"project_filters\": [\n      5193,\n      8722\n    ]\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -104,30 +84,23 @@
           }
         },
         {
-          "id": "023e0a8b-f71c-403f-b724-5473360389b9",
-          "name": "Create Task In Project",
+          "id": "0bf5b13f-9cc5-489d-b661-366528b34e3c",
+          "name": "Create Subscription",
           "request": {
-            "name": "Create Task In Project",
-            "description": {},
+            "name": "Create Subscription",
+            "description": {
+              "content": "Create a webhook subscription. Required fields: `subscription_name`\n(max 50 chars), `description` (max 200 chars), `post_url`, and\n`subscription_status`. Optional filters: `entity_filters` (max 20),\n`project_filters` (max 100).\n",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "tasks"
+                "subscriptions"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "project_id",
-                  "description": "(Required) "
-                }
-              ]
+              "variable": []
             },
             "header": [
               {
@@ -143,7 +116,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 7850\n  }\n}",
+              "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -153,28 +126,18 @@
           },
           "response": [
             {
-              "id": "12348710-7815-46bf-bb28-cbd7f925dde0",
-              "name": "Created task.",
+              "id": "d1796363-e373-4892-b9a0-57138a90c329",
+              "name": "Created subscription.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "tasks"
+                    "subscriptions"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "project_id",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -193,7 +156,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"category\": \"<string>\",\n  \"floorplan_id\": \"<long>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 9258.484431486102,\n    \"key_1\": 6379,\n    \"key_2\": \"string\"\n  }\n}",
+                  "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -209,7 +172,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 6685,\n  \"project_id\": 6618,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 2762,\n  \"priority\": 6324,\n  \"category\": \"string\",\n  \"floorplan_id\": 7949,\n  \"location_id\": 6765,\n  \"team_id\": 488,\n  \"owner_user_id\": 8958,\n  \"creator_user_id\": 4490,\n  \"due_at\": \"2013-03-25T17:34:30.091Z\",\n  \"completed_at\": \"1951-10-24T06:30:28.144Z\",\n  \"created_at\": \"1950-03-18T05:51:02.834Z\",\n  \"updated_at\": \"1963-02-18T09:06:51.035Z\",\n  \"custom_attributes\": {\n    \"key_0\": 7653\n  }\n}",
+              "body": "{\n  \"subscription_id\": 9765,\n  \"subscription_name\": \"string\",\n  \"description\": \"string\",\n  \"post_url\": \"http://yFIGhAyxrFBdEBDsMB.ifnUkx-CkIR1KsCufB4rv2CbCxDKJdzNbDDjLg3huiaU9O0GaJM1g7UewGUz-WhVnqgRqHQ25fB\",\n  \"subscription_status\": \"enabled\",\n  \"account_id\": 504,\n  \"internal\": false,\n  \"entity_filters\": [\n    \"string\",\n    \"string\"\n  ],\n  \"project_filters\": [\n    6047,\n    3509\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -220,17 +183,15 @@
           }
         },
         {
-          "id": "fde0ae93-4bb6-455b-8a54-c87810534d64",
-          "name": "Get Task By ID",
+          "id": "8616da49-8a0c-461a-9f48-e18060955a5a",
+          "name": "Get Subscription By ID",
           "request": {
-            "name": "Get Task By ID",
+            "name": "Get Subscription By ID",
             "description": {},
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "tasks",
-                ":task_id"
+                "subscriptions",
+                ":subscription_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -241,14 +202,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "project_id",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "task_id",
+                  "key": "subscription_id",
                   "description": "(Required) "
                 }
               ]
@@ -264,15 +218,13 @@
           },
           "response": [
             {
-              "id": "1d1928e4-3373-4275-a31c-2cf8cc01d9d9",
-              "name": "Task.",
+              "id": "aebcd8ec-d224-450f-8a47-4bf1ae6462dd",
+              "name": "Subscription.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "tasks",
-                    ":task_id"
+                    "subscriptions",
+                    ":subscription_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -283,14 +235,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "project_id",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "task_id",
+                      "key": "subscription_id",
                       "description": "(Required) "
                     }
                   ]
@@ -320,7 +265,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 6685,\n  \"project_id\": 6618,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 2762,\n  \"priority\": 6324,\n  \"category\": \"string\",\n  \"floorplan_id\": 7949,\n  \"location_id\": 6765,\n  \"team_id\": 488,\n  \"owner_user_id\": 8958,\n  \"creator_user_id\": 4490,\n  \"due_at\": \"2013-03-25T17:34:30.091Z\",\n  \"completed_at\": \"1951-10-24T06:30:28.144Z\",\n  \"created_at\": \"1950-03-18T05:51:02.834Z\",\n  \"updated_at\": \"1963-02-18T09:06:51.035Z\",\n  \"custom_attributes\": {\n    \"key_0\": 7653\n  }\n}",
+              "body": "{\n  \"subscription_id\": 9765,\n  \"subscription_name\": \"string\",\n  \"description\": \"string\",\n  \"post_url\": \"http://yFIGhAyxrFBdEBDsMB.ifnUkx-CkIR1KsCufB4rv2CbCxDKJdzNbDDjLg3huiaU9O0GaJM1g7UewGUz-WhVnqgRqHQ25fB\",\n  \"subscription_status\": \"enabled\",\n  \"account_id\": 504,\n  \"internal\": false,\n  \"entity_filters\": [\n    \"string\",\n    \"string\"\n  ],\n  \"project_filters\": [\n    6047,\n    3509\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -331,17 +276,15 @@
           }
         },
         {
-          "id": "b4020c95-ccf0-44b2-bff9-c6de0c21d218",
-          "name": "Update Task By ID",
+          "id": "acd65733-6ce6-4ac7-ad7e-68f2ec562e33",
+          "name": "Update Subscription By ID",
           "request": {
-            "name": "Update Task By ID",
+            "name": "Update Subscription By ID",
             "description": {},
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "tasks",
-                ":task_id"
+                "subscriptions",
+                ":subscription_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -352,14 +295,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "project_id",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "task_id",
+                  "key": "subscription_id",
                   "description": "(Required) "
                 }
               ]
@@ -378,7 +314,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": true\n  }\n}",
+              "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -388,15 +324,13 @@
           },
           "response": [
             {
-              "id": "26673eec-4cd1-468a-b43b-b6f260fc0926",
-              "name": "Updated task.",
+              "id": "f6e1e612-27a5-4160-a82d-53e314b8c8da",
+              "name": "Updated subscription.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "tasks",
-                    ":task_id"
+                    "subscriptions",
+                    ":subscription_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -407,14 +341,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "project_id",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "task_id",
+                      "key": "subscription_id",
                       "description": "(Required) "
                     }
                   ]
@@ -436,7 +363,7 @@
                 "method": "PATCH",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status_id\": \"<long>\",\n  \"priority\": \"<integer>\",\n  \"owner_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_attributes\": {\n    \"key_0\": 6909,\n    \"key_1\": 9169.103565320798\n  }\n}",
+                  "raw": "{\n  \"subscription_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"post_url\": \"<uri>\",\n  \"subscription_status\": \"<string>\",\n  \"entity_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"project_filters\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -452,7 +379,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 6685,\n  \"project_id\": 6618,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status_id\": 2762,\n  \"priority\": 6324,\n  \"category\": \"string\",\n  \"floorplan_id\": 7949,\n  \"location_id\": 6765,\n  \"team_id\": 488,\n  \"owner_user_id\": 8958,\n  \"creator_user_id\": 4490,\n  \"due_at\": \"2013-03-25T17:34:30.091Z\",\n  \"completed_at\": \"1951-10-24T06:30:28.144Z\",\n  \"created_at\": \"1950-03-18T05:51:02.834Z\",\n  \"updated_at\": \"1963-02-18T09:06:51.035Z\",\n  \"custom_attributes\": {\n    \"key_0\": 7653\n  }\n}",
+              "body": "{\n  \"subscription_id\": 9765,\n  \"subscription_name\": \"string\",\n  \"description\": \"string\",\n  \"post_url\": \"http://yFIGhAyxrFBdEBDsMB.ifnUkx-CkIR1KsCufB4rv2CbCxDKJdzNbDDjLg3huiaU9O0GaJM1g7UewGUz-WhVnqgRqHQ25fB\",\n  \"subscription_status\": \"enabled\",\n  \"account_id\": 504,\n  \"internal\": false,\n  \"entity_filters\": [\n    \"string\",\n    \"string\"\n  ],\n  \"project_filters\": [\n    6047,\n    3509\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -463,17 +390,15 @@
           }
         },
         {
-          "id": "10629919-ec94-4d8a-966d-b1cb12de8927",
-          "name": "Delete Task By ID",
+          "id": "e14b6024-208b-4353-ac44-f4b049eb29ff",
+          "name": "Delete Subscription By ID",
           "request": {
-            "name": "Delete Task By ID",
+            "name": "Delete Subscription By ID",
             "description": {},
             "url": {
               "path": [
-                "projects",
-                ":project_id",
-                "tasks",
-                ":task_id"
+                "subscriptions",
+                ":subscription_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -484,14 +409,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<long>",
-                  "key": "project_id",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "task_id",
+                  "key": "subscription_id",
                   "description": "(Required) "
                 }
               ]
@@ -501,15 +419,13 @@
           },
           "response": [
             {
-              "id": "8d8027b3-2564-451c-98bb-4eae87df6161",
-              "name": "Task deleted.",
+              "id": "cc9bfbf3-3002-40f3-a450-122148af0bf7",
+              "name": "Subscription deleted.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "projects",
-                    ":project_id",
-                    "tasks",
-                    ":task_id"
+                    "subscriptions",
+                    ":subscription_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -520,14 +436,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<long>",
-                      "key": "project_id",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "task_id",
+                      "key": "subscription_id",
                       "description": "(Required) "
                     }
                   ]
@@ -585,8 +494,8 @@
     ]
   },
   "info": {
-    "_postman_id": "101ece5f-4123-40e4-9e3a-d902c14d4bef",
-    "name": "Fieldwire Account Actual Costs Tasks API",
+    "_postman_id": "5882b539-8b59-4105-8741-0b8dfdfd404d",
+    "name": "Fieldwire Account Actual Costs Subscriptions API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",

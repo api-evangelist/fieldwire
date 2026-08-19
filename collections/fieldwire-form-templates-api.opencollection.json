@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fieldwire Account Actual Costs Form Templates API",
+    "version": "v3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Form Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates"
+          },
+          "docs": "List form templates published at the account level."
+        },
+        {
+          "info": {
+            "name": "Create Account Form Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new account-level form template."
+        },
+        {
+          "info": {
+            "name": "Get Account Form Template By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates/:form_template_id",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account form template identifier."
+              }
+            ]
+          },
+          "docs": "Get Account Form Template By ID"
+        },
+        {
+          "info": {
+            "name": "Update Account Form Template By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates/:form_template_id",
+            "params": [
+              {
+                "name": "form_template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account form template identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Account Form Template By ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

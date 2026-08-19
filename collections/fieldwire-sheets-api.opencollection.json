@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Fieldwire Account Actual Costs Attachments API",
+    "name": "Fieldwire Account Actual Costs Sheets API",
     "version": "v3.1"
   },
   "request": {
@@ -13,18 +13,18 @@
   "items": [
     {
       "info": {
-        "name": "Attachments",
+        "name": "Sheets",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Get Attachments In Project",
+            "name": "Get Sheets In Project",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/attachments",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/sheets",
             "params": [
               {
                 "name": "project_id",
@@ -33,16 +33,16 @@
               }
             ]
           },
-          "docs": "Get Attachments In Project"
+          "docs": "Get Sheets In Project"
         },
         {
           "info": {
-            "name": "Create Attachment In Project",
+            "name": "Create Sheet In Project",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/attachments",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/sheets",
             "params": [
               {
                 "name": "project_id",
@@ -55,7 +55,7 @@
               "data": "{}"
             }
           },
-          "docs": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n"
+          "docs": "Register a new sheet version. The underlying PDF is uploaded via the Attachments S3 token flow."
         }
       ]
     }

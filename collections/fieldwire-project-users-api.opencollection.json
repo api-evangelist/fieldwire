@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Fieldwire Account Actual Costs Attachments API",
+    "name": "Fieldwire Account Actual Costs Project Users API",
     "version": "v3.1"
   },
   "request": {
@@ -13,41 +13,43 @@
   "items": [
     {
       "info": {
-        "name": "Attachments",
+        "name": "Project Users",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Get Attachments In Project",
+            "name": "Get Project Users",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/attachments",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/users",
             "params": [
               {
                 "name": "project_id",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "Project identifier."
               }
             ]
           },
-          "docs": "Get Attachments In Project"
+          "docs": "Get Project Users"
         },
         {
           "info": {
-            "name": "Create Attachment In Project",
+            "name": "Invite Project User",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/attachments",
+            "url": "https://client-api.super.fieldwire.com/projects/:project_id/users",
             "params": [
               {
                 "name": "project_id",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "Project identifier."
               }
             ],
             "body": {
@@ -55,7 +57,7 @@
               "data": "{}"
             }
           },
-          "docs": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n"
+          "docs": "Invite Project User"
         }
       ]
     }

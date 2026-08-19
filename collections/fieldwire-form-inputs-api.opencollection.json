@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Fieldwire Account Actual Costs Attachments API",
+    "name": "Fieldwire Account Actual Costs Form Inputs API",
     "version": "v3.1"
   },
   "request": {
@@ -13,39 +13,49 @@
   "items": [
     {
       "info": {
-        "name": "Attachments",
+        "name": "Form Inputs",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Get Attachments In Project",
+            "name": "Get Form Template Section Inputs",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/attachments",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates/:form_template_id/sections/:section_id/inputs",
             "params": [
               {
-                "name": "project_id",
+                "name": "form_template_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "section_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Get Attachments In Project"
+          "docs": "Get Form Template Section Inputs"
         },
         {
           "info": {
-            "name": "Create Attachment In Project",
+            "name": "Create Form Template Section Input",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://client-api.super.fieldwire.com/projects/:project_id/attachments",
+            "url": "https://client-api.super.fieldwire.com/account/form_templates/:form_template_id/sections/:section_id/inputs",
             "params": [
               {
-                "name": "project_id",
+                "name": "form_template_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "section_id",
                 "value": "",
                 "type": "path"
               }
@@ -55,7 +65,7 @@
               "data": "{}"
             }
           },
-          "docs": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n"
+          "docs": "Create Form Template Section Input"
         }
       ]
     }

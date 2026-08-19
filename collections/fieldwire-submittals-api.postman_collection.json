@@ -1,24 +1,24 @@
 {
   "item": [
     {
-      "id": "41b74c20-ec4a-47a8-898d-f61ee8d3dee4",
-      "name": "Attachments",
+      "id": "9f28877a-1c5a-4f12-9525-25d54bd06fec",
+      "name": "Submittals",
       "description": {
-        "content": "Project attachment lifecycle.",
+        "content": "Submittal lifecycle, approvals, and types.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "7866d12b-e8ac-4194-ad3a-92620b8dc4b5",
-          "name": "Get Attachments In Project",
+          "id": "19effb8e-0367-43bb-9db4-ed7520cc2e01",
+          "name": "Get Submittals In Project",
           "request": {
-            "name": "Get Attachments In Project",
+            "name": "Get Submittals In Project",
             "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "attachments"
+                "submittals"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -45,14 +45,14 @@
           },
           "response": [
             {
-              "id": "892432e6-f91f-40c8-a122-eeb8ff971cd0",
-              "name": "Attachment list.",
+              "id": "ee1cee42-bd96-43aa-b09e-ab6553ec764b",
+              "name": "Submittal list.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "attachments"
+                    "submittals"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -93,7 +93,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 1107,\n    \"project_id\": 7132,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 4561,\n    \"url\": \"http://PuZOtaFPsJ.zbktOyB.7X8vMFo56XtaWb9WIfc7MRZCs\",\n    \"thumb_url\": \"https://cAsaT.owcqMQv-kdvwnz4mZZ,fR3YJED.HdYEdo7+pM5\",\n    \"created_at\": \"2000-06-12T04:34:53.155Z\",\n    \"updated_at\": \"2003-01-14T05:13:08.248Z\"\n  },\n  {\n    \"id\": 3319,\n    \"project_id\": 5483,\n    \"filename\": \"string\",\n    \"content_type\": \"string\",\n    \"size\": 6956,\n    \"url\": \"http://VVtSJgygKPKlLAB.kbwIaDOj79u.o+4smBooSO,APUnrTA+bvTGZy9vy\",\n    \"thumb_url\": \"http://H.tkLL8S7bf8ZpMAxMbBLPqRe-NH\",\n    \"created_at\": \"2023-11-11T05:19:39.076Z\",\n    \"updated_at\": \"2008-06-27T16:45:01.928Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": 9378,\n    \"project_id\": 5655,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"void\",\n    \"spec_section_id\": 3798,\n    \"ball_in_court_user_id\": 3599,\n    \"due_at\": \"1987-12-23T14:50:20.499Z\",\n    \"created_at\": \"1977-07-10T00:37:23.012Z\",\n    \"updated_at\": \"1966-01-08T23:23:30.083Z\"\n  },\n  {\n    \"id\": 9121,\n    \"project_id\": 8316,\n    \"number\": \"string\",\n    \"title\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"void\",\n    \"spec_section_id\": 2627,\n    \"ball_in_court_user_id\": 5148,\n    \"due_at\": \"2006-08-04T16:10:26.995Z\",\n    \"created_at\": \"2003-09-16T05:21:10.304Z\",\n    \"updated_at\": \"1949-02-12T23:54:45.139Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -104,19 +104,16 @@
           }
         },
         {
-          "id": "d3ff6824-1d80-4d8a-b110-462786ed762c",
-          "name": "Create Attachment In Project",
+          "id": "6c66c766-8607-4bbc-8455-55aa24f2802a",
+          "name": "Create Submittal In Project",
           "request": {
-            "name": "Create Attachment In Project",
-            "description": {
-              "content": "Register an attachment after the binary has been uploaded to S3 via\nthe POST-token flow. The `aws_post_token_id` ties the registration\nback to the previously issued token.\n",
-              "type": "text/plain"
-            },
+            "name": "Create Submittal In Project",
+            "description": {},
             "url": {
               "path": [
                 "projects",
                 ":project_id",
-                "attachments"
+                "submittals"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -146,7 +143,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -156,14 +153,14 @@
           },
           "response": [
             {
-              "id": "bcee3eac-ce7f-41a2-a4da-cc2f1b4c234c",
-              "name": "Registered attachment.",
+              "id": "cc8fe56a-ab5a-4fa9-90ee-15c4b4a3a3db",
+              "name": "Created submittal.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "projects",
                     ":project_id",
-                    "attachments"
+                    "submittals"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -196,7 +193,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"aws_post_token_id\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"spec_section_id\": \"<long>\",\n  \"ball_in_court_user_id\": \"<long>\",\n  \"due_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -212,7 +209,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": 4459,\n  \"project_id\": 9134,\n  \"filename\": \"string\",\n  \"content_type\": \"string\",\n  \"size\": 3654,\n  \"url\": \"http://KZASdru.qtfVFoL3CTGZecqQKpPcNhKmM\",\n  \"thumb_url\": \"http://kRdEetoyeend.uwjbf,Pqdf+yYB-ZDLEYIibo2\",\n  \"created_at\": \"2003-02-22T20:23:10.901Z\",\n  \"updated_at\": \"1999-06-20T09:34:20.641Z\"\n}",
+              "body": "{\n  \"id\": 3597,\n  \"project_id\": 429,\n  \"number\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"approved_as_noted\",\n  \"spec_section_id\": 3448,\n  \"ball_in_court_user_id\": 9024,\n  \"due_at\": \"1972-04-29T13:19:17.967Z\",\n  \"created_at\": \"1956-12-13T19:28:23.067Z\",\n  \"updated_at\": \"1949-02-25T22:18:25.537Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -244,8 +241,8 @@
     ]
   },
   "info": {
-    "_postman_id": "524ae1f6-79c9-48d3-b77d-4ab67eeae8ec",
-    "name": "Fieldwire Account Actual Costs Attachments API",
+    "_postman_id": "b447b52c-e3bf-4179-a17d-9acd9b205343",
+    "name": "Fieldwire Account Actual Costs Submittals API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Account-scoped (super) endpoints used to authenticate, exchange the long-lived\nAPI key (refresh token) for a short-lived JWT access token, and manage\naccount-level users, roles, attachments, data types, custom stamps, account\nform templates, and project transfers. All requests target the global super\nhost: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes\nuse the regional Projects API (`client-api.us.fieldwire.com` or\n`client-api.eu.fieldwire.com`).\n\n\nContact Support:\n Name: Fieldwire Developer Support",
