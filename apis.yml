@@ -1,5 +1,6 @@
 aid: fieldwire
 url: https://raw.githubusercontent.com/api-evangelist/fieldwire/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 apis:
 - aid: fieldwire:fieldwire-projects-api
   name: Fieldwire Projects API
