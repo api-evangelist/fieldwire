@@ -6,6 +6,10 @@ apis:
   name: Fieldwire Projects API
   tags:
   - Construction
+  - Project
+  - Field Management
+  tags_raw:
+  - Construction
   - Projects
   - Field Management
   humanURL: https://developers.fieldwire.com/reference/get_projects_in_account
@@ -22,6 +26,11 @@ apis:
 - aid: fieldwire:fieldwire-tasks-api
   name: Fieldwire Tasks API
   tags:
+  - Construction
+  - Field Management
+  - Task
+  - Punch Lists
+  tags_raw:
   - Construction
   - Field Management
   - Tasks
@@ -43,6 +52,12 @@ apis:
 - aid: fieldwire:fieldwire-attachments-api
   name: Fieldwire Attachments and Media API
   tags:
+  - Construction
+  - Attachments
+  - Photos
+  - File
+  - Media
+  tags_raw:
   - Construction
   - Attachments
   - Photos
@@ -308,6 +323,8 @@ apis:
   description: Floorplan lifecycle, hierarchy, and collections.
   humanURL: https://developers.fieldwire.com/docs/getting-started
   tags:
+  - Floor Plans
+  tags_raw:
   - Floorplans
   properties:
   - type: OpenAPI
@@ -833,6 +850,8 @@ apis:
   description: Webhook subscription lifecycle.
   humanURL: https://developers.fieldwire.com/docs/getting-started
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -938,6 +957,8 @@ apis:
   description: Account-level user, role, and permission management.
   humanURL: https://developers.fieldwire.com/docs/getting-started
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
