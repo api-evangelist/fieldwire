@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fieldwire Account Actual Costs Project Users API
+  title: Fieldwire Account Actual Costs Attachments API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,31 +29,38 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Project Users
-  description: User membership, roles, and removal across projects.
+- name: Attachments
+  description: Project attachment lifecycle.
 paths:
-  /projects/{project_id}/users:
+  /projects/{project_id}/attachments:
     get:
-      operationId: getProjectUsers
-      summary: Get Project Users
+      operationId: getAttachmentsInProject
+      summary: Get Attachments In Project
       tags:
-      - Project Users
+      - Attachments
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Project user list.
+          description: Attachment list.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ProjectUser'
+                  $ref: '#/components/schemas/Attachment'
     post:
-      operationId: createProjectUser
-      summary: Invite Project User
+      operationId: createAttachmentInProject
+      summary: Create Attachment In Project
+      description: 'Register an attachment after the binary has been uploaded to S3 via
+
+        the POST-token flow. The `aws_post_token_id` ties the registration
+
+        back to the previously issued token.
+
+        '
       tags:
-      - Project Users
+      - Attachments
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       requestBody:
@@ -61,70 +68,64 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProjectUserCreate'
+              $ref: '#/components/schemas/AttachmentCreate'
       responses:
         '201':
-          description: Project user invited.
+          description: Registered attachment.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProjectUser'
+                $ref: '#/components/schemas/Attachment'
 components:
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
-    ProjectUser:
+    AttachmentCreate:
+      type: object
+      required:
+      - aws_post_token_id
+      properties:
+        aws_post_token_id:
+          type: integer
+          format: int64
+        filename:
+          type: string
+        content_type:
+          type: string
+    Attachment:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        user_id:
-          type: integer
-          format: int64
         project_id:
           type: integer
           format: int64
-        role:
+        filename:
           type: string
-          enum:
-          - admin
-          - member
-          - follower
-        email:
+        content_type:
           type: string
-          format: email
+        size:
+          type: integer
+          format: int64
+        url:
+          type: string
+          format: uri
+        thumb_url:
+          type: string
+          format: uri
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
-    ProjectUserCreate:
-      type: object
-      required:
-      - email
-      - role
-      properties:
-        email:
-          type: string
-          format: email
-        role:
-          type: string
-          enum:
-          - admin
-          - member
-          - follower
-        team_id:
-          type: integer
-          format: int64
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      description: Project identifier.
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

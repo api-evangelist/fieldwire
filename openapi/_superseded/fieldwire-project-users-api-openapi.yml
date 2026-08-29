@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fieldwire Account Actual Costs Project Stats API
+  title: Fieldwire Account Actual Costs Project Users API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,44 +29,93 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Project Stats
-  description: Aggregate project counts and status statistics.
+- name: Project Users
+  description: User membership, roles, and removal across projects.
 paths:
-  /projects/{project_id}/stats:
+  /projects/{project_id}/users:
     get:
-      operationId: getProjectStats
-      summary: Get Project Stats
+      operationId: getProjectUsers
+      summary: Get Project Users
       tags:
-      - Project Stats
+      - Project Users
       parameters:
       - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          description: Project statistics.
+          description: Project user list.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProjectStats'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectUser'
+    post:
+      operationId: createProjectUser
+      summary: Invite Project User
+      tags:
+      - Project Users
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectUserCreate'
+      responses:
+        '201':
+          description: Project user invited.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectUser'
 components:
   schemas:
-    ProjectStats:
+    ProjectUserCreate:
+      type: object
+      required:
+      - email
+      - role
+      properties:
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+          - admin
+          - member
+          - follower
+        team_id:
+          type: integer
+          format: int64
+    ProjectUser:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
+        user_id:
+          type: integer
+          format: int64
         project_id:
           type: integer
           format: int64
-        task_count:
-          type: integer
-        sheet_count:
-          type: integer
-        attachment_count:
-          type: integer
-        form_count:
-          type: integer
-        rfi_count:
-          type: integer
-        submittal_count:
-          type: integer
+        role:
+          type: string
+          enum:
+          - admin
+          - member
+          - follower
+        email:
+          type: string
+          format: email
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
   parameters:
     ProjectId:
       name: project_id

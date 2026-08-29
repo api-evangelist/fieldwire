@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fieldwire Account Actual Costs S3 Tokens API
+  title: Fieldwire Account Actual Costs Project Stats API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,76 +29,50 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: S3 Tokens
-  description: Short-lived signed AWS POST tokens for direct-to-S3 uploads.
+- name: Project Stats
+  description: Aggregate project counts and status statistics.
 paths:
-  /projects/{project_id}/aws_post_tokens:
-    post:
-      operationId: addAwsPostTokens
-      summary: Get AWS POST Token For Upload
-      description: 'Request a one-day signed AWS POST token that the client uses to upload
-
-        the binary directly to Amazon S3. The token contains the post URL,
-
-        policy, and form fields required for the S3 `POST object` operation;
-
-        clients then add a `file` form field and POST to AWS directly.
-
-        '
+  /projects/{project_id}/stats:
+    get:
+      operationId: getProjectStats
+      summary: Get Project Stats
       tags:
-      - S3 Tokens
+      - Project Stats
       parameters:
       - $ref: '#/components/parameters/ProjectId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-              - filename
-              - content_type
-              properties:
-                filename:
-                  type: string
-                content_type:
-                  type: string
-                  example: image/jpeg
-                size:
-                  type: integer
-                  format: int64
       responses:
         '200':
-          description: Signed POST token.
+          description: Project statistics.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AwsPostToken'
+                $ref: '#/components/schemas/ProjectStats'
 components:
   schemas:
-    AwsPostToken:
+    ProjectStats:
       type: object
       properties:
-        id:
+        project_id:
           type: integer
           format: int64
-        post_address:
-          type: string
-          format: uri
-          description: AWS S3 endpoint to POST to.
-        fields:
-          type: object
-          additionalProperties:
-            type: string
-          description: Form fields (key, policy, signature, etc.) required by S3.
-        expires_at:
-          type: string
-          format: date-time
+        task_count:
+          type: integer
+        sheet_count:
+          type: integer
+        attachment_count:
+          type: integer
+        form_count:
+          type: integer
+        rfi_count:
+          type: integer
+        submittal_count:
+          type: integer
   parameters:
     ProjectId:
       name: project_id
       in: path
       required: true
+      description: Project identifier.
       schema:
         type: integer
         format: int64

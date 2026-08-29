@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Fieldwire Account Custom Stamps API
+  title: Fieldwire Account Actual Costs S3 Tokens API
   description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
 
     API key (refresh token) for a short-lived JWT access token, and manage
@@ -29,61 +29,79 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Custom Stamps
-  description: Account-level custom stamps used on markups across projects.
+- name: S3 Tokens
+  description: Short-lived signed AWS POST tokens for direct-to-S3 uploads.
 paths:
-  /account/custom_stamps:
-    get:
-      operationId: getAccountCustomStamps
-      summary: Get Account Custom Stamps
-      tags:
-      - Custom Stamps
-      responses:
-        '200':
-          description: Custom stamp list.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomStamp'
+  /projects/{project_id}/aws_post_tokens:
     post:
-      operationId: createAccountCustomStamp
-      summary: Create Account Custom Stamp
+      operationId: addAwsPostTokens
+      summary: Get AWS POST Token For Upload
+      description: 'Request a one-day signed AWS POST token that the client uses to upload
+
+        the binary directly to Amazon S3. The token contains the post URL,
+
+        policy, and form fields required for the S3 `POST object` operation;
+
+        clients then add a `file` form field and POST to AWS directly.
+
+        '
       tags:
-      - Custom Stamps
+      - S3 Tokens
+      parameters:
+      - $ref: '#/components/parameters/ProjectId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomStamp'
+              type: object
+              required:
+              - filename
+              - content_type
+              properties:
+                filename:
+                  type: string
+                content_type:
+                  type: string
+                  example: image/jpeg
+                size:
+                  type: integer
+                  format: int64
       responses:
-        '201':
-          description: Created custom stamp.
+        '200':
+          description: Signed POST token.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomStamp'
+                $ref: '#/components/schemas/AwsPostToken'
 components:
   schemas:
-    CustomStamp:
+    AwsPostToken:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        name:
-          type: string
-        attachment_url:
+        post_address:
           type: string
           format: uri
-        created_at:
+          description: AWS S3 endpoint to POST to.
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+          description: Form fields (key, policy, signature, etc.) required by S3.
+        expires_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,19 +1,17 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fieldwire Account Actual Costs Subscriptions API
-  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+  title: Fieldwire Webhooks Subscriptions API
+  description: 'Configure webhook subscriptions to receive real-time event notifications
 
-    API key (refresh token) for a short-lived JWT access token, and manage
+    for attachments, entity tags / taggings, floorplans, forms, hyperlinks,
 
-    account-level users, roles, attachments, data types, custom stamps, account
+    multi-hyperlinks, projects, project resource links, sheets, sheet uploads,
 
-    form templates, and project transfers. All requests target the global super
+    tasks, task check items, and task relations. Per-subscription
 
-    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
+    `entity_filters` (max 20 entries) and `project_filters` (max 100 entries)
 
-    use the regional Projects API (`client-api.us.fieldwire.com` or
-
-    `client-api.eu.fieldwire.com`).
+    narrow event delivery.
 
     '
   version: v3.1
@@ -24,8 +22,10 @@ info:
     name: Fieldwire Terms of Service
     url: https://www.fieldwire.com/terms/
 servers:
-- url: https://client-api.super.fieldwire.com
-  description: Global Super Host
+- url: https://client-api.us.fieldwire.com/api/v3
+  description: US Region
+- url: https://client-api.eu.fieldwire.com/api/v3
+  description: EU Region
 security:
 - BearerAuth: []
 tags:
@@ -120,7 +120,60 @@ paths:
         '204':
           description: Subscription deleted.
 components:
+  parameters:
+    SubscriptionId:
+      name: subscription_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
+    Subscription:
+      type: object
+      properties:
+        subscription_id:
+          type: integer
+          format: int64
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        account_id:
+          type: integer
+          format: int64
+        internal:
+          type: boolean
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+            description: 'Entity name to filter on, e.g. `task`, `attachment`, `floorplan`,
+
+              `form`, `project`, `sheet`, `hyperlink`, `multi_hyperlink`,
+
+              `entity_tag`, `entity_tagging`, `project_resource_link`,
+
+              `task_check_item`, `task_relation`, `sheet_upload`.
+
+              '
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
     SubscriptionUpdate:
       type: object
       properties:
@@ -182,68 +235,8 @@ components:
           items:
             type: integer
             format: int64
-    Subscription:
-      type: object
-      properties:
-        subscription_id:
-          type: integer
-          format: int64
-        subscription_name:
-          type: string
-          maxLength: 50
-        description:
-          type: string
-          maxLength: 200
-        post_url:
-          type: string
-          format: uri
-        subscription_status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        account_id:
-          type: integer
-          format: int64
-        internal:
-          type: boolean
-        entity_filters:
-          type: array
-          maxItems: 20
-          items:
-            type: string
-            description: 'Entity name to filter on, e.g. `task`, `attachment`, `floorplan`,
-
-              `form`, `project`, `sheet`, `hyperlink`, `multi_hyperlink`,
-
-              `entity_tag`, `entity_tagging`, `project_resource_link`,
-
-              `task_check_item`, `task_relation`, `sheet_upload`.
-
-              '
-        project_filters:
-          type: array
-          maxItems: 100
-          items:
-            type: integer
-            format: int64
-  parameters:
-    SubscriptionId:
-      name: subscription_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
-
-        `Authorization: Bearer <access_token>`. Also include the
-
-        `Fieldwire-Version` request header and `Content-Type: application/json`.
-
-        '

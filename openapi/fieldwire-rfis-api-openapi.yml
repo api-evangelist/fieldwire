@@ -1,19 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fieldwire Account Actual Costs RFIs API
-  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+  title: Fieldwire and Submittals RF Is API
+  description: 'Track Requests for Information (RFIs), submittals, submittal types, spec
 
-    API key (refresh token) for a short-lived JWT access token, and manage
+    sections, attachments, markups, watchers, approvals, and submittal log
 
-    account-level users, roles, attachments, data types, custom stamps, account
-
-    form templates, and project transfers. All requests target the global super
-
-    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
-
-    use the regional Projects API (`client-api.us.fieldwire.com` or
-
-    `client-api.eu.fieldwire.com`).
+    extraction across construction projects.
 
     '
   version: v3.1
@@ -24,8 +16,10 @@ info:
     name: Fieldwire Terms of Service
     url: https://www.fieldwire.com/terms/
 servers:
-- url: https://client-api.super.fieldwire.com
-  description: Global Super Host
+- url: https://client-api.us.fieldwire.com/api/v3
+  description: US Region
+- url: https://client-api.eu.fieldwire.com/api/v3
+  description: EU Region
 security:
 - BearerAuth: []
 tags:
@@ -123,6 +117,36 @@ components:
         type: integer
         format: int64
   schemas:
+    RfiUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          - answered
+          - closed
+          - void
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
     Rfi:
       type: object
       properties:
@@ -196,45 +220,8 @@ components:
         due_at:
           type: string
           format: date-time
-    RfiUpdate:
-      type: object
-      properties:
-        title:
-          type: string
-        question:
-          type: string
-        answer:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - open
-          - answered
-          - closed
-          - void
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
-        ball_in_court_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
-
-        `Authorization: Bearer <access_token>`. Also include the
-
-        `Fieldwire-Version` request header and `Content-Type: application/json`.
-
-        '

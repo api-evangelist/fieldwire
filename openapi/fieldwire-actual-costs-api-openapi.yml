@@ -1,19 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fieldwire Account Actual Costs API
-  description: 'Account-scoped (super) endpoints used to authenticate, exchange the long-lived
+  title: Fieldwire Project Financials Actual Costs API
+  description: 'Project financial endpoints for budget management, actual cost tracking,
 
-    API key (refresh token) for a short-lived JWT access token, and manage
+    tier cost codes, and change orders. Available to Business Plus customers
 
-    account-level users, roles, attachments, data types, custom stamps, account
-
-    form templates, and project transfers. All requests target the global super
-
-    host: `https://client-api.super.fieldwire.com`. Project-scoped reads/writes
-
-    use the regional Projects API (`client-api.us.fieldwire.com` or
-
-    `client-api.eu.fieldwire.com`).
+    on the Fieldwire by Hilti platform.
 
     '
   version: v3.1
@@ -24,8 +16,10 @@ info:
     name: Fieldwire Terms of Service
     url: https://www.fieldwire.com/terms/
 servers:
-- url: https://client-api.super.fieldwire.com
-  description: Global Super Host
+- url: https://client-api.us.fieldwire.com/api/v3
+  description: US Region
+- url: https://client-api.eu.fieldwire.com/api/v3
+  description: EU Region
 security:
 - BearerAuth: []
 tags:
@@ -125,10 +119,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: 'Send the short-lived access token returned by `POST /api_keys/jwt` as
-
-        `Authorization: Bearer <access_token>`. Also include the
-
-        `Fieldwire-Version` request header and `Content-Type: application/json`.
-
-        '
