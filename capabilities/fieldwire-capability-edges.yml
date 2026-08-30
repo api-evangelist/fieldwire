@@ -1,0 +1,86 @@
+slug: fieldwire
+provider: Fieldwire
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Infrastructure
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Building Information Models
+  spec_file: fieldwire-building-information-models-api-openapi.yml
+  capability_id: BC-5060.10
+  capability_id_l1: BC-5060
+  capability_name: BIM Management
+  confidence: 0.85
+  evidence: GET /projects/{project_id}/building_information_models; "attach Building Information Models
+    (BIM) with versioned object trees"
+  reason: Operations expose project BIM models with versioned object trees, which is BIM management within
+    digital engineering.
+- tag: Actual Costs
+  spec_file: fieldwire-actual-costs-api-openapi.yml
+  capability_id: BC-5020.20
+  capability_id_l1: BC-5020
+  capability_name: Cost Estimating & Management
+  confidence: 0.78
+  evidence: '"Project financial endpoints for budget management, actual cost tracking"; POST /projects/{project_id}/actual_costs
+    Create Actual Cost In Project'
+  reason: Recording and retrieving actual costs against a construction project is project cost control
+    within capital project controls.
+- tag: Budget Line Items
+  spec_file: fieldwire-budget-line-items-api-openapi.yml
+  capability_id: BC-5020.20
+  capability_id_l1: BC-5020
+  capability_name: Cost Estimating & Management
+  confidence: 0.75
+  evidence: GET /projects/{project_id}/budget_line_items Get Budget Line Items In Project; "Project financial
+    endpoints for budget management"
+  reason: Project budget line items are the cost baseline for a construction project — cost estimating
+    and management under project controls rather than corporate budgeting.
+- tag: RFIs
+  spec_file: fieldwire-rfis-api-openapi.yml
+  capability_id: BC-5030.30
+  capability_id_l1: BC-5030
+  capability_name: Contract Administration
+  confidence: 0.75
+  evidence: Track Requests for Information (RFIs), submittals, submittal types, spec sections ... across
+    construction projects
+  reason: RFIs are formal contract-administration information requests in construction delivery. Contract
+    Administration is the closest fit; some ambiguity versus design/document coordination keeps confidence
+    moderate.
+- tag: Form Records
+  spec_file: fieldwire-form-records-api-openapi.yml
+  capability_id: BC-5040.60
+  capability_id_l1: BC-5040
+  capability_name: Construction Quality Management
+  confidence: 0.7
+  evidence: capture form records ... Powers Fieldwire's daily reports, safety inspections, QA/QC checklists
+  reason: Field data-capture forms on construction projects; operations create/get forms in a project.
+    Best fit is construction quality management (QA/QC checklists, daily reports) within construction
+    & field delivery, though safety inspections also touch HSE, hence moderate confidence.
+- tag: Sheets
+  spec_file: fieldwire-sheets-api-openapi.yml
+  capability_id: BC-5060.20
+  capability_id_l1: BC-5060
+  capability_name: Common Data Environment
+  confidence: 0.7
+  evidence: Upload PDF drawing sets, manage sheet versioning and floorplan hierarchies ... keep the latest
+    drawings in the field
+  reason: Controlled distribution and versioning of project drawings is common-data-environment / project
+    information management for the built asset.
+- tag: Submittals
+  spec_file: fieldwire-submittals-api-openapi.yml
+  capability_id: BC-5030.30
+  capability_id_l1: BC-5030
+  capability_name: Contract Administration
+  confidence: 0.7
+  evidence: Track Requests for Information (RFIs), submittals, submittal types, spec sections, attachments,
+    markups, watchers, approvals
+  reason: Submittal review/approval is a core construction contract administration obligation between
+    contractor and design team.
