@@ -229,7 +229,7 @@ apis:
   description: Floorplan lifecycle, hierarchy, and collections.
   humanURL: https://developers.fieldwire.com/docs/getting-started
   tags:
-  - Floorplans
+  - Floor Plans
   tags_raw:
   - Floorplans
   properties:
