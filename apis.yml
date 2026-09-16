@@ -833,8 +833,7 @@ common:
     - name: Submittals
     - name: Change orders
     - name: Budget management
-    description: For project teams running RFIs, submittals, change orders, and budgets
-      in Fieldwire.
+    description: For project teams running RFIs, submittals, change orders, and budgets in Fieldwire.
   - id: custom
     name: Custom Contracts
     entries:
@@ -881,4 +880,7 @@ maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
 created: '2026-05-25'
-modified: '2026-05-25'
+modified: '2026-09-15'
+description: Fieldwire is a construction field-management platform. Its API covers plans and drawings,
+  tasks and punch lists, forms, change orders, budget line items and actual costs, BIM models, and the
+  people and companies attached to a project.
