@@ -224,43 +224,6 @@ apis:
     url: https://developers.fieldwire.com/docs/webhook-filters
   - type: AsyncAPI
     url: asyncapi/fieldwire-webhooks-asyncapi.yml
-- aid: fieldwire:fieldwire-floorplans-api
-  name: Fieldwire Floorplans API
-  description: Floorplan lifecycle, hierarchy, and collections.
-  humanURL: https://developers.fieldwire.com/docs/getting-started
-  tags:
-  - Floor Plans
-  tags_raw:
-  - Floorplans
-  properties:
-  - type: OpenAPI
-    url: openapi/fieldwire-floorplans-api-openapi.yml
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/getting-started
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/uploading-plans-via-api
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/floorplan-collections-api-guide
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/working-with-project-forms
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/getting-form-data
-  - type: Documentation
-    url: https://developers.fieldwire.com/reference/get_budget_line_items_in_project
-  - type: Documentation
-    url: https://developers.fieldwire.com/reference/get_rfis_in_project
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/beta-creating-webhook-configurations
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/webhook-event-types
-  - type: Documentation
-    url: https://developers.fieldwire.com/docs/webhook-filters
-  - type: AsyncAPI
-    url: asyncapi/fieldwire-webhooks-asyncapi.yml
 - aid: fieldwire:fieldwire-form-inputs-api
   name: Fieldwire Form Inputs API
   description: Inputs (text, number, photo, signature, choice, etc.) inside a section.
@@ -624,6 +587,41 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fieldwire-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/getting-started
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/authentication
+  - type: GraphQL
+    url: graphql/fieldwire-graphql.md
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/uploading-plans-via-api
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/floorplan-collections-api-guide
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/working-with-project-forms
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/getting-form-data
+  - type: Documentation
+    url: https://developers.fieldwire.com/reference/get_budget_line_items_in_project
+  - type: Documentation
+    url: https://developers.fieldwire.com/reference/get_rfis_in_project
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/beta-creating-webhook-configurations
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/webhook-event-types
+  - type: Documentation
+    url: https://developers.fieldwire.com/docs/webhook-filters
+  - type: AsyncAPI
+    url: asyncapi/fieldwire-webhooks-asyncapi.yml
+- aid: fieldwire:fieldwire-floor-plans-api
+  name: Fieldwire Floor Plans API
+  description: Floorplan lifecycle, hierarchy, and collections.
+  humanURL: https://developers.fieldwire.com/docs/getting-started
+  tags:
+  - Floor Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/fieldwire-floor-plans-api-openapi.yml
   - type: Documentation
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
