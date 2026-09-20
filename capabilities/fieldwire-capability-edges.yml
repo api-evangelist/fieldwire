@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 7
+edge_count: 9
 edges:
 - tag: Building Information Models
   spec_file: fieldwire-building-information-models-api-openapi.yml
@@ -54,6 +54,18 @@ edges:
   reason: RFIs are formal contract-administration information requests in construction delivery. Contract
     Administration is the closest fit; some ambiguity versus design/document coordination keeps confidence
     moderate.
+- tag: Floorplans
+  spec_file: fieldwire-floor-plans-api-openapi.yml
+  capability_id: BC-1130.20
+  capability_id_l1: BC-1130
+  capability_name: Drawing Management
+  confidence: 0.7
+  evidence: POST /projects/{project_id}/floorplans Create Floorplan In Project; "Upload PDF drawing sets,
+    manage sheet versioning and floorplan hierarchies ... calibrate scale"
+  reason: Managing project drawing sheets/floorplans with versioning and hierarchy is drawing lifecycle
+    and distribution to the field — engineering drawing management.
+  recovered_from: vertical-engineering-services-edges.json
+  reanchored_from: fieldwire-floorplans-api-openapi.yml
 - tag: Form Records
   spec_file: fieldwire-form-records-api-openapi.yml
   capability_id: BC-5040.60
@@ -74,6 +86,16 @@ edges:
     drawings in the field
   reason: Controlled distribution and versioning of project drawings is common-data-environment / project
     information management for the built asset.
+- tag: Spec Sections
+  spec_file: fieldwire-spec-sections-api-openapi.yml
+  capability_id: BC-1130.30
+  capability_id_l1: BC-1130
+  capability_name: Specification Management
+  confidence: 0.7
+  evidence: GET /projects/{project_id}/spec_sections — Get Spec Sections In Project
+  reason: Spec sections are the technical specification divisions (e.g. CSI) referenced by submittals;
+    maps to specification management, though the surface is a single read-only list.
+  recovered_from: vertical-engineering-services-edges.json
 - tag: Submittals
   spec_file: fieldwire-submittals-api-openapi.yml
   capability_id: BC-5030.30
