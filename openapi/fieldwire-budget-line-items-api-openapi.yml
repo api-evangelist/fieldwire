@@ -5,9 +5,7 @@ info:
 
     tier cost codes, and change orders. Available to Business Plus customers
 
-    on the Fieldwire by Hilti platform.
-
-    '
+    on the Fieldwire by Hilti platform.'
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -73,21 +71,6 @@ components:
         type: integer
         format: int64
   schemas:
-    BudgetLineItemCreate:
-      type: object
-      required:
-      - name
-      - amount
-      properties:
-        name:
-          type: string
-        tier_cost_code:
-          type: string
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
     BudgetLineItem:
       type: object
       properties:
@@ -112,6 +95,21 @@ components:
         updated_at:
           type: string
           format: date-time
+    BudgetLineItemCreate:
+      type: object
+      required:
+      - name
+      - amount
+      properties:
+        name:
+          type: string
+        tier_cost_code:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

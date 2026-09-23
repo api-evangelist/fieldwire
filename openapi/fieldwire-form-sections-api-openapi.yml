@@ -9,9 +9,7 @@ info:
 
     reports, safety inspections, QA/QC checklists, and any custom data
 
-    collection workflow.
-
-    '
+    collection workflow.'
   version: v3.1
   contact:
     name: Fieldwire Developer Support

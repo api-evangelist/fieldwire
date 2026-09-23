@@ -9,9 +9,7 @@ info:
 
     contractors, architects, and specialty contractors to keep the latest
 
-    drawings in the field.
-
-    '
+    drawings in the field.'
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -70,21 +68,6 @@ paths:
                 $ref: '#/components/schemas/Sheet'
 components:
   schemas:
-    SheetCreate:
-      type: object
-      required:
-      - floorplan_id
-      properties:
-        floorplan_id:
-          type: integer
-          format: int64
-        sheet_number:
-          type: string
-        title:
-          type: string
-        attachment_token:
-          type: string
-          description: AWS POST token identifier for the uploaded PDF.
     Sheet:
       type: object
       properties:
@@ -114,6 +97,21 @@ components:
         updated_at:
           type: string
           format: date-time
+    SheetCreate:
+      type: object
+      required:
+      - floorplan_id
+      properties:
+        floorplan_id:
+          type: integer
+          format: int64
+        sheet_number:
+          type: string
+        title:
+          type: string
+        attachment_token:
+          type: string
+          description: AWS POST token identifier for the uploaded PDF.
   parameters:
     ProjectId:
       name: project_id

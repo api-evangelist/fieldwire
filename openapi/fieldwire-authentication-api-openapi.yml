@@ -13,9 +13,7 @@ info:
 
     use the regional Projects API (`client-api.us.fieldwire.com` or
 
-    `client-api.eu.fieldwire.com`).
-
-    '
+    `client-api.eu.fieldwire.com`).'
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -40,9 +38,7 @@ paths:
 
         Fieldwire account settings for a short-lived JWT access token. The JWT
 
-        protects all subsequent calls and expires in minutes to hours.
-
-        '
+        protects all subsequent calls and expires in minutes to hours.'
       tags:
       - Authentication
       security: []

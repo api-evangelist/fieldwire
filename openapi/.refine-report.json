@@ -28,7 +28,9 @@
     "fieldwire-submittals-api-openapi.yml",
     "fieldwire-subscriptions-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -38,37 +40,28 @@
     "fieldwire-forms-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "fieldwire-plans-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "fieldwire-rfis-submittals-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "fieldwire-webhooks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "fieldwire-webhooks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: fieldwire-floor-plans-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 18 total)"
   ],
   "skipped": [
     "fieldwire-actual-costs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-bubbles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-budget-line-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-building-information-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-change-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-custom-stamps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-floorplans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fieldwire-floor-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-form-inputs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-form-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-form-sections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-form-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-hyperlinks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-markups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-project-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-project-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-project-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-rfis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-s3-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-sheets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-spec-sections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-submittals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-task-check-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-task-relations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "fieldwire-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "fieldwire-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

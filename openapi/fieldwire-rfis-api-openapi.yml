@@ -5,9 +5,7 @@ info:
 
     sections, attachments, markups, watchers, approvals, and submittal log
 
-    extraction across construction projects.
-
-    '
+    extraction across construction projects.'
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -101,21 +99,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Rfi'
 components:
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    RfiId:
-      name: rfi_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
     RfiUpdate:
       type: object
@@ -141,6 +124,32 @@ components:
           - normal
           - high
           - urgent
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+    RfiCreate:
+      type: object
+      required:
+      - title
+      - question
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        spec_section_id:
+          type: integer
+          format: int64
         ball_in_court_user_id:
           type: integer
           format: int64
@@ -194,32 +203,21 @@ components:
         updated_at:
           type: string
           format: date-time
-    RfiCreate:
-      type: object
-      required:
-      - title
-      - question
-      properties:
-        title:
-          type: string
-        question:
-          type: string
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
-        spec_section_id:
-          type: integer
-          format: int64
-        ball_in_court_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
+  parameters:
+    RfiId:
+      name: rfi_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     BearerAuth:
       type: http

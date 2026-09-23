@@ -5,9 +5,7 @@ info:
 
     tier cost codes, and change orders. Available to Business Plus customers
 
-    on the Fieldwire by Hilti platform.
-
-    '
+    on the Fieldwire by Hilti platform.'
   version: v3.1
   contact:
     name: Fieldwire Developer Support
@@ -64,26 +62,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ActualCost'
 components:
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
-    ActualCostCreate:
-      type: object
-      required:
-      - budget_line_item_id
-      - amount
-      properties:
-        budget_line_item_id:
-          type: integer
-          format: int64
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-        incurred_at:
-          type: string
-          format: date-time
-        description:
-          type: string
     ActualCost:
       type: object
       properties:
@@ -106,14 +93,25 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
+    ActualCostCreate:
+      type: object
+      required:
+      - budget_line_item_id
+      - amount
+      properties:
+        budget_line_item_id:
+          type: integer
+          format: int64
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        incurred_at:
+          type: string
+          format: date-time
+        description:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
