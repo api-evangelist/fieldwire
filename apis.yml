@@ -27,8 +27,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -62,8 +60,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -97,8 +93,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -132,8 +126,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -167,8 +159,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -202,8 +192,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -237,8 +225,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -272,8 +258,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -307,8 +291,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -342,8 +324,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -377,8 +357,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -412,8 +390,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -447,8 +423,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -482,8 +456,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -517,8 +489,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -554,8 +524,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -591,8 +559,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
@@ -626,8 +592,6 @@ apis:
     url: https://developers.fieldwire.com/docs/getting-started
   - type: Documentation
     url: https://developers.fieldwire.com/docs/authentication
-  - type: GraphQL
-    url: graphql/fieldwire-graphql.md
   - type: Documentation
     url: https://developers.fieldwire.com/docs/uploading-plans-via-api
   - type: Documentation
