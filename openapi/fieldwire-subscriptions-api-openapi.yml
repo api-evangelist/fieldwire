@@ -116,14 +116,17 @@ paths:
         '204':
           description: Subscription deleted.
 components:
+  parameters:
+    SubscriptionId:
+      name: subscription_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
-    SubscriptionCreate:
+    SubscriptionUpdate:
       type: object
-      required:
-      - subscription_name
-      - description
-      - post_url
-      - subscription_status
       properties:
         subscription_name:
           type: string
@@ -150,8 +153,13 @@ components:
           items:
             type: integer
             format: int64
-    SubscriptionUpdate:
+    SubscriptionCreate:
       type: object
+      required:
+      - subscription_name
+      - description
+      - post_url
+      - subscription_status
       properties:
         subscription_name:
           type: string
@@ -223,14 +231,6 @@ components:
           items:
             type: integer
             format: int64
-  parameters:
-    SubscriptionId:
-      name: subscription_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

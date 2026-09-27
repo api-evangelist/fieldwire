@@ -120,8 +120,10 @@ components:
         type: integer
         format: int64
   schemas:
-    FloorplanUpdate:
+    FloorplanCreate:
       type: object
+      required:
+      - name
       properties:
         name:
           type: string
@@ -161,10 +163,8 @@ components:
         updated_at:
           type: string
           format: date-time
-    FloorplanCreate:
+    FloorplanUpdate:
       type: object
-      required:
-      - name
       properties:
         name:
           type: string

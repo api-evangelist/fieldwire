@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Fieldwire and Submittals RF Is API
+  title: Fieldwire and Submittals RFIs API
   description: 'Track Requests for Information (RFIs), submittals, submittal types, spec
 
     sections, attachments, markups, watchers, approvals, and submittal log
@@ -100,36 +100,6 @@ paths:
                 $ref: '#/components/schemas/Rfi'
 components:
   schemas:
-    RfiUpdate:
-      type: object
-      properties:
-        title:
-          type: string
-        question:
-          type: string
-        answer:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - open
-          - answered
-          - closed
-          - void
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
-        ball_in_court_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
     RfiCreate:
       type: object
       required:
@@ -201,6 +171,36 @@ components:
           type: string
           format: date-time
         updated_at:
+          type: string
+          format: date-time
+    RfiUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          - answered
+          - closed
+          - void
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
           type: string
           format: date-time
   parameters:

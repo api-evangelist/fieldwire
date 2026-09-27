@@ -85,6 +85,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/FormRecordFull'
 components:
+  parameters:
+    FormId:
+      name: form_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     FormRecordCreate:
       type: object
@@ -156,21 +171,6 @@ components:
         updated_at:
           type: string
           format: date-time
-  parameters:
-    FormId:
-      name: form_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http
