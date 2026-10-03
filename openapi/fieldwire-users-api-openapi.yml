@@ -84,15 +84,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountUser'
 components:
-  parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      description: Account user identifier.
-      schema:
-        type: integer
-        format: int64
   schemas:
     AccountUser:
       type: object
@@ -146,6 +137,15 @@ components:
           - active
           - invited
           - deactivated
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: Account user identifier.
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     BearerAuth:
       type: http

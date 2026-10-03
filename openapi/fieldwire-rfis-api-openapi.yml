@@ -100,32 +100,6 @@ paths:
                 $ref: '#/components/schemas/Rfi'
 components:
   schemas:
-    RfiCreate:
-      type: object
-      required:
-      - title
-      - question
-      properties:
-        title:
-          type: string
-        question:
-          type: string
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
-        spec_section_id:
-          type: integer
-          format: int64
-        ball_in_court_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
     Rfi:
       type: object
       properties:
@@ -197,6 +171,32 @@ components:
           - normal
           - high
           - urgent
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
+    RfiCreate:
+      type: object
+      required:
+      - title
+      - question
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        spec_section_id:
+          type: integer
+          format: int64
         ball_in_court_user_id:
           type: integer
           format: int64

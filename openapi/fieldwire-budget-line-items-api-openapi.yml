@@ -63,21 +63,6 @@ paths:
                 $ref: '#/components/schemas/BudgetLineItem'
 components:
   schemas:
-    BudgetLineItemCreate:
-      type: object
-      required:
-      - name
-      - amount
-      properties:
-        name:
-          type: string
-        tier_cost_code:
-          type: string
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
     BudgetLineItem:
       type: object
       properties:
@@ -102,6 +87,21 @@ components:
         updated_at:
           type: string
           format: date-time
+    BudgetLineItemCreate:
+      type: object
+      required:
+      - name
+      - amount
+      properties:
+        name:
+          type: string
+        tier_cost_code:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
   parameters:
     ProjectId:
       name: project_id

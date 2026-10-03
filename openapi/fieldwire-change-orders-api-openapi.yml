@@ -71,6 +71,21 @@ components:
         type: integer
         format: int64
   schemas:
+    ChangeOrderCreate:
+      type: object
+      required:
+      - title
+      - amount
+      properties:
+        title:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        number:
+          type: string
     ChangeOrder:
       type: object
       properties:
@@ -109,21 +124,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    ChangeOrderCreate:
-      type: object
-      required:
-      - title
-      - amount
-      properties:
-        title:
-          type: string
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-        number:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

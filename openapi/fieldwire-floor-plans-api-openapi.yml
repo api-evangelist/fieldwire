@@ -104,21 +104,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Floorplan'
 components:
-  parameters:
-    FloorplanId:
-      name: floorplan_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
     FloorplanCreate:
       type: object
@@ -174,6 +159,21 @@ components:
         floorplan_collection_id:
           type: integer
           format: int64
+  parameters:
+    FloorplanId:
+      name: floorplan_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     BearerAuth:
       type: http

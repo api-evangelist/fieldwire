@@ -62,7 +62,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/Submittal'
 components:
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
+    SubmittalCreate:
+      type: object
+      required:
+      - title
+      - type
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
     Submittal:
       type: object
       properties:
@@ -105,33 +132,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    SubmittalCreate:
-      type: object
-      required:
-      - title
-      - type
-      properties:
-        title:
-          type: string
-        type:
-          type: string
-        spec_section_id:
-          type: integer
-          format: int64
-        ball_in_court_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

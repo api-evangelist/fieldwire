@@ -42,6 +42,14 @@ paths:
                 items:
                   $ref: '#/components/schemas/SpecSection'
 components:
+  parameters:
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     SpecSection:
       type: object
@@ -61,14 +69,6 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http
