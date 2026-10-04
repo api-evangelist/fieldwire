@@ -1,29 +1,27 @@
-# Kin Score artifact — fieldwire — 2026-08-29T230545
+# Kin Score artifact — fieldwire — 2026-09-25T232841
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: fieldwire
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T230545
-  composite: 59.1
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T232841
+  composite: 56.2
   band: strong
   facets:
-    discoverability: 50.0
-    contract_quality: 69.8
-    governance: 13.6
-    operational_transparency: 68.4
-    developer_ergonomics: 59.5
-    commercial_clarity: 71.1
+    discoverability: 57.1
+    contract_quality: 59.2
     contract_governance: 13.6
-    access_clarity: 71.1
+    operational_transparency: 66.3
+    developer_ergonomics: 56.0
+    access_clarity: 67.9
   agent_readiness:
-    score: 22.6
+    score: 20.9
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
-      reversibility_documented: documented
+      reversibility_documented: false
       mcp_server: false
       auth_clarity: bearer
       idempotency: false
@@ -40,6 +38,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 24.5
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:

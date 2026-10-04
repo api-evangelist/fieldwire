@@ -13,6 +13,9 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 specificationVersion: '0.23'
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 apis:
 - aid: fieldwire:fieldwire-actual-costs-api
   name: Fieldwire Actual Costs API
