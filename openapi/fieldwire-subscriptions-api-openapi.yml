@@ -117,67 +117,6 @@ paths:
           description: Subscription deleted.
 components:
   schemas:
-    SubscriptionCreate:
-      type: object
-      required:
-      - subscription_name
-      - description
-      - post_url
-      - subscription_status
-      properties:
-        subscription_name:
-          type: string
-          maxLength: 50
-        description:
-          type: string
-          maxLength: 200
-        post_url:
-          type: string
-          format: uri
-        subscription_status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        entity_filters:
-          type: array
-          maxItems: 20
-          items:
-            type: string
-        project_filters:
-          type: array
-          maxItems: 100
-          items:
-            type: integer
-            format: int64
-    SubscriptionUpdate:
-      type: object
-      properties:
-        subscription_name:
-          type: string
-          maxLength: 50
-        description:
-          type: string
-          maxLength: 200
-        post_url:
-          type: string
-          format: uri
-        subscription_status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        entity_filters:
-          type: array
-          maxItems: 20
-          items:
-            type: string
-        project_filters:
-          type: array
-          maxItems: 100
-          items:
-            type: integer
-            format: int64
     Subscription:
       type: object
       properties:
@@ -217,6 +156,67 @@ components:
               `task_check_item`, `task_relation`, `sheet_upload`.
 
               '
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
+    SubscriptionUpdate:
+      type: object
+      properties:
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        project_filters:
+          type: array
+          maxItems: 100
+          items:
+            type: integer
+            format: int64
+    SubscriptionCreate:
+      type: object
+      required:
+      - subscription_name
+      - description
+      - post_url
+      - subscription_status
+      properties:
+        subscription_name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 200
+        post_url:
+          type: string
+          format: uri
+        subscription_status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        entity_filters:
+          type: array
+          maxItems: 20
+          items:
+            type: string
         project_filters:
           type: array
           maxItems: 100

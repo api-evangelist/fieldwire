@@ -85,6 +85,26 @@ paths:
                 $ref: '#/components/schemas/AccountUser'
 components:
   schemas:
+    AccountUserUpdate:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        role:
+          type: string
+          enum:
+          - owner
+          - admin
+          - member
+          - follower
+        status:
+          type: string
+          enum:
+          - active
+          - invited
+          - deactivated
     AccountUser:
       type: object
       properties:
@@ -117,26 +137,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    AccountUserUpdate:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        role:
-          type: string
-          enum:
-          - owner
-          - admin
-          - member
-          - follower
-        status:
-          type: string
-          enum:
-          - active
-          - invited
-          - deactivated
   parameters:
     UserId:
       name: user_id

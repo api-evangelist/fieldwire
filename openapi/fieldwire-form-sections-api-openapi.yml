@@ -68,6 +68,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/FormTemplateSection'
 components:
+  parameters:
+    FormTemplateId:
+      name: form_template_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     FormTemplateSection:
       type: object
@@ -85,14 +93,6 @@ components:
           format: double
         is_repeatable:
           type: boolean
-  parameters:
-    FormTemplateId:
-      name: form_template_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

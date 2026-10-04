@@ -70,6 +70,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/FormTemplateInput'
 components:
+  parameters:
+    FormTemplateId:
+      name: form_template_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    SectionId:
+      name: section_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     FormTemplateInput:
       type: object
@@ -104,21 +119,6 @@ components:
         position:
           type: number
           format: double
-  parameters:
-    SectionId:
-      name: section_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    FormTemplateId:
-      name: form_template_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

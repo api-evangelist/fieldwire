@@ -105,6 +105,17 @@ paths:
                 $ref: '#/components/schemas/Floorplan'
 components:
   schemas:
+    FloorplanUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        parent_id:
+          type: integer
+          format: int64
+        floorplan_collection_id:
+          type: integer
+          format: int64
     FloorplanCreate:
       type: object
       required:
@@ -148,17 +159,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    FloorplanUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        parent_id:
-          type: integer
-          format: int64
-        floorplan_collection_id:
-          type: integer
-          format: int64
   parameters:
     FloorplanId:
       name: floorplan_id

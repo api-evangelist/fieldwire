@@ -204,15 +204,15 @@ components:
           type: string
           format: date-time
   parameters:
-    RfiId:
-      name: rfi_id
+    ProjectId:
+      name: project_id
       in: path
       required: true
       schema:
         type: integer
         format: int64
-    ProjectId:
-      name: project_id
+    RfiId:
+      name: rfi_id
       in: path
       required: true
       schema:
