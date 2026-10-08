@@ -660,6 +660,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fieldwire.png
 access: 3rd-Party
 common:
+- type: FinOps
+  url: finops/fieldwire-finops.yml
 - type: Website
   url: https://www.fieldwire.com/
 - type: CapabilityMap
