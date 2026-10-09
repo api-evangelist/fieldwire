@@ -1,42 +1,67 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/fieldwire-account-api-openapi.yml, openapi/fieldwire-attachments-api-openapi.yml,
-  openapi/fieldwire-financials-api-openapi.yml, openapi/fieldwire-forms-api-openapi.yml, openapi/fieldwire-plans-api-openapi.yml,
-  openapi/fieldwire-projects-api-openapi.yml, openapi/fieldwire-rfis-submittals-api-openapi.yml,
-  openapi/fieldwire-tasks-api-openapi.yml, openapi/fieldwire-webhooks-api-openapi.yml
+source: openapi/fieldwire-actual-costs-api-openapi.yml, openapi/fieldwire-authentication-api-openapi.yml,
+  openapi/fieldwire-budget-line-items-api-openapi.yml, openapi/fieldwire-building-information-models-api-openapi.yml,
+  openapi/fieldwire-change-orders-api-openapi.yml, openapi/fieldwire-custom-stamps-api-openapi.yml,
+  openapi/fieldwire-floor-plans-api-openapi.yml, openapi/fieldwire-form-inputs-api-openapi.yml,
+  openapi/fieldwire-form-records-api-openapi.yml, openapi/fieldwire-form-sections-api-openapi.yml,
+  openapi/fieldwire-form-templates-api-openapi.yml, openapi/fieldwire-hyperlinks-api-openapi.yml,
+  openapi/fieldwire-rfis-api-openapi.yml, openapi/fieldwire-sheets-api-openapi.yml, openapi/fieldwire-spec-sections-api-openapi.yml,
+  openapi/fieldwire-submittals-api-openapi.yml, openapi/fieldwire-subscriptions-api-openapi.yml,
+  openapi/fieldwire-users-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 69
+  operations: 43
   by_action_class:
-    acting: 34
-    connected: 35
+    connected: 24
+    acting: 19
   by_consequence:
-    write: 32
-    read: 35
-    physical: 2
+    read: 24
+    write: 18
+    physical: 1
   human_in_the_loop_required: 0
 operations:
+- path: /projects/{project_id}/actual_costs
+  method: get
+  operationId: getActualCostsInProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /projects/{project_id}/actual_costs
+  method: post
+  operationId: createActualCostInProject
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api_keys/jwt
   method: post
   operationId: getApiKeyJwt
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /account/users
+      max-ttl: 3600
+    audit: none
+- path: /projects/{project_id}/budget_line_items
   method: get
-  operationId: getAccountUsers
+  operationId: getBudgetLineItemsInProject
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -44,45 +69,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /account/users/{user_id}
-  method: get
-  operationId: getAccountUserById
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /account/users/{user_id}
-  method: patch
-  operationId: updateAccountUserById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /account/form_templates
-  method: get
-  operationId: getAccountFormTemplates
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /account/form_templates
+- path: /projects/{project_id}/budget_line_items
   method: post
-  operationId: createAccountFormTemplate
+  operationId: createBudgetLineItemInProject
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -96,9 +85,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /account/form_templates/{form_template_id}
+- path: /projects/{project_id}/building_information_models
   method: get
-  operationId: getAccountFormTemplateById
+  operationId: getBuildingInformationModelsInProject
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -106,16 +95,28 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /account/form_templates/{form_template_id}
-  method: patch
-  operationId: updateAccountFormTemplateById
+- path: /projects/{project_id}/change_orders
+  method: get
+  operationId: getChangeOrdersInProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /projects/{project_id}/change_orders
+  method: post
+  operationId: createChangeOrderInProject
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -148,9 +149,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /projects/{project_id}/aws_post_tokens
+- path: /projects/{project_id}/floorplans
+  method: get
+  operationId: getFloorplansInProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /projects/{project_id}/floorplans
   method: post
-  operationId: addAwsPostTokens
+  operationId: createFloorplanInProject
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -164,9 +175,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /projects/{project_id}/attachments
+- path: /projects/{project_id}/floorplans/{floorplan_id}
   method: get
-  operationId: getAttachmentsInProject
+  operationId: getFloorplanById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -174,141 +185,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /projects/{project_id}/attachments
-  method: post
-  operationId: createAttachmentInProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/attachment_markups
-  method: get
-  operationId: getAttachmentMarkupsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/attachment_markups
-  method: post
-  operationId: createAttachmentMarkupInProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/budget_line_items
-  method: get
-  operationId: getBudgetLineItemsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/budget_line_items
-  method: post
-  operationId: createBudgetLineItemInProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/actual_costs
-  method: get
-  operationId: getActualCostsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/actual_costs
-  method: post
-  operationId: createActualCostInProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/change_orders
-  method: get
-  operationId: getChangeOrdersInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/change_orders
-  method: post
-  operationId: createChangeOrderInProject
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /account/form_templates/{form_template_id}/sections
-  method: get
-  operationId: getFormTemplateSections
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /account/form_templates/{form_template_id}/sections
-  method: post
-  operationId: createFormTemplateSection
+- path: /projects/{project_id}/floorplans/{floorplan_id}
+  method: patch
+  operationId: updateFloorplanById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -384,9 +263,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /projects/{project_id}/floorplans
+- path: /account/form_templates/{form_template_id}/sections
   method: get
-  operationId: getFloorplansInProject
+  operationId: getFormTemplateSections
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -394,9 +273,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /projects/{project_id}/floorplans
+- path: /account/form_templates/{form_template_id}/sections
   method: post
-  operationId: createFloorplanInProject
+  operationId: createFormTemplateSection
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -410,9 +289,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /projects/{project_id}/floorplans/{floorplan_id}
+- path: /account/form_templates
   method: get
-  operationId: getFloorplanById
+  operationId: getAccountFormTemplates
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -420,35 +299,35 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /projects/{project_id}/floorplans/{floorplan_id}
+- path: /account/form_templates
+  method: post
+  operationId: createAccountFormTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /account/form_templates/{form_template_id}
+  method: get
+  operationId: getAccountFormTemplateById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /account/form_templates/{form_template_id}
   method: patch
-  operationId: updateFloorplanById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/sheets
-  method: get
-  operationId: getSheetsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/sheets
-  method: post
-  operationId: createSheetInProject
+  operationId: updateAccountFormTemplateById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -465,164 +344,6 @@ operations:
 - path: /projects/{project_id}/hyperlinks
   method: get
   operationId: getHyperlinksInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/building_information_models
-  method: get
-  operationId: getBuildingInformationModelsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects
-  method: get
-  operationId: getProjects
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects
-  method: post
-  operationId: createProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}
-  method: get
-  operationId: getProjectById
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}
-  method: patch
-  operationId: updateProjectById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}
-  method: delete
-  operationId: deleteProjectById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/restore
-  method: post
-  operationId: restoreProjectById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/transfer
-  method: post
-  operationId: transferProject
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/users
-  method: get
-  operationId: getProjectUsers
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/users
-  method: post
-  operationId: createProjectUser
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/teams
-  method: get
-  operationId: getProjectTeams
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/stats
-  method: get
-  operationId: getProjectStats
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -682,6 +403,42 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /projects/{project_id}/sheets
+  method: get
+  operationId: getSheetsInProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /projects/{project_id}/sheets
+  method: post
+  operationId: createSheetInProject
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /projects/{project_id}/spec_sections
+  method: get
+  operationId: getSpecSectionsInProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /projects/{project_id}/submittals
   method: get
   operationId: getSubmittalsInProject
@@ -708,146 +465,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /projects/{project_id}/spec_sections
-  method: get
-  operationId: getSpecSectionsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/tasks
-  method: get
-  operationId: getTasksInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/tasks
-  method: post
-  operationId: createTaskInProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/tasks/{task_id}
-  method: get
-  operationId: getTaskById
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/tasks/{task_id}
-  method: patch
-  operationId: updateTaskById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/tasks/{task_id}
-  method: delete
-  operationId: deleteTaskById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/tasks/{task_id}/check_items
-  method: get
-  operationId: getCheckItemsInTask
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/tasks/{task_id}/check_items
-  method: post
-  operationId: createCheckItemInTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/tasks/{task_id}/bubbles
-  method: get
-  operationId: getBubblesInTask
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects/{project_id}/tasks/{task_id}/bubbles
-  method: post
-  operationId: createBubbleInTask
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{project_id}/task_relations
-  method: get
-  operationId: getTaskRelationsInProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /subscriptions
   method: get
   operationId: getSubscriptions
@@ -903,6 +520,42 @@ operations:
 - path: /subscriptions/{subscription_id}
   method: delete
   operationId: deleteSubscriptionById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /account/users
+  method: get
+  operationId: getAccountUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /account/users/{user_id}
+  method: get
+  operationId: getAccountUserById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /account/users/{user_id}
+  method: patch
+  operationId: updateAccountUserById
   x-agentic-access:
     action-class: acting
     consequence: write
