@@ -105,8 +105,10 @@ paths:
                 $ref: '#/components/schemas/Floorplan'
 components:
   schemas:
-    FloorplanUpdate:
+    FloorplanCreate:
       type: object
+      required:
+      - name
       properties:
         name:
           type: string
@@ -116,10 +118,8 @@ components:
         floorplan_collection_id:
           type: integer
           format: int64
-    FloorplanCreate:
+    FloorplanUpdate:
       type: object
-      required:
-      - name
       properties:
         name:
           type: string

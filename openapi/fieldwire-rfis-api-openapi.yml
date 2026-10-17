@@ -99,6 +99,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Rfi'
 components:
+  parameters:
+    RfiId:
+      name: rfi_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ProjectId:
+      name: project_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   schemas:
     Rfi:
       type: object
@@ -147,6 +162,32 @@ components:
         updated_at:
           type: string
           format: date-time
+    RfiCreate:
+      type: object
+      required:
+      - title
+      - question
+      properties:
+        title:
+          type: string
+        question:
+          type: string
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
+        spec_section_id:
+          type: integer
+          format: int64
+        ball_in_court_user_id:
+          type: integer
+          format: int64
+        due_at:
+          type: string
+          format: date-time
     RfiUpdate:
       type: object
       properties:
@@ -177,47 +218,6 @@ components:
         due_at:
           type: string
           format: date-time
-    RfiCreate:
-      type: object
-      required:
-      - title
-      - question
-      properties:
-        title:
-          type: string
-        question:
-          type: string
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
-        spec_section_id:
-          type: integer
-          format: int64
-        ball_in_court_user_id:
-          type: integer
-          format: int64
-        due_at:
-          type: string
-          format: date-time
-  parameters:
-    ProjectId:
-      name: project_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    RfiId:
-      name: rfi_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     BearerAuth:
       type: http

@@ -59,14 +59,6 @@ paths:
           description: Invalid or revoked refresh token.
 components:
   schemas:
-    JwtRequest:
-      type: object
-      required:
-      - api_token
-      properties:
-        api_token:
-          type: string
-          description: Long-lived refresh token (API key) from the Fieldwire account settings.
     JwtResponse:
       type: object
       properties:
@@ -77,6 +69,14 @@ components:
           type: string
           format: date-time
           description: Access-token expiry timestamp (ISO 8601, UTC).
+    JwtRequest:
+      type: object
+      required:
+      - api_token
+      properties:
+        api_token:
+          type: string
+          description: Long-lived refresh token (API key) from the Fieldwire account settings.
   securitySchemes:
     BearerAuth:
       type: http
