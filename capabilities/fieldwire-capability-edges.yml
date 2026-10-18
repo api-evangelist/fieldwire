@@ -3,7 +3,9 @@ provider: Fieldwire
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
+- Engineering Services
 - Infrastructure
+- Manufacturing & Industrial
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,7 +13,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 9
+edge_count: 11
 edges:
 - tag: Building Information Models
   spec_file: fieldwire-building-information-models-api-openapi.yml
@@ -23,6 +25,26 @@ edges:
     (BIM) with versioned object trees"
   reason: Operations expose project BIM models with versioned object trees, which is BIM management within
     digital engineering.
+- tag: Subscriptions
+  spec_file: fieldwire-subscriptions-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: Configure webhook subscriptions to receive real-time event notifications ... Per-subscription
+    `entity_filters` ... narrow event delivery
+  reason: Operations manage the lifecycle of outbound webhook/event subscriptions, which is exactly webhook
+    and event subscription management.
+- tag: Sheets
+  spec_file: fieldwire-sheets-api-openapi.yml
+  capability_id: BC-1130.20
+  capability_id_l1: BC-1130
+  capability_name: Drawing Management
+  confidence: 0.8
+  evidence: '"Upload PDF drawing sets, manage sheet versioning and floorplan hierarchies, organise plans
+    into collections, calibrate scale"; GET /projects/{project_id}/sheets'
+  reason: Operations manage the lifecycle and versioning of project drawing sheets so the field has the
+    latest drawings — drawing management within engineering document control.
 - tag: Actual Costs
   spec_file: fieldwire-actual-costs-api-openapi.yml
   capability_id: BC-5020.20
@@ -43,6 +65,16 @@ edges:
     endpoints for budget management"
   reason: Project budget line items are the cost baseline for a construction project — cost estimating
     and management under project controls rather than corporate budgeting.
+- tag: Floor Plans
+  spec_file: fieldwire-floor-plans-api-openapi.yml
+  capability_id: BC-1130.20
+  capability_id_l1: BC-1130
+  capability_name: Drawing Management
+  confidence: 0.75
+  evidence: '"Upload PDF drawing sets, manage sheet versioning and floorplan hierarchies, organise plans
+    into collections, calibrate scale"'
+  reason: CRUD over project floorplans/sheets with versioning is drawing lifecycle management within engineering
+    document management.
 - tag: RFIs
   spec_file: fieldwire-rfis-api-openapi.yml
   capability_id: BC-5030.30
@@ -54,6 +86,16 @@ edges:
   reason: RFIs are formal contract-administration information requests in construction delivery. Contract
     Administration is the closest fit; some ambiguity versus design/document coordination keeps confidence
     moderate.
+- tag: Submittals
+  spec_file: fieldwire-submittals-api-openapi.yml
+  capability_id: BC-1130.40
+  capability_id_l1: BC-1130
+  capability_name: Vendor Document Management
+  confidence: 0.75
+  evidence: '"Track Requests for Information (RFIs), submittals, submittal types, spec sections, attachments,
+    markups, watchers, approvals, and submittal log extraction"; POST /projects/{project_id}/submittals'
+  reason: Construction submittals are contractor/vendor technical data submissions reviewed and dispositioned
+    against specifications — vendor document management. Some ambiguity with general document control.
 - tag: Floorplans
   spec_file: fieldwire-floor-plans-api-openapi.yml
   capability_id: BC-1130.20
@@ -76,16 +118,6 @@ edges:
   reason: Field data-capture forms on construction projects; operations create/get forms in a project.
     Best fit is construction quality management (QA/QC checklists, daily reports) within construction
     & field delivery, though safety inspections also touch HSE, hence moderate confidence.
-- tag: Sheets
-  spec_file: fieldwire-sheets-api-openapi.yml
-  capability_id: BC-5060.20
-  capability_id_l1: BC-5060
-  capability_name: Common Data Environment
-  confidence: 0.7
-  evidence: Upload PDF drawing sets, manage sheet versioning and floorplan hierarchies ... keep the latest
-    drawings in the field
-  reason: Controlled distribution and versioning of project drawings is common-data-environment / project
-    information management for the built asset.
 - tag: Spec Sections
   spec_file: fieldwire-spec-sections-api-openapi.yml
   capability_id: BC-1130.30
@@ -96,13 +128,3 @@ edges:
   reason: Spec sections are the technical specification divisions (e.g. CSI) referenced by submittals;
     maps to specification management, though the surface is a single read-only list.
   recovered_from: vertical-engineering-services-edges.json
-- tag: Submittals
-  spec_file: fieldwire-submittals-api-openapi.yml
-  capability_id: BC-5030.30
-  capability_id_l1: BC-5030
-  capability_name: Contract Administration
-  confidence: 0.7
-  evidence: Track Requests for Information (RFIs), submittals, submittal types, spec sections, attachments,
-    markups, watchers, approvals
-  reason: Submittal review/approval is a core construction contract administration obligation between
-    contractor and design team.
