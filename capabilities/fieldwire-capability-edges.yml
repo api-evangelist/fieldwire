@@ -13,7 +13,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 11
+edge_count: 12
 edges:
 - tag: Building Information Models
   spec_file: fieldwire-building-information-models-api-openapi.yml
@@ -40,11 +40,11 @@ edges:
   capability_id: BC-1130.20
   capability_id_l1: BC-1130
   capability_name: Drawing Management
-  confidence: 0.8
+  confidence: 0.82
   evidence: '"Upload PDF drawing sets, manage sheet versioning and floorplan hierarchies, organise plans
-    into collections, calibrate scale"; GET /projects/{project_id}/sheets'
-  reason: Operations manage the lifecycle and versioning of project drawing sheets so the field has the
-    latest drawings — drawing management within engineering document control.
+    into collections, calibrate scale"; POST /projects/{project_id}/sheets "Create Sheet In Project"'
+  reason: Sheets here are drawing sheets in a plan set with versioning and distribution to the field —
+    drawing lifecycle management within engineering document control.
 - tag: Actual Costs
   spec_file: fieldwire-actual-costs-api-openapi.yml
   capability_id: BC-5020.20
@@ -65,6 +65,15 @@ edges:
     endpoints for budget management"
   reason: Project budget line items are the cost baseline for a construction project — cost estimating
     and management under project controls rather than corporate budgeting.
+- tag: Building Information Models
+  spec_file: fieldwire-building-information-models-api-openapi.yml
+  capability_id: BC-1120.50
+  capability_id_l1: BC-1120
+  capability_name: Design Software & CAD Management
+  confidence: 0.75
+  evidence: '"attach Building Information Models (BIM) with versioned object trees"'
+  reason: Exposes BIM models attached to the project; BC-1120.50 explicitly covers '3D modelling, BIM,
+    digital design environment'. Read-only single endpoint keeps confidence moderate.
 - tag: Floor Plans
   spec_file: fieldwire-floor-plans-api-openapi.yml
   capability_id: BC-1130.20
