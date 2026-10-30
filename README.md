@@ -1,4 +1,4 @@
-# Fieldwire (fieldwire)
+# Fieldwire
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,259 +64,231 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fieldwire/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fieldwire/refs/heads/main/apis.yml)
+Fieldwire is a construction field-management platform. Its API covers plans and drawings, tasks and punch lists, forms, change orders, budget line items and actual costs, BIM models, and the people and companies attached to a project.
 
-## Scope
+**Areas:** Construction · Construction Technology · Field Management · Punch List · Plans · Drawings · BIM · Forms · Inspection · Project Management · Hilti
 
-- **Access:** 3rd-Party
+## Fieldwire on APIs.io
 
-## Tags
+Everything profiled for Fieldwire is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fieldwire/](https://apis.io/providers/fieldwire/)** — or go straight to one of the APIs or properties below.
 
-- Construction
-- Construction Technology
-- ConTech
-- Field Management
-- Punch List
-- Plans
-- Drawings
-- BIM
-- Forms
-- Inspections
-- Project Management
-- Hilti
+### APIs (18)
 
-## Timestamps
+- [Fieldwire Actual Costs API](https://apis.io/apis/fieldwire/fieldwire-actual-costs-api/) — Actual cost entries logged against budget lines.
+- [Fieldwire Authentication API](https://apis.io/apis/fieldwire/fieldwire-authentication-api/) — Refresh-token / JWT exchange and session management.
+- [Fieldwire Budget Line Items API](https://apis.io/apis/fieldwire/fieldwire-budget-line-items-api/) — Project budget line items tied to tier cost codes.
+- [Fieldwire Building Information Models API](https://apis.io/apis/fieldwire/fieldwire-building-information-models-api/) — BIM and BIM versions attached to a project.
+- [Fieldwire Change Orders API](https://apis.io/apis/fieldwire/fieldwire-change-orders-api/) — Project change orders that adjust scope and budget.
+- [Fieldwire Custom Stamps API](https://apis.io/apis/fieldwire/fieldwire-custom-stamps-api/) — Account-level custom stamps used on markups across projects.
+- [Fieldwire Form Inputs API](https://apis.io/apis/fieldwire/fieldwire-form-inputs-api/) — Inputs (text, number, photo, signature, choice, etc.) inside a section.
+- [Fieldwire Form Records API](https://apis.io/apis/fieldwire/fieldwire-form-records-api/) — Captured form responses per project.
+- [Fieldwire Form Sections API](https://apis.io/apis/fieldwire/fieldwire-form-sections-api/) — Section structure within a form template.
+- [Fieldwire Form Templates API](https://apis.io/apis/fieldwire/fieldwire-form-templates-api/) — Account-level form template lifecycle, duplication, and transfer.
+- [Fieldwire Hyperlinks API](https://apis.io/apis/fieldwire/fieldwire-hyperlinks-api/) — Single and multi-hyperlink jumps between sheets.
+- [Fieldwire RFIs API](https://apis.io/apis/fieldwire/fieldwire-rfis-api/) — Requests for Information lifecycle.
+- [Fieldwire Sheets API](https://apis.io/apis/fieldwire/fieldwire-sheets-api/) — Sheet upload and version management.
+- [Fieldwire Spec Sections API](https://apis.io/apis/fieldwire/fieldwire-spec-sections-api/) — Specification sections used to organise submittals.
+- [Fieldwire Submittals API](https://apis.io/apis/fieldwire/fieldwire-submittals-api/) — Submittal lifecycle, approvals, and types.
+- [Fieldwire Subscriptions API](https://apis.io/apis/fieldwire/fieldwire-subscriptions-api/) — Webhook subscription lifecycle.
+- [Fieldwire Users API](https://apis.io/apis/fieldwire/fieldwire-users-api/) — Account-level user, role, and permission management.
+- [Fieldwire Floor Plans API](https://apis.io/apis/fieldwire/fieldwire-floor-plans-api/) — Floorplan lifecycle, hierarchy, and collections.
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Fieldwire Account API
+#### AsyncAPI (1)
 
-Account-scoped (super) endpoints used to authenticate, exchange the long-lived API key for a short-lived JWT access token, and manage account-level users, roles, attachments, data types, custom stamps, form templates, and project transfers. Calls hit the global super host at https://client-api.super.fieldwire.com before regional project APIs.
+Event-driven and webhook contracts.
 
-- **Human URL:** [https://developers.fieldwire.com/docs/getting-started](https://developers.fieldwire.com/docs/getting-started)
+- [Fieldwire Webhooks](https://apis.io/asyncapis/fieldwire/fieldwire-webhooks-asyncapi/)
 
-#### Tags
+#### Event channels (14)
 
-- Account
-- Authentication
-- Construction
-- Users
+Individual events and webhooks the provider emits.
 
-#### Properties
+- [/webhooks/fieldwire/attachment](https://apis.io/channels/fieldwire/webhooks-fieldwire-attachment/)
+- [/webhooks/fieldwire/entity-tag](https://apis.io/channels/fieldwire/webhooks-fieldwire-entity-tag/)
+- [/webhooks/fieldwire/entity-tagging](https://apis.io/channels/fieldwire/webhooks-fieldwire-entity-tagging/)
+- [/webhooks/fieldwire/floorplan](https://apis.io/channels/fieldwire/webhooks-fieldwire-floorplan/)
+- [/webhooks/fieldwire/form](https://apis.io/channels/fieldwire/webhooks-fieldwire-form/)
+- [/webhooks/fieldwire/hyperlink](https://apis.io/channels/fieldwire/webhooks-fieldwire-hyperlink/)
+- [/webhooks/fieldwire/multi-hyperlink](https://apis.io/channels/fieldwire/webhooks-fieldwire-multi-hyperlink/)
+- [/webhooks/fieldwire/project](https://apis.io/channels/fieldwire/webhooks-fieldwire-project/)
+- [/webhooks/fieldwire/project-resource-link](https://apis.io/channels/fieldwire/webhooks-fieldwire-project-resource-link/)
+- [/webhooks/fieldwire/sheet](https://apis.io/channels/fieldwire/webhooks-fieldwire-sheet/)
+- [/webhooks/fieldwire/sheet-upload](https://apis.io/channels/fieldwire/webhooks-fieldwire-sheet-upload/)
+- [/webhooks/fieldwire/task](https://apis.io/channels/fieldwire/webhooks-fieldwire-task/)
+- [/webhooks/fieldwire/task-check-item](https://apis.io/channels/fieldwire/webhooks-fieldwire-task-check-item/)
+- [/webhooks/fieldwire/task-relation](https://apis.io/channels/fieldwire/webhooks-fieldwire-task-relation/)
 
-- [Documentation](https://developers.fieldwire.com/docs/getting-started)
-- [Documentation](https://developers.fieldwire.com/docs/authentication)
-- [OpenAPI](openapi/fieldwire-account-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-account-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-account-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### GraphQL (1)
 
-### Fieldwire Projects API
+GraphQL schemas.
 
-Create, retrieve, update, archive, transfer, and synchronise construction projects across the Fieldwire account. Includes project statistics, notifications, project teams, project users, permissions, and project-level forms / templates. Project data is region-resident — US clients call client-api.us.fieldwire.com/api/v3, EU clients call client-api.eu.fieldwire.com/api/v3.
+- [Moved to /providers/fieldwire/](https://apis.io/graphqls/fieldwire/fieldwire-graphql/)
 
-- **Human URL:** [https://developers.fieldwire.com/reference/get_projects_in_account](https://developers.fieldwire.com/reference/get_projects_in_account)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Construction
-- Projects
-- Field Management
+- [Fieldwire Agentic Access](https://apis.io/agentic-access/fieldwire/fieldwire-agentic-access/)
 
-#### Properties
+#### JSON Schema (1)
 
-- [Documentation](https://developers.fieldwire.com/reference/get_projects_in_account)
-- [OpenAPI](openapi/fieldwire-projects-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-projects-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-projects-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### Fieldwire Tasks API
+- [Fieldwire Task](https://apis.io/schemas/fieldwire/fieldwire-task/)
 
-Create and manage construction tasks — punch list items, RFIs-as-tasks, inspections, and work assignments — including check items, task relations, task types, custom task attributes, bubbles (comments, photos, video, attachments), and template checklists with up to 500 check items per task.
+#### JSON-LD (1)
 
-- **Human URL:** [https://developers.fieldwire.com/reference/get_tasks_in_project](https://developers.fieldwire.com/reference/get_tasks_in_project)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Fieldwire Context](https://apis.io/jsonld/fieldwire/fieldwire-context/)
 
-- Construction
-- Field Management
-- Tasks
-- Punch Lists
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://developers.fieldwire.com/reference/get_tasks_in_project)
-- [Documentation](https://developers.fieldwire.com/docs/custom-task-attributes)
-- [OpenAPI](openapi/fieldwire-tasks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-tasks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-tasks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/fieldwire-task-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Fieldwire Vocabulary](https://apis.io/vocabularies/fieldwire/fieldwire-vocabulary/)
 
-### Fieldwire Plans and Sheets API
+#### Examples (1)
 
-Upload PDF drawing sets, version sheets, organise floorplans into hierarchical collections, auto-extract sheet numbers / titles, manage hyperlinks and multi-hyperlinks between sheets, and attach Building Information Models with versioned object trees for calibration and 3D task creation.
+Example requests and responses.
 
-- **Human URL:** [https://developers.fieldwire.com/docs/uploading-plans-via-api](https://developers.fieldwire.com/docs/uploading-plans-via-api)
+- [Fieldwire Create Task Example](https://apis.io/examples/fieldwire/fieldwire-create-task-example/)
 
-#### Tags
+#### Collections (64)
 
-- Construction
-- Plans
-- Sheets
-- Drawings
-- BIM
+Postman and Open Collection request collections.
 
-#### Properties
+- [Fieldwire Account API](https://apis.io/collections/fieldwire/open-fieldwire-account-api/)
+- [Fieldwire Account Actual Costs API](https://apis.io/collections/fieldwire/open-fieldwire-actual-costs-api/)
+- [Fieldwire Account Actual Costs Attachments API](https://apis.io/collections/fieldwire/open-fieldwire-attachments-api/)
+- [Fieldwire Account Actual Costs Authentication API](https://apis.io/collections/fieldwire/open-fieldwire-authentication-api/)
+- [Fieldwire Account Actual Costs Bubbles API](https://apis.io/collections/fieldwire/open-fieldwire-bubbles-api/)
+- [Fieldwire Account Actual Costs Budget Line Items API](https://apis.io/collections/fieldwire/open-fieldwire-budget-line-items-api/)
+- [Fieldwire Account Actual Costs Building Information Models API](https://apis.io/collections/fieldwire/open-fieldwire-building-information-models-api/)
+- [Fieldwire Account Actual Costs Change Orders API](https://apis.io/collections/fieldwire/open-fieldwire-change-orders-api/)
+- [Fieldwire Account Actual Costs Custom Stamps API](https://apis.io/collections/fieldwire/open-fieldwire-custom-stamps-api/)
+- [Fieldwire Project Financials API](https://apis.io/collections/fieldwire/open-fieldwire-financials-api/)
+- [Fieldwire Account Actual Costs Floorplans API](https://apis.io/collections/fieldwire/open-fieldwire-floorplans-api/)
+- [Fieldwire Account Actual Costs Form Inputs API](https://apis.io/collections/fieldwire/open-fieldwire-form-inputs-api/)
+- [Fieldwire Account Actual Costs Form Records API](https://apis.io/collections/fieldwire/open-fieldwire-form-records-api/)
+- [Fieldwire Account Actual Costs Form Sections API](https://apis.io/collections/fieldwire/open-fieldwire-form-sections-api/)
+- [Fieldwire Account Actual Costs Form Templates API](https://apis.io/collections/fieldwire/open-fieldwire-form-templates-api/)
+- [Fieldwire Forms API](https://apis.io/collections/fieldwire/open-fieldwire-forms-api/)
+- [Fieldwire Account Actual Costs Hyperlinks API](https://apis.io/collections/fieldwire/open-fieldwire-hyperlinks-api/)
+- [Fieldwire Account Actual Costs Markups API](https://apis.io/collections/fieldwire/open-fieldwire-markups-api/)
+- [Fieldwire Plans and Sheets API](https://apis.io/collections/fieldwire/open-fieldwire-plans-api/)
+- [Fieldwire Account Actual Costs Project Stats API](https://apis.io/collections/fieldwire/open-fieldwire-project-stats-api/)
+- [Fieldwire Account Actual Costs Project Teams API](https://apis.io/collections/fieldwire/open-fieldwire-project-teams-api/)
+- [Fieldwire Account Actual Costs Project Users API](https://apis.io/collections/fieldwire/open-fieldwire-project-users-api/)
+- [Fieldwire Account Actual Costs Projects API](https://apis.io/collections/fieldwire/open-fieldwire-projects-api/)
+- [Fieldwire Account Actual Costs RFIs API](https://apis.io/collections/fieldwire/open-fieldwire-rfis-api/)
+- [Fieldwire RFIs and Submittals API](https://apis.io/collections/fieldwire/open-fieldwire-rfis-submittals-api/)
+- …and 39 more published on APIs.io
 
-- [Documentation](https://developers.fieldwire.com/docs/uploading-plans-via-api)
-- [Documentation](https://developers.fieldwire.com/docs/floorplan-collections-api-guide)
-- [OpenAPI](openapi/fieldwire-plans-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-plans-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-plans-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (3)
 
-### Fieldwire Forms API
+Spectral rulesets for the provider's contracts.
 
-Author account-level form templates, publish them to projects, capture form records and section inputs from the field, manage form statuses, signatures, markups, and form-level permissions. Used for daily reports, safety inspections, QA/QC checklists, and custom data collection in the field.
+- [Fieldwire — asyncapi rules](https://apis.io/rules/fieldwire/fieldwire-asyncapi-spectral-rules/)
+- [Fieldwire — jsonschema rules](https://apis.io/rules/fieldwire/fieldwire-jsonschema-spectral-rules/)
+- [Fieldwire API Rules](https://apis.io/rules/fieldwire/fieldwire-rules/)
 
-- **Human URL:** [https://developers.fieldwire.com/docs/working-with-project-forms](https://developers.fieldwire.com/docs/working-with-project-forms)
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Construction
-- Forms
-- Inspections
-- Data Collection
+- [Fieldwire Authentication](https://apis.io/security/fieldwire/fieldwire-authentication/)
+- [Fieldwire Domain Security](https://apis.io/security/fieldwire/fieldwire-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://developers.fieldwire.com/docs/working-with-project-forms)
-- [Documentation](https://developers.fieldwire.com/docs/getting-form-data)
-- [OpenAPI](openapi/fieldwire-forms-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-forms-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-forms-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### Fieldwire Attachments and Media API
+- [Fieldwire Plans Pricing](https://apis.io/plans/fieldwire/fieldwire-plans-pricing/)
 
-Upload, manage, and markup attachments — photos, videos, PDFs, spec sheets — using a two-step flow that returns short-lived signed AWS S3 POST tokens for direct browser-to-S3 upload. Markups support GeoJSON drawings, arrows, text, and measurement overlays, and can be flattened into image thumbnails.
+#### Rate limits (1)
 
-- **Human URL:** [https://developers.fieldwire.com/reference/add_aws_post_tokens](https://developers.fieldwire.com/reference/add_aws_post_tokens)
+Published request limits.
 
-#### Tags
+- [Fieldwire Rate Limits](https://apis.io/rate-limits/fieldwire/fieldwire-rate-limits/)
 
-- Construction
-- Attachments
-- Photos
-- Files
-- Media
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://developers.fieldwire.com/reference/add_aws_post_tokens)
-- [OpenAPI](openapi/fieldwire-attachments-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-attachments-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-attachments-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Fieldwire Finops](https://apis.io/finops/fieldwire/fieldwire-finops/)
 
-### Fieldwire Project Financials API
+## Where to find this API
 
-Manage project budget line items, actual costs, tier cost codes, and change orders for Business Plus customers. Exposes the project-financials surface that backs Fieldwire's budget management and change order workflows.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://developers.fieldwire.com/reference/get_budget_line_items_in_project](https://developers.fieldwire.com/reference/get_budget_line_items_in_project)
-
-#### Tags
-
-- Construction
-- Budget
-- Cost Management
-- Change Orders
-- Project Financials
-
-#### Properties
-
-- [Documentation](https://developers.fieldwire.com/reference/get_budget_line_items_in_project)
-- [OpenAPI](openapi/fieldwire-financials-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-financials-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-financials-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fieldwire RFIs and Submittals API
-
-Track Requests for Information, submittals, submittal types, spec sections, attachments, markups, watchers, approvals, and submittal log extraction. Supports email-based responses, ball-in-court reassignments, and renumbering with the lead company's own format.
-
-- **Human URL:** [https://developers.fieldwire.com/reference/get_rfis_in_project](https://developers.fieldwire.com/reference/get_rfis_in_project)
-
-#### Tags
-
-- Construction
-- RFIs
-- Submittals
-- Spec Sections
-- Approvals
-
-#### Properties
-
-- [Documentation](https://developers.fieldwire.com/reference/get_rfis_in_project)
-- [OpenAPI](openapi/fieldwire-rfis-submittals-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-rfis-submittals-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-rfis-submittals-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fieldwire Webhooks API
-
-Subscribe to real-time event notifications for attachments, entity tags / taggings, floorplans, forms, hyperlinks, multi-hyperlinks, projects, project resource links, sheets, sheet uploads, tasks, task check items, and task relations. Per-subscription entity_filters (max 20) and project_filters (max 100) narrow the firehose.
-
-- **Human URL:** [https://developers.fieldwire.com/docs/beta-creating-webhook-configurations](https://developers.fieldwire.com/docs/beta-creating-webhook-configurations)
-
-#### Tags
-
-- Construction
-- Webhooks
-- Events
-- Realtime
-
-#### Properties
-
-- [Documentation](https://developers.fieldwire.com/docs/beta-creating-webhook-configurations)
-- [Documentation](https://developers.fieldwire.com/docs/webhook-event-types)
-- [Documentation](https://developers.fieldwire.com/docs/webhook-filters)
-- [OpenAPI](openapi/fieldwire-webhooks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fieldwire-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fieldwire-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/fieldwire-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-
-## Common Properties
-
-- [Portal](https://www.fieldwire.com)
+- [Website](https://www.fieldwire.com/)
 - [Documentation](https://developers.fieldwire.com)
-- [Getting Started](https://developers.fieldwire.com/docs/getting-started)
-- [Authentication](https://developers.fieldwire.com/docs/authentication)
-- [Rate Limits](https://developers.fieldwire.com/docs/rate-limiting)
-- [Documentation](https://developers.fieldwire.com/docs/pagination)
-- [Documentation](https://developers.fieldwire.com/docs/filtering)
-- [Versioning](https://developers.fieldwire.com/docs/versioning)
-- [F A Q](https://developers.fieldwire.com/docs/frequently-asked-questions)
-- [Changelog](https://developers.fieldwire.com/changelog)
-- [R S S](https://developers.fieldwire.com/changelog.rss)
-- [Changelog](https://www.fieldwire.com/changelog/)
-- [Status Page](https://status.fieldwire.com/)
-- [Support](https://help.fieldwire.com/hc/en-us)
-- [Documentation](https://help.fieldwire.com/hc/en-us/articles/205097173-Introduction-to-the-Fieldwire-API)
-- [Documentation](https://www.fieldwire.com/integrations/)
-- [Documentation](https://www.fieldwire.com/integrations/fieldwire/api/)
-- [GitHub Organization](https://github.com/Fieldwire)
-- [SDK](https://github.com/Fieldwire/fieldwire_ruby_sample)
-- [SDK](https://github.com/Fieldwire/fieldwire_java_sample)
+- [Getting started](https://developers.fieldwire.com/docs/getting-started)
 - [Pricing](https://www.fieldwire.com/pricing/)
-- [Plans](https://www.fieldwire.com/pricing/)
-- [Documentation](https://www.fieldwire.com/about/)
+- [Support](https://help.fieldwire.com/hc/en-us)
+- [Changelog](https://developers.fieldwire.com/changelog)
 - [Security](https://www.fieldwire.com/security/)
-- [Privacy Policy](https://www.fieldwire.com/privacy/)
-- [Terms of Service](https://www.fieldwire.com/terms/)
-- [LinkedIn](https://www.linkedin.com/company/fieldwire)
-- [Twitter](https://twitter.com/Fieldwire)
-- [YouTube](https://www.youtube.com/@fieldwire)
-- [Documentation](https://www.hilti.com)
+- [Terms of service](https://www.fieldwire.com/terms/)
+- [Privacy policy](https://www.fieldwire.com/privacy/)
+- [GitHub](https://github.com/Fieldwire)
+- [Status](https://status.fieldwire.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 50.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 59.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 52.6 |
+| Developer ergonomics | 56.0 |
+| Access clarity | 47.4 |
+
+**Agent readiness 21.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fieldwire/](https://apis.io/providers/fieldwire/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fieldwire: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fieldwire/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
